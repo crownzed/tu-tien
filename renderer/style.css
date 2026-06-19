@@ -1,0 +1,235 @@
+/* Hacker Tu Tiên - Terminal Cyberpunk UI */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
+
+:root {
+  --bg-dark: #0a0e27;
+  --terminal-bg: rgba(10, 14, 39, 0.85);
+  --border-color: #00ff88;
+  --text-primary: #00ff88;
+  --text-secondary: #88ffaa;
+  --text-dim: #446655;
+  --text-red: #ff4466;
+  --text-cyan: #00ffff;
+  --text-yellow: #ffdd00;
+  --text-white: #ffffff;
+  --scanline-opacity: 0.05;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background layer - Tu Tiên landscape */
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  /* Replace with actual image: background-image: url('mountain.jpg'); */
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px) brightness(0.3);
+  z-index: 0;
+}
+
+/* Terminal container - Glassmorphism */
+.terminal-container {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  height: 85vh;
+  background: var(--terminal-bg);
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 30px rgba(0, 255, 136, 0.3),
+    inset 0 0 100px rgba(0, 255, 136, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+  animation: bootFlicker 0.3s ease-in;
+}
+
+@keyframes bootFlicker {
+  0%, 20%, 40%, 60% { opacity: 0; }
+  10%, 30%, 50%, 70% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Scanlines effect */
+.terminal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  opacity: var(--scanline-opacity);
+  z-index: 1000;
+}
+
+/* Terminal header */
+.terminal-header {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.terminal-title {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.terminal-status {
+  color: var(--text-cyan);
+  font-size: 12px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Stats bar */
+.terminal-stats {
+  display: flex;
+  gap: 20px;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+  font-size: 13px;
+}
+
+.stat-item {
+  display: flex;
+  gap: 8px;
+}
+
+.stat-label {
+  color: var(--text-dim);
+}
+
+.stat-value {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.stat-value.cyan { color: var(--text-cyan); }
+.stat-value.yellow { color: var(--text-yellow); }
+.stat-value.green { color: #00ff00; }
+.stat-value.red { color: var(--text-red); }
+.stat-value.white { color: var(--text-white); }
+
+/* Output area */
+.terminal-output {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  line-height: 1.6;
+  font-size: 14px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.log-line {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.log-line.success { color: var(--text-primary); }
+.log-line.error { color: var(--text-red); }
+.log-line.warning { color: var(--text-yellow); }
+.log-line.info { color: var(--text-cyan); }
+.log-line.dim { color: var(--text-dim); }
+
+/* Input area */
+.terminal-input-container {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid var(--border-color);
+  gap: 10px;
+}
+
+.prompt {
+  color: var(--text-primary);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-white);
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  caret-color: var(--text-primary);
+}
+
+.terminal-input::selection {
+  background: var(--border-color);
+  color: var(--bg-dark);
+}
+
+/* Typewriter animation class (to be applied via JS) */
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 1s steps(40) forwards;
+}

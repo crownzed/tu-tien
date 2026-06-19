@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Tu Tiên 🔱</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background layer (Tu Tiên landscape) -->
+  <div class="background-layer"></div>
+  
+  <!-- Terminal overlay -->
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <span class="terminal-title">▲ CULTIVATION_TERMINAL v1.0.0</span>
+      <span class="terminal-status" id="status-bar">SYSTEM_ONLINE</span>
+    </div>
+    
+    <div class="terminal-stats">
+      <div class="stat-item">
+        <span class="stat-label">HP:</span>
+        <span class="stat-value" id="hp-display">100/100</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">LINH_KHÍ:</span>
+        <span class="stat-value cyan" id="linhkhi-display">100/100</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">TU_VI:</span>
+        <span class="stat-value green" id="tuvi-display">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">TUỔI_THỌ:</span>
+        <span class="stat-value yellow" id="tuoitho-display">100/100</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">STATE:</span>
+        <span class="stat-value white" id="fsm-display">IDLE</span>
+      </div>
+    </div>
+    
+    <div class="terminal-output" id="output">
+      <div class="log-line">&gt; SYSTEM BOOT COMPLETE...</div>
+      <div class="log-line">&gt; LOADING PLAYER DATA...</div>
+      <div class="log-line success">&gt; [OK] DATABASE CONNECTED</div>
+      <div class="log-line">&gt; WELCOME TO CULTIVATION TERMINAL</div>
+      <div class="log-line dim">&gt; Type 'help' for available commands</div>
+    </div>
+    
+    <div class="terminal-input-container">
+      <span class="prompt">root@cultivation:~$</span>
+      <input type="text" id="input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
+    </div>
+  </div>
+  
+  <script src="renderer.js"></script>
+</body>
+</html>

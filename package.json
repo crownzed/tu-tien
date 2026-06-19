@@ -1,0 +1,21 @@
+{
+  "name": "hacker-tu-tien",
+  "version": "1.0.0",
+  "description": "Hacker Tu Tiên - Text-based Roguelite Cultivation Game",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "rebuild": "electron-rebuild -f -w better-sqlite3",
+    "postinstall": "electron-rebuild -f -w better-sqlite3",
+    "test": "ELECTRON_RUN_AS_NODE=1 electron test/run-tests.js"
+  },
+  "keywords": [],
+  "author": "Poseidon",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/rebuild": "^4.0.4",
+    "better-sqlite3": "^12.11.1",
+    "electron": "^42.4.1"
+  }
+}

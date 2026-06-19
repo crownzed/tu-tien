@@ -1,0 +1,11 @@
+{
+  "events": [
+    { "id": "combat_hard",   "weight": 20, "isGood": false, "category": "combat",   "text": "Gặp yêu thú cấp cao! Sát khí ngút trời." },
+    { "id": "combat_normal", "weight": 30, "isGood": false, "category": "combat",   "text": "Một yêu thú chặn đường ngươi." },
+    { "id": "treasure",      "weight": 15, "isGood": true,  "category": "reward",   "text": "Phát hiện kho báu ẩn giấu dưới lớp rêu phong." },
+    { "id": "npc_friendly",  "weight": 10, "isGood": true,  "category": "social",   "text": "Một tu sĩ hảo tâm muốn giao lưu đan dược." },
+    { "id": "npc_hostile",   "weight": 12, "isGood": false, "category": "social",   "text": "Tu sĩ tà đạo xuất hiện, ép ngươi nộp linh thạch." },
+    { "id": "trap",          "weight": 8,  "isGood": false, "category": "hazard",   "text": "Ngươi vô tình kích hoạt một cổ trận. Độc khí lan tỏa." },
+    { "id": "rest_spot",     "weight": 5,  "isGood": true,  "category": "rest",     "text": "Tìm thấy một hang động linh khí dồi dào, an toàn để nghỉ." }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "sects": [
+    {
+      "id": "thanh_van_phai", "name": "Thanh Vân Phái", "tier": "common",
+      "desc": "Một tông môn nhỏ nhưng đoàn kết, chuyên về kiếm thuật và luyện khí.",
+      "requirements": { "tuVi": 0, "realmMin": 0 },
+      "benefits": { "linhKhiRegenBonus": 0.3, "craftSuccessBonus": 0.05 },
+      "contributionRanks": [
+        { "name": "Ngoại Môn Đệ Tử", "minContribution": 0,    "dailyStones": 5 },
+        { "name": "Nội Môn Đệ Tử", "minContribution": 100,  "dailyStones": 15 },
+        { "name": "Chân Truyền Đệ Tử","minContribution": 500, "dailyStones": 40 },
+        { "name": "Trưởng Lão",     "minContribution": 2000, "dailyStones": 100 }
+      ]
+    },
+    {
+      "id": "hoa_linh_cung", "name": "Hỏa Linh Cung", "tier": "rare",
+      "desc": "Tông môn hệ Hỏa, chuyên luyện đan và khống chế hỏa diễm. Chỉ nhận tu sĩ có Hỏa linh căn.",
+      "requirements": { "tuVi": 200, "realmMin": 2, "element": "hoa" },
+      "benefits": { "craftSuccessBonus": 0.15, "combatElementBonus": 0.2 },
+      "contributionRanks": [
+        { "name": "Hỏa Đồng",      "minContribution": 0,    "dailyStones": 10 },
+        { "name": "Hỏa Linh Sư",   "minContribution": 200,  "dailyStones": 30 },
+        { "name": "Hỏa Diễm Tôn Giả","minContribution": 1000,"dailyStones": 80 },
+        { "name": "Hỏa Thần Hộ Pháp","minContribution": 5000,"dailyStones": 200 }
+      ]
+    },
+    {
+      "id": "kiem_cac", "name": "Vạn Kiếm Các", "tier": "legendary",
+      "desc": "Thánh địa kiếm tu. Cực kỳ khó vào, chỉ nhận Thiên Linh Căn hệ Kim hoặc Biến Dị Thánh Thể.",
+      "requirements": { "tuVi": 1000, "realmMin": 4, "linhCanTier": ["legendary", "mythic"] },
+      "benefits": { "combatDamageBonus": 0.3, "breakthroughBonus": 0.15, "craftSuccessBonus": 0.1 },
+      "contributionRanks": [
+        { "name": "Kiếm Nô",       "minContribution": 0,    "dailyStones": 20 },
+        { "name": "Kiếm Sĩ",       "minContribution": 500,  "dailyStones": 60 },
+        { "name": "Kiếm Sư",       "minContribution": 2000, "dailyStones": 150 },
+        { "name": "Kiếm Tiên",     "minContribution": 10000,"dailyStones": 500 }
+      ]
+    }
+  ]
+}

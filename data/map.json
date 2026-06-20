@@ -1,0 +1,37 @@
+{
+  "nodeTypes": {
+    "combat":   { "icon": "⚔️", "color": "#ff4444", "desc": "Chiến đấu" },
+    "elite":    { "icon": "💀", "color": "#ff6644", "desc": "Quái Tinh Anh" },
+    "treasure": { "icon": "💎", "color": "#ffdd00", "desc": "Kho báu" },
+    "rest":     { "icon": "🏕️", "color": "#00ff88", "desc": "Nghỉ ngơi" },
+    "npc":      { "icon": "👤", "color": "#88aaff", "desc": "Gặp NPC" },
+    "event":    { "icon": "❓", "color": "#aa88ff", "desc": "Sự kiện" },
+    "boss":     { "icon": "👑", "color": "#ff0000", "desc": "BOSS" }
+  },
+  "maps": [
+    {
+      "realmMin": 0, "realmMax": 2,
+      "layers": 5,
+      "nodeDistribution": { "combat": 40, "treasure": 20, "rest": 10, "npc": 15, "event": 15 },
+      "hasElite": false
+    },
+    {
+      "realmMin": 3, "realmMax": 4,
+      "layers": 6,
+      "nodeDistribution": { "combat": 35, "elite": 10, "treasure": 20, "rest": 10, "npc": 15, "event": 10 },
+      "hasElite": true
+    },
+    {
+      "realmMin": 5, "realmMax": 6,
+      "layers": 7,
+      "nodeDistribution": { "combat": 30, "elite": 15, "treasure": 20, "rest": 10, "npc": 10, "event": 15 },
+      "hasElite": true
+    },
+    {
+      "realmMin": 7, "realmMax": 8,
+      "layers": 8,
+      "nodeDistribution": { "combat": 25, "elite": 20, "treasure": 20, "rest": 10, "npc": 10, "event": 15 },
+      "hasElite": true
+    }
+  ]
+}

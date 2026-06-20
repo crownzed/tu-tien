@@ -19,8 +19,19 @@ module.exports = {
 
   // --- Linh Khí regen (Time-Delta) ---
   linhKhi: {
-    regenRatePerMinute: 1,    // 1 điểm/phút (passive)
-    meditationMultiplier: 2   // x2 khi Tịnh Khí
+    regenRatePerMinute: 3,    // 3 điểm/phút (passive) — đủ để cảm thấy tác dụng
+    meditationMultiplier: 2,   // x2 khi Tịnh Khí
+    attackCost: 3              // LK tiêu hao mỗi đòn đánh thường
+  },
+
+  // --- Run EXP ---
+  runExp: {
+    combatBase: 50,            // EXP cơ bản mỗi trận thắng
+    eliteMultiplier: 2,        // x2 cho elite
+    bossMultiplier: 5,         // x5 cho boss
+    levelThresholds: [100, 300, 600, 1000, 2000, 4000], // mốc level-up trong kiếp
+    hpBonusPerLevel: 15,       // +15 HP mỗi lần level-up trong kiếp
+    lkBonusPerLevel: 10        // +10 Linh Khí max mỗi lần level-up trong kiếp
   },
 
   // --- RNG / Pity ---
@@ -65,5 +76,24 @@ module.exports = {
   meta: {
     score: { realmMultiplier: 1000, yearMultiplier: 10 },
     levelCurve: { baseExp: 100, exponent: 1.8 }
+  },
+
+  // --- Map / Event Chain ---
+  map: {
+    nodesPerLayer: { min: 2, max: 4 },
+    connectionDensity: 0.7,
+    treasureDropMultiplier: 1.0,
+    restHealPercent: 0.3
+  },
+
+  // --- Breakthrough / Tribulation ---
+  breakthrough: {
+    luckBonusRate: 0.002,       // mỗi luck +0.2% success rate
+    excessLinhKhiBonus: 0.001,  // mỗi LK vượt yêu cầu +0.1% success rate
+    cultivationSpeedMultiplier: 1.0, // nhân với modifier từ Linh Căn
+    artifactSuccessBonus: 0.15,  // mỗi artifact +15% success rate
+    artifactTribulationReduction: 0.3, // artifact giảm 30% sát thương thiên kiếp
+    tauHoaRiskThreshold: 0.2,    // dưới tỉ lệ này có risk tẩu hỏa
+    tauHoaDeathChance: 0.3       // 30% chết nếu tẩu hỏa nhập ma
   }
 };

@@ -1,0 +1,24 @@
+{
+  "achievements": [
+    { "id": "first_run",        "name": "Bước Chân Đầu Tiên",    "desc": "Hoàn thành kiếp đầu tiên",                       "check": "total_lifetimes", "threshold": 1,  "reward": { "luanHoiPoints": 50 } },
+    { "id": "ten_lives",        "name": "Luân Hồi Thập Kiếp",    "desc": "Sống qua 10 kiếp",                               "check": "total_lifetimes", "threshold": 10, "reward": { "luanHoiPoints": 200 } },
+    { "id": "hundred_lives",    "name": "Bách Thế Luân Hồi",     "desc": "Sống qua 100 kiếp",                              "check": "total_lifetimes", "threshold": 100,"reward": { "luanHoiPoints": 1000 } },
+    { "id": "realm_kim_dan",    "name": "Kim Đan Đại Đạo",       "desc": "Đạt cảnh giới Kim Đan",                          "check": "best_realm",     "threshold": 3,  "reward": { "luanHoiPoints": 100 } },
+    { "id": "realm_hoa_than",   "name": "Hóa Thần Chí Tôn",      "desc": "Đạt cảnh giới Hóa Thần",                         "check": "best_realm",     "threshold": 5,  "reward": { "luanHoiPoints": 300 } },
+    { "id": "realm_dai_thua",   "name": "Đại Thừa Chân Tiên",    "desc": "Đạt cảnh giới Đại Thừa",                         "check": "best_realm",     "threshold": 8,  "reward": { "luanHoiPoints": 1000 } },
+    { "id": "kill_100",         "name": "Sát Thần Sơ Khởi",      "desc": "Giết 100 quái (tích lũy)",                       "check": "total_kills",    "threshold": 100, "reward": { "luanHoiPoints": 150 } },
+    { "id": "kill_1000",        "name": "Vạn Yêu Đồ Tể",         "desc": "Giết 1000 quái (tích lũy)",                      "check": "total_kills",    "threshold": 1000,"reward": { "luanHoiPoints": 500 } },
+    { "id": "score_1000",       "name": "Thiên Tài Tu Chân",     "desc": "Đạt 1000 điểm trong 1 kiếp",                     "check": "best_score",     "threshold": 1000,"reward": { "luanHoiPoints": 100 } },
+    { "id": "score_10000",      "name": "Nghịch Thiên Chi Nhân", "desc": "Đạt 10000 điểm trong 1 kiếp",                    "check": "best_score",     "threshold": 10000,"reward": { "luanHoiPoints": 500 } },
+    { "id": "account_lv5",      "name": "Tu Luyện Giả Kỳ Cựu",   "desc": "Đạt Account Level 5",                            "check": "account_level",  "threshold": 5,  "reward": { "luanHoiPoints": 200 } },
+    { "id": "account_lv10",     "name": "Vĩnh Hằng Chi Nhân",    "desc": "Đạt Account Level 10",                           "check": "account_level",  "threshold": 10, "reward": { "luanHoiPoints": 500 } },
+    { "id": "defeat_boss",      "name": "Đồ Long Chi Nhân",      "desc": "Đánh bại 1 BOSS",                                "check": "boss_kills",     "threshold": 1,  "reward": { "luanHoiPoints": 150 } },
+    { "id": "defeat_10_boss",   "name": "Thần Thoại Đồ Tể",      "desc": "Đánh bại 10 BOSS",                               "check": "boss_kills",     "threshold": 10, "reward": { "luanHoiPoints": 500 } },
+    { "id": "craft_10",         "name": "Luyện Khí Đại Sư",      "desc": "Chế tạo thành công 10 lần",                      "check": "craft_count",    "threshold": 10, "reward": { "luanHoiPoints": 100 } },
+    { "id": "breakthrough_5",   "name": "Đột Phá Chi Vương",     "desc": "Đột phá thành công 5 lần (tích lũy)",            "check": "breakthroughs",  "threshold": 5,  "reward": { "luanHoiPoints": 200 } },
+    { "id": "tribulation_survive","name": "Nghịch Thiên Giả",    "desc": "Sống sót 3 lần thiên kiếp",                      "check": "tribulations",   "threshold": 3,  "reward": { "luanHoiPoints": 300 } },
+    { "id": "shop_5_purchases", "name": "Luân Hồi Thương Nhân",  "desc": "Mua 5 lần từ Shop Luân Hồi",                     "check": "shop_purchases", "threshold": 5,  "reward": { "luanHoiPoints": 100 } },
+    { "id": "sect_join",        "name": "Nhập Môn Đồ Đệ",        "desc": "Gia nhập 1 tông môn",                            "check": "sect_joined",    "threshold": 1,  "reward": { "luanHoiPoints": 50 } },
+    { "id": "high_rank",        "name": "Tông Môn Trưởng Lão",   "desc": "Đạt cấp Trưởng Lão trong tông môn",              "check": "sect_rank",      "threshold": 3,  "reward": { "luanHoiPoints": 300 } }
+  ]
+}

@@ -2,58 +2,128 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hacker Tu Tiên 🔱</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tu Tiên Giới</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Serif+SC:wght@0,400;0,600;0,700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Background layer (Tu Tiên landscape) -->
-  <div class="background-layer"></div>
-  
-  <!-- Terminal overlay -->
-  <div class="terminal-container">
-    <div class="terminal-header">
-      <span class="terminal-title">▲ CULTIVATION_TERMINAL v1.0.0</span>
-      <span class="terminal-status" id="status-bar">SYSTEM_ONLINE</span>
+  <!-- ═══════════ GAME WRAPPER (Flexbox Column) ═══════════ -->
+  <div class="game-wrapper">
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="header">
+      <div class="header-content">
+        <div class="title-section">
+          <h1 class="game-title">Tu Tiên Giới</h1>
+          <div class="player-info">
+            Cảnh Giới <span id="hdr-level" class="jade-text font-bold">LV.1</span>
+            <span class="sep">❖</span>
+            Luân Hồi <span id="hdr-dlh" class="gold-text font-bold">0 ĐLH</span>
+          </div>
+        </div>
+        <nav class="nav-bar">
+          <button class="nav-btn" data-nav="status" title="Xem hồ sơ nhân vật">📜 Hồ Sơ</button>
+          <button class="nav-btn" data-nav="inventory" title="Xem túi đồ &amp; trang bị">🎒 Túi Đồ</button>
+          <button class="nav-btn" data-nav="shop" title="Cửa hàng Luân Hồi">🛒 Cửa Hàng</button>
+          <button class="nav-btn" data-nav="map" title="Xem bản đồ hành trình">🗺️ Bản Đồ</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ═══════════ STATUS BAR ═══════════ -->
+    <div class="status-panel" id="status-bar">
+      <!-- Khí Huyết -->
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">❤️ Khí Huyết</span>
+          <span class="stat-value" id="hp-val">100/100</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill hp-fill" id="hp-fill"></div>
+          <div id="hp-empty" style="display:none;"></div>
+        </div>
+        <span id="hp-pct" style="display:none">100%</span>
+      </div>
+
+      <!-- Chân Nguyên -->
+      <div class="stat-card">
+        <div class="stat-header">
+          <span class="stat-label">💧 Chân Nguyên</span>
+          <span class="stat-value" id="lk-val">100/100</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill mp-fill" id="lk-fill"></div>
+          <div id="lk-empty" style="display:none;"></div>
+        </div>
+        <span id="lk-pct" style="display:none">100%</span>
+      </div>
+
+      <!-- Secondary Stats -->
+      <div class="stat-row-extra">
+        <div class="pill">☯️ Tu Vi <span id="tuvi-val" class="jade-text font-bold">0</span></div>
+        <div class="pill">💎 Linh Thạch <span id="stones-val" class="gold-text font-bold">0</span></div>
+        <div class="pill">⏳ Thọ <span id="tho-val" class="font-bold">16/120</span></div>
+        <div class="pill">🍀 Cơ Duyên <span id="luck-val" class="font-bold">0</span></div>
+        <div class="pill">✨ Hệ <span id="realm-val" class="gold-text font-bold">--</span></div>
+        <div class="pill seal-badge" id="state-badge" data-state="NO_RUN">NO_RUN</div>
+      </div>
     </div>
-    
-    <div class="terminal-stats">
-      <div class="stat-item">
-        <span class="stat-label">HP:</span>
-        <span class="stat-value" id="hp-display">100/100</span>
+
+    <!-- ═══════════ MAIN LOG ═══════════ -->
+    <main class="main-log-area" id="main-log">
+      <div class="log-inner" id="log-inner">
+        <!-- Sự kiện sẽ được render động bởi renderer.js -->
       </div>
-      <div class="stat-item">
-        <span class="stat-label">LINH_KHÍ:</span>
-        <span class="stat-value cyan" id="linhkhi-display">100/100</span>
+    </main>
+
+    <!-- ═══════════ FOOTER ═══════════ -->
+    <footer class="footer">
+      <nav class="action-grid" id="quick-actions">
+        <!-- JS tự động thêm các nút hành động -->
+      </nav>
+      <div class="cmd-line">
+        <span class="cmd-prompt">Ý Niệm ❯</span>
+        <input
+          type="text"
+          id="cmd-input"
+          class="cmd-input"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Truyền âm nhập mật..."
+          autofocus
+        >
       </div>
-      <div class="stat-item">
-        <span class="stat-label">TU_VI:</span>
-        <span class="stat-value green" id="tuvi-display">0</span>
+    </footer>
+  </div>
+
+  <!-- ═══════════ COMBAT OVERLAY (position: fixed modal) ═══════════ -->
+  <div class="combat-overlay modal-overlay" id="combat-overlay" style="display:none;">
+    <div class="combat-card modal-panel">
+      <div class="combat-enemy-header">
+        <span class="enemy-icon" id="enemy-icon">🐉</span>
+        <div class="enemy-details">
+          <div class="enemy-name" id="enemy-name">Yêu Thú</div>
+          <div class="enemy-hp-bar">
+            <div class="progress-track" style="flex:1;">
+              <div class="progress-fill hp-fill" id="enemy-hp-fill"></div>
+              <div id="enemy-hp-empty" style="display:none"></div>
+            </div>
+            <span class="enemy-hp-text" id="enemy-hp-text">100/100</span>
+          </div>
+          <div class="enemy-stats-text" id="enemy-stats">ATK:0 | DEF:0</div>
+        </div>
       </div>
-      <div class="stat-item">
-        <span class="stat-label">TUỔI_THỌ:</span>
-        <span class="stat-value yellow" id="tuoitho-display">100/100</span>
+      <div class="combat-log-box" id="combat-log"></div>
+      <div class="combat-actions action-grid" id="combat-actions">
+        <button class="action-btn combat primary" data-action="attack">⚔️ Tấn Công</button>
+        <button class="action-btn combat" data-action="cast">✨ Thi Pháp</button>
+        <button class="action-btn combat danger" data-action="forbidden_art">☠️ Cấm Thuật</button>
+        <button class="action-btn combat" data-action="flee">🏃 Bỏ Chạy</button>
       </div>
-      <div class="stat-item">
-        <span class="stat-label">STATE:</span>
-        <span class="stat-value white" id="fsm-display">IDLE</span>
-      </div>
-    </div>
-    
-    <div class="terminal-output" id="output">
-      <div class="log-line">&gt; SYSTEM BOOT COMPLETE...</div>
-      <div class="log-line">&gt; LOADING PLAYER DATA...</div>
-      <div class="log-line success">&gt; [OK] DATABASE CONNECTED</div>
-      <div class="log-line">&gt; WELCOME TO CULTIVATION TERMINAL</div>
-      <div class="log-line dim">&gt; Type 'help' for available commands</div>
-    </div>
-    
-    <div class="terminal-input-container">
-      <span class="prompt">root@cultivation:~$</span>
-      <input type="text" id="input" class="terminal-input" autofocus autocomplete="off" spellcheck="false">
     </div>
   </div>
-  
+
   <script src="renderer.js"></script>
 </body>
 </html>

@@ -66,8 +66,37 @@ const MIGRATIONS = [
       INSERT OR IGNORE INTO account (id) VALUES (1);
       INSERT OR IGNORE INTO pity_counters (id) VALUES (1);
     `);
+  },
+  // v2: thêm cột metadata cho combat state / dữ liệu mở rộng khác
+  (db) => {
+    db.exec(`ALTER TABLE run ADD COLUMN metadata TEXT`);
+  },
+  // v3: thêm cột map_state cho map/event system
+  (db) => {
+    db.exec(`ALTER TABLE run ADD COLUMN map_state TEXT`);
+  },
+  // v4: run_history table + account metadata
+  (db) => {
+    db.exec(`
+      CREATE TABLE run_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        ended_at INTEGER NOT NULL,
+        realm_id TEXT NOT NULL,
+        realm_name TEXT NOT NULL,
+        score INTEGER NOT NULL,
+        monsters_killed INTEGER NOT NULL,
+        spirit_stones_earned INTEGER NOT NULL,
+        years_lived REAL NOT NULL,
+        cause_of_death TEXT DEFAULT 'unknown'
+      );
+      ALTER TABLE account ADD COLUMN metadata TEXT;
+    `);
+  },
+  // v5: run_exp — EXP tích lũy trong kiếp
+  (db) => {
+    db.exec(`ALTER TABLE run ADD COLUMN run_exp INTEGER NOT NULL DEFAULT 0`);
   }
-  // v2, v3... thêm vào đây khi schema đổi. KHÔNG sửa migration cũ.
+  // v3... thêm vào đây khi schema đổi. KHÔNG sửa migration cũ.
 ];
 
 /**

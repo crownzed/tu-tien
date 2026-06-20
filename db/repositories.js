@@ -17,6 +17,18 @@ class AccountRepo {
     const setClause = keys.map(k => `${k} = @${k}`).join(', ');
     this.db.prepare(`UPDATE account SET ${setClause} WHERE id = 1`).run(fields);
   }
+
+  getMetadata() {
+    const row = this.db.prepare('SELECT metadata FROM account WHERE id = 1').get();
+    if (!row || !row.metadata) return {};
+    try { return JSON.parse(row.metadata); } catch { return {}; }
+  }
+
+  updateMetadata(obj) {
+    const current = this.getMetadata();
+    const merged = { ...current, ...obj };
+    this.update({ metadata: JSON.stringify(merged) });
+  }
 }
 
 class PityRepo {
@@ -90,13 +102,41 @@ class InventoryRepo {
   }
 }
 
+class RunHistoryRepo {
+  constructor(db) { this.db = db; }
+
+  add(entry) {
+    this.db.prepare(`
+      INSERT INTO run_history (ended_at, realm_id, realm_name, score, monsters_killed, spirit_stones_earned, years_lived, cause_of_death)
+      VALUES (@ended_at, @realm_id, @realm_name, @score, @monsters_killed, @spirit_stones_earned, @years_lived, @cause_of_death)
+    `).run(entry);
+  }
+
+  all(limit = 20) {
+    return this.db.prepare('SELECT * FROM run_history ORDER BY id DESC LIMIT ?').all(limit);
+  }
+
+  bestScore() {
+    return this.db.prepare('SELECT MAX(score) as best FROM run_history').get();
+  }
+
+  totalKills() {
+    return this.db.prepare('SELECT SUM(monsters_killed) as total FROM run_history').get();
+  }
+
+  count() {
+    return this.db.prepare('SELECT COUNT(*) as count FROM run_history').get();
+  }
+}
+
 function createRepositories(db) {
   return {
     account: new AccountRepo(db),
     pity: new PityRepo(db),
     run: new RunRepo(db),
-    inventory: new InventoryRepo(db)
+    inventory: new InventoryRepo(db),
+    runHistory: new RunHistoryRepo(db)
   };
 }
 
-module.exports = { createRepositories, AccountRepo, PityRepo, RunRepo, InventoryRepo };
+module.exports = { createRepositories, AccountRepo, PityRepo, RunRepo, InventoryRepo, RunHistoryRepo };

@@ -7,5 +7,145 @@
     { "id": "npc_hostile",   "weight": 12, "isGood": false, "category": "social",   "text": "Tu sĩ tà đạo xuất hiện, ép ngươi nộp linh thạch." },
     { "id": "trap",          "weight": 8,  "isGood": false, "category": "hazard",   "text": "Ngươi vô tình kích hoạt một cổ trận. Độc khí lan tỏa." },
     { "id": "rest_spot",     "weight": 5,  "isGood": true,  "category": "rest",     "text": "Tìm thấy một hang động linh khí dồi dào, an toàn để nghỉ." }
-  ]
+  ],
+  "eventScripts": {
+    "treasure": [
+      {
+        "id": "treasure_ancient_vault",
+        "text": "Bạn phát hiện một cổ mộ tu sĩ cổ đại, cửa đá đã nứt vỡ.",
+        "choices": [
+          { "text": "Mở quan tài", "risk": "medium",
+            "success": { "text": "Bên trong rực rỡ! Bạn tìm thấy Linh Thạch và 1 đan dược.", "reward": { "spiritStones": 200, "item": "luyen_khi_dan" } },
+            "failure": { "text": "Cạm bẫy! Mũi tên độc từ vách tường phóng ra.", "damage": { "hp": 30 } },
+            "successRate": 0.6 },
+          { "text": "Rời đi an toàn", "risk": "none",
+            "success": { "text": "Bạn quyết định không mạo hiểm, rời khỏi cổ mộ." } }
+        ]
+      },
+      {
+        "id": "treasure_spirit_spring",
+        "text": "Một dòng suối Linh Khí lấp lánh dưới ánh trăng. Dưới đáy suối có thứ gì đó phát sáng.",
+        "choices": [
+          { "text": "Lặn xuống nhặt", "risk": "low",
+            "success": { "text": "Bạn vớt được 150 Linh Thạch và cảm thấy Linh Khí dồi dào.", "reward": { "spiritStones": 150, "linhKhiRestore": 30 } },
+            "failure": { "text": "Nước quá lạnh! Bạn bị cảm hàn, mất chút HP.", "damage": { "hp": 15 } },
+            "successRate": 0.75 },
+          { "text": "Uống nước suối rồi đi", "risk": "none",
+            "success": { "text": "Nước suối tinh khiết giúp Linh Khí hồi phục 20 điểm.", "reward": { "linhKhiRestore": 20 } } }
+        ]
+      },
+      {
+        "id": "treasure_abandoned_cache",
+        "text": "Bạn tìm thấy một túi đồ bỏ lại sau tảng đá lớn. Có vẻ của một tu sĩ xấu số.",
+        "choices": [
+          { "text": "Mở túi", "risk": "medium",
+            "success": { "text": "Túi chứa 250 Linh Thạch và một mảnh ngọc giản!", "reward": { "spiritStones": 250, "item": "ngoc_gian_co" } },
+            "failure": { "text": "Túi bị ếm bùa nổ! Bạn bị thương nặng.", "damage": { "hp": 50 } },
+            "successRate": 0.55 },
+          { "text": "Đốt nhang siêu độ rồi đi", "risk": "none",
+            "success": { "text": "Bạn thắp nhang cầu siêu. Một luồng sáng ấm áp cảm tạ. Linh Khí +15.", "reward": { "linhKhiRestore": 15 } } }
+        ]
+      }
+    ],
+    "rest": [
+      {
+        "id": "rest_cave",
+        "text": "Một hang động khô ráo, an toàn để nghỉ ngơi. Bạn cảm thấy mệt mỏi sau chặng đường dài.",
+        "choices": [
+          { "text": "Nghỉ ngơi 2 giờ", "risk": "none",
+            "success": { "text": "Bạn nghỉ ngơi thoải mái. HP và Linh Khí hồi phục đáng kể.", "reward": { "restHeal": true } } },
+          { "text": "Nghỉ qua đêm (tốn 0.5 tuổi thọ)", "risk": "none",
+            "success": { "text": "Bạn ngủ một giấc sâu. HP và Linh Khí hồi phục hoàn toàn!", "reward": { "restFullHeal": true }, "cost": { "tuoiTho": 0.5 } } },
+          { "text": "Tiếp tục lên đường", "risk": "none",
+            "success": { "text": "Bạn quyết định không dừng lại." } }
+        ]
+      },
+      {
+        "id": "rest_hot_spring",
+        "text": "Một suối nước nóng tự nhiên tỏa ra linh khí ấm áp. Cơ thể bạn đau nhức.",
+        "choices": [
+          { "text": "Ngâm mình thư giãn", "risk": "none",
+            "success": { "text": "Làn nước ấm xoa dịu mọi vết thương. HP hồi đầy, Linh Khí +30.", "reward": { "fullHpHeal": true, "linhKhiRestore": 30 } } },
+          { "text": "Rửa mặt rồi đi", "risk": "none",
+            "success": { "text": "Bạn rửa mặt cho tỉnh táo. HP +20.", "reward": { "hpRestore": 20 } } }
+        ]
+      }
+    ],
+    "npc": [
+      {
+        "id": "npc_merchant",
+        "text": "Một thương nhân tu sĩ đang bày hàng bên đường. Ông ta vẫy tay chào bạn.",
+        "choices": [
+          { "text": "Mua Luyện Khí Đan (50 Linh Thạch)", "risk": "none",
+            "success": { "text": "Bạn mua được 1 viên Luyện Khí Đan. Linh Khí vĩnh viễn +10.", "reward": { "item": "luyen_khi_dan" }, "cost": { "spiritStones": 50 } } },
+          { "text": "Mua Hồi Huyết Đan (30 Linh Thạch)", "risk": "none",
+            "success": { "text": "Bạn mua được 1 viên Hồi Huyết Đan.", "reward": { "item": "hoi_huyet_dan" }, "cost": { "spiritStones": 30 } } },
+          { "text": "Bỏ qua", "risk": "none",
+            "success": { "text": "Bạn lắc đầu, tiếp tục cuộc hành trình." } }
+        ]
+      },
+      {
+        "id": "npc_elder",
+        "text": "Một lão tu sĩ tóc bạc đang ngồi thiền dưới gốc cây cổ thụ. Ngài mở mắt nhìn bạn.",
+        "choices": [
+          { "text": "Xin chỉ điểm tu luyện", "risk": "none",
+            "success": { "text": "Lão nhân mỉm cười, truyền cho bạn một đoạn tâm pháp. Tu Vi +200!", "reward": { "tuVi": 200 } } },
+          { "text": "Xin bùa hộ mệnh", "risk": "none",
+            "success": { "text": "Ngài ban cho bạn một tấm bùa hộ mệnh. Nhận được Phù Hộ Mệnh!", "reward": { "item": "phu_ho_menh" } } },
+          { "text": "Cúi chào rồi đi", "risk": "none",
+            "success": { "text": "Lão nhân gật đầu, tiếp tục nhắm mắt thiền định." } }
+        ]
+      },
+      {
+        "id": "npc_challenger",
+        "text": "Một tu sĩ trẻ tuổi chặn đường bạn, ánh mắt đầy khiêu khích. \"Đấu với ta 1 trận!\"",
+        "choices": [
+          { "text": "Nhận lời tỉ thí", "risk": "medium",
+            "success": { "text": "Bạn thắng! Đối thủ cúi đầu bái phục, tặng bạn 300 Linh Thạch.", "reward": { "spiritStones": 300 } },
+            "failure": { "text": "Bạn thua! Đối thủ cười lớn rồi bỏ đi, để lại cho bạn chút thể diện.", "damage": { "hp": 40 } },
+            "successRate": 0.5 },
+          { "text": "Từ chối khéo", "risk": "none",
+            "success": { "text": "\"Hừ, nhát gan!\" Hắn ta bỏ đi." } }
+        ]
+      }
+    ],
+    "event": [
+      {
+        "id": "event_mysterious_portal",
+        "text": "Một cánh cổng không gian lơ lửng trước mặt bạn. Bên trong tối đen không thấy đáy.",
+        "choices": [
+          { "text": "Bước vào cổng", "risk": "high",
+            "success": { "text": "Bạn được dịch chuyển đến một động phủ cổ! Nhận 500 Linh Thạch và 1 Kỳ Bảo.", "reward": { "spiritStones": 500, "item": "ky_bao_ha_pham" } },
+            "failure": { "text": "Cổng sụp đổ! Bạn bị thương nặng và mất 100 Linh Thạch.", "damage": { "hp": 60 }, "cost": { "spiritStones": 100 } },
+            "successRate": 0.35 },
+          { "text": "Quay lưng bỏ đi", "risk": "none",
+            "success": { "text": "Cánh cổng biến mất sau lưng bạn. Bạn tự hỏi điều gì đã bỏ lỡ..." } }
+        ]
+      },
+      {
+        "id": "event_herb_field",
+        "text": "Bạn phát hiện một bãi linh thảo mọc hoang. Có vài cây đã trưởng thành.",
+        "choices": [
+          { "text": "Hái tất cả", "risk": "low",
+            "success": { "text": "Bạn thu hoạch được nhiều linh thảo quý! Nhận 2 Đan dược.", "reward": { "item": "luyen_khi_dan", "item2": "hoi_huyet_dan" } },
+            "failure": { "text": "Một bụi cây có độc! Bạn bị dị ứng.", "damage": { "hp": 10 } },
+            "successRate": 0.8 },
+          { "text": "Chỉ hái cây an toàn", "risk": "none",
+            "success": { "text": "Bạn hái cẩn thận. Nhận 1 Hồi Huyết Đan.", "reward": { "item": "hoi_huyet_dan" } } }
+        ]
+      },
+      {
+        "id": "event_raining_meteors",
+        "text": "Trời đột nhiên tối sầm. Thiên thạch bắt đầu rơi xuống xung quanh bạn!",
+        "choices": [
+          { "text": "Tìm nơi trú ẩn", "risk": "none",
+            "success": { "text": "Bạn núp dưới vách đá an toàn. Một mảnh thiên thạch rơi gần đó chứa 100 Linh Thạch!", "reward": { "spiritStones": 100 } } },
+          { "text": "Chạy thật nhanh", "risk": "medium",
+            "success": { "text": "Bạn chạy thoát! Phát hiện một hang động ẩn trên đường chạy.", "reward": { "spiritStones": 80 } },
+            "failure": { "text": "Bạn vấp ngã! Mảnh thiên thạch sượt qua vai.", "damage": { "hp": 25 } },
+            "successRate": 0.65 }
+        ]
+      }
+    ]
+  }
 }

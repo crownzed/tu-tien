@@ -1,0 +1,34 @@
+{
+  "categories": {
+    "luyen_dan": { "name": "Luyện Đan", "icon": "💊", "desc": "Luyện chế đan dược hồi phục và tăng tiến" },
+    "luyen_khi": { "name": "Luyện Khí", "icon": "⚒️", "desc": "Rèn đúc pháp bảo và cường hóa vũ khí" },
+    "luyen_phu": { "name": "Luyện Phù", "icon": "📜", "desc": "Chế tác phù chú với hiệu ứng đặc biệt" },
+    "luyen_tran": { "name": "Luyện Trận", "icon": "🔮", "desc": "Bố trí trận pháp phòng thủ và công kích" }
+  },
+  "recipes": [
+    { "id": "hoi_huyet_dan",    "category": "luyen_dan", "name": "Hồi Huyết Đan",   "desc": "Hồi 30% HP tức thì",
+      "cost": { "spiritStones": 20 }, "requires": { "tuVi": 0 }, "successRate": 0.85,
+      "result": { "item": "hoi_huyet_dan", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "luyen_khi_dan",    "category": "luyen_dan", "name": "Luyện Khí Đan",   "desc": "Tăng vĩnh viễn 10 Linh Khí max",
+      "cost": { "spiritStones": 50 }, "requires": { "tuVi": 100 }, "successRate": 0.7,
+      "result": { "item": "luyen_khi_dan", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "pha_gioi_dan",     "category": "luyen_dan", "name": "Phá Giới Đan",    "desc": "Tăng 20% tỉ lệ đột phá (1 lần dùng)",
+      "cost": { "spiritStones": 200 }, "requires": { "tuVi": 500 }, "successRate": 0.5,
+      "result": { "item": "pha_gioi_dan", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "phap_bao_so_cap",  "category": "luyen_khi", "name": "Pháp Bảo Sơ Cấp","desc": "ATK +20, đột phá +5%",
+      "cost": { "spiritStones": 150 }, "requires": { "tuVi": 200 }, "successRate": 0.6,
+      "result": { "item": "phap_bao_so_cap", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "phap_bao_trung_cap","category": "luyen_khi", "name": "Pháp Bảo Trung Cấp","desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",
+      "cost": { "spiritStones": 500 }, "requires": { "tuVi": 800 }, "successRate": 0.5,
+      "result": { "item": "phap_bao_trung_cap", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "phu_ho_menh",      "category": "luyen_phu", "name": "Phù Hộ Mệnh",      "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",
+      "cost": { "spiritStones": 100 }, "requires": { "tuVi": 300 }, "successRate": 0.65,
+      "result": { "item": "phu_ho_menh", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "phu_truyen_tong",  "category": "luyen_phu", "name": "Phù Truyền Tống",  "desc": "Thoát khỏi combat ngay lập tức",
+      "cost": { "spiritStones": 80 }, "requires": { "tuVi": 200 }, "successRate": 0.7,
+      "result": { "item": "phu_truyen_tong", "quantity": 1 }, "failLoseMaterials": true },
+    { "id": "tran_phap_co_ban", "category": "luyen_tran", "name": "Trận Pháp Cơ Bản","desc": "Giảm 15% sát thương trong combat",
+      "cost": { "spiritStones": 300 }, "requires": { "tuVi": 600 }, "successRate": 0.55,
+      "result": { "item": "tran_phap_co_ban", "quantity": 1 }, "failLoseMaterials": true }
+  ]
+}

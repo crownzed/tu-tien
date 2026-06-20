@@ -1,0 +1,53 @@
+{
+  "zones": [
+    {
+      "id": "zone_1",
+      "realmMin": 0,
+      "realmMax": 2,
+      "enemies": [
+        { "id": "yeu_thu_thap_1",  "name": "Hỏa Diễm Thử",       "hp": 40,  "attack": 12, "defense": 3,  "element": "hoa", "dropStones": [5, 15],  "expReward": 30 },
+        { "id": "yeu_thu_thap_2",  "name": "Thạch Linh Khôi Lỗi", "hp": 60,  "attack": 8,  "defense": 8,  "element": "tho", "dropStones": [8, 20],  "expReward": 35 },
+        { "id": "yeu_thu_thap_3",  "name": "Thủy Xà Tinh",        "hp": 50,  "attack": 10, "defense": 5,  "element": "thuy","dropStones": [5, 15],  "expReward": 30 },
+        { "id": "yeu_thu_thap_4",  "name": "Phong Nhận Điểu",     "hp": 35,  "attack": 15, "defense": 2,  "element": "kim", "dropStones": [10, 25], "expReward": 30 },
+        { "id": "yeu_thu_thap_5",  "name": "Đằng Mộc Yêu",        "hp": 55,  "attack": 9,  "defense": 6,  "element": "moc", "dropStones": [5, 15],  "expReward": 25 }
+      ],
+      "boss": { "id": "boss_zone1", "name": "Hắc Ám Lang Vương", "hp": 150, "attack": 20, "defense": 10, "element": "hoa", "dropStones": [50, 100], "expReward": 200 }
+    },
+    {
+      "id": "zone_2",
+      "realmMin": 3,
+      "realmMax": 4,
+      "enemies": [
+        { "id": "yeu_thu_vua_1",   "name": "Huyết Sắc Ma Hồ",     "hp": 180,  "attack": 35, "defense": 15, "element": "hoa", "dropStones": [30, 60],  "expReward": 150 },
+        { "id": "yeu_thu_vua_2",   "name": "Hàn Băng Cự Ngao",    "hp": 250,  "attack": 28, "defense": 25, "element": "thuy","dropStones": [40, 80],  "expReward": 170 },
+        { "id": "yeu_thu_vua_3",   "name": "Lôi Điện Giao Long",  "hp": 200,  "attack": 40, "defense": 12, "element": "kim", "dropStones": [50, 100], "expReward": 200 },
+        { "id": "yeu_thu_vua_4",   "name": "Hấp Huyết Ma Đằng",   "hp": 220,  "attack": 30, "defense": 20, "element": "moc", "dropStones": [35, 70],  "expReward": 180 },
+        { "id": "yeu_thu_vua_5",   "name": "Nham Thạch Cự Nhân",  "hp": 300,  "attack": 25, "defense": 30, "element": "tho", "dropStones": [40, 90],  "expReward": 190 }
+      ],
+      "boss": { "id": "boss_zone2", "name": "Huyền Vũ Thần Thú", "hp": 600, "attack": 50, "defense": 40, "element": "thuy", "dropStones": [200, 400], "expReward": 800 }
+    },
+    {
+      "id": "zone_3",
+      "realmMin": 5,
+      "realmMax": 6,
+      "enemies": [
+        { "id": "yeu_thu_cao_1",   "name": "Hư Không Thôn Phệ Thú","hp": 800,  "attack": 80, "defense": 50,  "element": null, "dropStones": [150, 300], "expReward": 600 },
+        { "id": "yeu_thu_cao_2",   "name": "Phần Thiên Hỏa Phụng", "hp": 650,  "attack": 100,"defense": 35,  "element": "hoa", "dropStones": [180, 350], "expReward": 700 },
+        { "id": "yeu_thu_cao_3",   "name": "Vạn Kiếm Ma Tôn",      "hp": 900,  "attack": 70, "defense": 60,  "element": "kim", "dropStones": [200, 400], "expReward": 750 },
+        { "id": "yeu_thu_cao_4",   "name": "Cửu U Minh Xà",        "hp": 750,  "attack": 90, "defense": 45,  "element": "thuy","dropStones": [170, 320], "expReward": 680 }
+      ],
+      "boss": { "id": "boss_zone3", "name": "Thiên Ma Thần Vương", "hp": 2500, "attack": 130, "defense": 100, "element": null, "dropStones": [800, 1500], "expReward": 3000 }
+    },
+    {
+      "id": "zone_4",
+      "realmMin": 7,
+      "realmMax": 8,
+      "enemies": [
+        { "id": "yeu_thu_dinh_1",  "name": "Thôn Thiên Ma Long",   "hp": 3000, "attack": 200, "defense": 120, "element": null, "dropStones": [600, 1200], "expReward": 2000 },
+        { "id": "yeu_thu_dinh_2",  "name": "Thái Cổ Chung Cực Thú","hp": 4000, "attack": 180, "defense": 180, "element": null, "dropStones": [800, 1500], "expReward": 2500 },
+        { "id": "yeu_thu_dinh_3",  "name": "Thần Phạt Lôi Điểu",   "hp": 2500, "attack": 250, "defense": 80,  "element": "kim", "dropStones": [700, 1400], "expReward": 2200 }
+      ],
+      "boss": { "id": "boss_zone4", "name": "Hỗn Độn Thủy Tổ", "hp": 12000, "attack": 350, "defense": 250, "element": null, "dropStones": [3000, 6000], "expReward": 10000 }
+    }
+  ]
+}

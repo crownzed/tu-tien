@@ -56,31 +56,42 @@ npm run dev
 - ✅ Color-coded values (HP đỏ khi thấp, Linh Khí cyan, etc.)
 - ✅ Command-line interface với help system
 
-### Commands (hiện tại)
-- `help` - Danh sách lệnh
-- `status` - Full player stats
-- `refresh` - Force update Linh Khí
-- `inventory` - Xem túi đồ
-- `clear` - Xóa terminal
-- `test_damage` / `test_heal` - Test HP mechanics
+### Commands (Hiện Tại)
+- `help` - Hiện danh sách lệnh khả dụng
+- `start` - Khởi đầu kiếp sống mới (Roll Linh Căn, Gia Cảnh)
+- `status` - Xem trạng thái chi tiết của nhân vật và tài khoản
+- `map` / `enter` / `next` / `choose` - Các lệnh tương tác khám phá bản đồ
+- `attack` / `cast` / `flee` / `forbidden_art` - Các lệnh chiến đấu trong Combat
+- `breakthrough` / `endure` - Đột phá cảnh giới và chống đỡ Thiên Kiếp
+- `craft` - Chế tạo vật phẩm (Luyện Đan, Luyện Khí, Phù, Trận)
+- `sect` - Hệ thống Tông Môn (Gia nhập, Cống hiến)
+- `shop` - Cửa hàng Luân Hồi (Mua buff vĩnh viễn bằng Điểm Luân Hồi)
+- `inventory` / `account` / `history` / `pity` - Tra cứu thông tin
+- `clear` - Xóa màn hình terminal
 
-## Roadmap Tiếp Theo
+## Roadmap Tiếp Theo (Phase 4)
 
-### Phase 1: Core Loop (chưa làm)
-- [ ] Character creation (roll Linh Căn + Gia Cảnh)
-- [ ] Weighted RNG engine + Pity system
-- [ ] Map/Event system (linear events)
-- [ ] Basic combat với công thức sát thương
+### Phase 1: Core Loop (✅ Đã Hoàn Thành)
+- [x] Character creation (roll Linh Căn + Gia Cảnh)
+- [x] Weighted RNG engine + Pity system
+- [x] Map/Event system (linear events)
+- [x] Basic combat với công thức sát thương
 
-### Phase 2: Progression
-- [ ] Đột phá system + Thiên kiếp
-- [ ] Crafting (Luyện Đan/Khí/Phù/Trận)
-- [ ] Tông Môn system
+### Phase 2: Progression (✅ Đã Hoàn Thành)
+- [x] Đột phá system + Thiên kiếp
+- [x] Crafting (Luyện Đan/Khí/Phù/Trận)
+- [x] Tông Môn system
 
-### Phase 3: Metaprogression
-- [ ] Death/Rebirth loop
-- [ ] Account Level benefits
-- [ ] Endless scaling
+### Phase 3: Metaprogression (✅ Đã Hoàn Thành)
+- [x] Death/Rebirth loop
+- [x] Account Level benefits
+- [x] Endless scaling
+
+### Phase 4: Expansion & Polish (Đang triển khai)
+- [ ] Nâng cấp UX/UI (Command History, Auto-complete)
+- [ ] Âm thanh và Hiệu ứng Visual (Typewriter, CRT, ASCII Art)
+- [ ] Hệ thống Trang Bị (Equip Pháp Bảo/Khải Giáp)
+- [ ] Hệ thống Linh Thú (Pets) & Thành Tựu (Achievements)
 
 ## Notes
 

@@ -1,0 +1,79 @@
+{
+  "stepTypes": {
+    "combat":      { "weight": 30, "icon": "⚔️", "desc": "Gặp quái vật" },
+    "treasure":    { "weight": 15, "icon": "💎", "desc": "Phát hiện kho báu" },
+    "npc":         { "weight": 15, "icon": "👤", "desc": "Gặp tu sĩ khác" },
+    "hazard":      { "weight": 12, "icon": "☠️", "desc": "Hiểm họa tự nhiên" },
+    "rest":        { "weight": 8,  "icon": "🏕️", "desc": "Nơi nghỉ chân" },
+    "mysterious":  { "weight": 8,  "icon": "❓", "desc": "Hiện tượng bí ẩn" },
+    "training":    { "weight": 7,  "icon": "📖", "desc": "Cơ hội tu luyện" },
+    "alchemy":     { "weight": 6,  "icon": "⚗️", "desc": "Nguyên liệu luyện đan" },
+    "merchant":    { "weight": 5,  "icon": "🧑‍💼", "desc": "Thương nhân lữ hành" },
+    "forge":       { "weight": 4,  "icon": "🔨", "desc": "Phát hiện lò rèn cổ" }
+  },
+  "scenarios": {
+    "combat": [
+      { "id": "c_ambush",      "text": "Một bóng đen lao ra từ bụi rậm! Yêu thú phục kích bạn!", "enemyDifficulty": 0.8 },
+      { "id": "c_pack",        "text": "Bạn bị một bầy yêu thú bao vây. Chúng gầm gừ đe dọa.", "enemyDifficulty": 1.2 },
+      { "id": "c_territory",   "text": "Bạn vô tình xâm phạm lãnh thổ của một yêu thú cấp cao.", "enemyDifficulty": 1.5 },
+      { "id": "c_wounded",     "text": "Một yêu thú bị thương đang hấp hối bên đường. Nó vẫn còn nguy hiểm.", "enemyDifficulty": 0.5, "rewardBonus": true },
+      { "id": "c_rival",       "text": "Một tà tu chặn đường: 'Đưa hết Linh Thạch đây!'", "enemyDifficulty": 1.0, "isRival": true },
+      { "id": "c_cave_beast",  "text": "Bạn nghe tiếng gầm vọng ra từ hang động tối. Thứ gì đó rất lớn.", "enemyDifficulty": 1.8, "isBoss": true }
+    ],
+    "treasure": [
+      { "id": "t_chest",       "text": "Một rương gỗ cũ kỹ nằm dưới gốc cây cổ thụ. Khóa đã han rỉ.", "reward": {"spiritStones": [30, 120]} },
+      { "id": "t_corpse",      "text": "Bạn tìm thấy thi thể một tu sĩ xấu số. Túi Càn Khôn vẫn còn nguyên.", "reward": {"spiritStones": [50, 200], "item": "hoi_huyet_dan"}, "risk": "low" },
+      { "id": "t_cave",        "text": "Vách núi lấp lánh ánh sáng. Có vẻ chứa khoáng thạch quý.", "reward": {"spiritStones": [80, 300]}, "risk": "medium" },
+      { "id": "t_herb",        "text": "Một bãi linh thảo mọc um tùm giữa khe núi hẻo lánh.", "reward": {"item": "luyen_khi_dan"}, "risk": "none" },
+      { "id": "t_meteor",      "text": "Mảnh thiên thạch rơi gần đây, tỏa ra linh khí nồng đậm.", "reward": {"spiritStones": [100, 500], "tuVi": 50} }
+    ],
+    "npc": [
+      { "id": "n_elder",       "text": "Một lão giả râu tóc bạc phơ đang câu cá bên dòng suối.", "action": "chat", "reward": {"tuVi": 30} },
+      { "id": "n_swordsman",   "text": "Kiếm tu trẻ tuổi đang luyện kiếm. Thấy bạn, anh ta dừng lại chào hỏi.", "action": "spar", "reward": {"tuVi": 50}, "risk": "low" },
+      { "id": "n_healer",      "text": "Một nữ tu sĩ chuyên y thuật đang hái thuốc.", "action": "heal", "reward": {"fullHeal": true} },
+      { "id": "n_mystic",      "text": "Người bí ẩn khoác áo choàng đen: 'Ta có thể mách cho ngươi 1 con đường...'", "action": "prophecy", "reward": {"luckBoost": 10} },
+      { "id": "n_beggar",      "text": "Ăn mày tu sĩ ngồi bên đường: 'Bố thí cho lão 10 Linh Thạch được không?'", "action": "donate", "cost": {"spiritStones": 10}, "reward": {"karma": true} }
+    ],
+    "hazard": [
+      { "id": "h_poison_mist", "text": "Sương độc từ đầm lầy lan tới! Bạn cảm thấy choáng váng.", "damage": {"hpPct": 0.15} },
+      { "id": "h_rockslide",   "text": "Đá từ vách núi đổ ập xuống!", "damage": {"hpPct": 0.25} },
+      { "id": "h_quicksand",   "text": "Chân bạn lún vào cát lún! Phải thật nhanh thoát ra.", "damage": {"hpPct": 0.1}, "cost": {"tuoiTho": 0.2} },
+      { "id": "h_blizzard",    "text": "Bão tuyết bất ngờ ập đến. Gió rét cắt da cắt thịt.", "damage": {"hpPct": 0.2, "lkDrain": 30} },
+      { "id": "h_formation",   "text": "Bạn vô tình dẫm phải tàn tích của một cổ trận sát phạt.", "damage": {"hpPct": 0.3}, "risk": "high" }
+    ],
+    "rest": [
+      { "id": "r_spring",      "text": "Suối nước nóng tự nhiên giữa rừng trúc. Lý tưởng để nghỉ ngơi.", "healPct": 0.35 },
+      { "id": "r_cave",        "text": "Hang động nhỏ khô ráo, có sẵn cỏ khô lót ổ.", "healPct": 0.25, "safe": true },
+      { "id": "r_temple",      "text": "Ngôi miếu cổ bỏ hoang, tượng thần đã phủ rêu phong. Không gian yên tĩnh lạ thường.", "healPct": 0.4, "tuViBonus": 20 },
+      { "id": "r_hermit_hut",  "text": "Túp lều tranh của ẩn sĩ. Dường như chủ nhân đã đi lâu.", "healPct": 0.3, "reward": {"item": "hoi_huyet_dan"} }
+    ],
+    "mysterious": [
+      { "id": "m_portal",      "text": "Cánh cổng không gian lơ lửng giữa không trung. Những tia sáng bạc nhảy múa xung quanh.", "choices": ["Bước vào", "Quay đi"], "rewards": [{"spiritStones": 300, "tuVi": 100}, null], "risks": ["high", "none"] },
+      { "id": "m_ancient_tree","text": "Cổ thụ khổng lồ với những đường vân phát sáng. Bạn cảm thấy linh lực dâng trào khi đến gần.", "reward": {"linhKhiBonus": 15} },
+      { "id": "m_dream",       "text": "Bạn bất chợt chìm vào giấc mộng kỳ lạ. Trong mộng, một tiên nhân truyền thụ tâm pháp.", "reward": {"tuVi": 80} },
+      { "id": "m_shadow",      "text": "Cái bóng của bạn... tự chuyển động! Nó vẫy tay gọi bạn đi theo.", "choices": ["Đi theo bóng", "Bỏ chạy"], "rewards": [{"item": "ky_bao_ha_pham"}, {"tuVi": 20}], "risks": ["high", "none"] }
+    ],
+    "training": [
+      { "id": "tr_waterfall",  "text": "Thác nước Linh Khí đổ xuống từ độ cao trăm trượng. Dưới thác là nơi lý tưởng để luyện công.", "reward": {"tuVi": 40, "linhKhiRestore": 20} },
+      { "id": "tr_stone_tablet","text": "Phiến đá cổ khắc đầy chữ tượng hình. Dường như là một bộ công pháp thất truyền.", "reward": {"tuVi": 60} },
+      { "id": "tr_spar_dummy", "text": "Bạn tìm thấy một Khôi Lỗi luyện tập còn hoạt động. Cơ hội rèn luyện chiến đấu.", "reward": {"tuVi": 30, "attackBonus": 5} }
+    ],
+    "alchemy": [
+      { "id": "al_herb_field",  "text": "Một thung lũng nhỏ ẩn mình giữa núi, đầy linh thảo quý hiếm tỏa hương thơm ngát.", "reward": {"item": "luyen_khi_dan", "spiritStones": [20, 60]} },
+      { "id": "al_cauldron",    "text": "Bạn tìm thấy một đỉnh luyện đan cũ bỏ hoang bên suối, tro còn ấm. Bên cạnh có ít nguyên liệu.", "reward": {"item": "hoi_huyet_dan", "spiritStones": [15, 45]}, "tuViBonus": 20 },
+      { "id": "al_mushroom",    "text": "Một gốc cây cổ thụ phủ đầy nấm linh chi phát quang. Đây là nguyên liệu luyện đan thượng hạng!", "reward": {"item": "pha_gioi_dan", "spiritStones": [50, 150]} },
+      { "id": "al_failed_pills","text": "Bạn phát hiện xác một lò luyện đan nổ tung. Trên đất còn vương vãi vài viên đan dược chưa hỏng.", "reward": {"item": "hoi_huyet_dan", "spiritStones": [5, 20]}, "damage": {"hpPct": 0.05} }
+    ],
+    "forge": [
+      { "id": "fg_ancient_furnace","text": "Một lò rèn cổ đại ẩn trong hang động, lửa vẫn cháy sau ngàn năm. Trên đe còn một thanh kiếm đang rèn dở.", "reward": {"item": "phap_bao_so_cap"}, "risk": "low" },
+      { "id": "fg_ore_vein",    "text": "Vách núi lộ ra mạch khoáng thạch lấp lánh. Có thể luyện thành pháp bảo!", "reward": {"spiritStones": [80, 200]}, "hasCraftBonus": true },
+      { "id": "fg_master","text": "Một lão nhân tóc bạc đang đập búa xuống đe. 'Lại đây, ta dạy ngươi chút nghề!'", "reward": {"item": "tran_phap_co_ban"}, "tuViBonus": 30 },
+      { "id": "fg_broken_sword","text": "Bạn tìm thấy một thanh kiếm gãy cắm trên tảng đá. Linh khí còn sót lại rất mạnh.", "reward": {"item": "phap_bao_trung_cap"}, "risk": "medium", "damage": {"hpPct": 0.1} }
+    ],
+    "merchant": [
+      { "id": "mc_pills",      "text": "Thương nhân bán đan dược: 'Hồi Huyết Đan giá 30, Luyện Khí Đan giá 60 Linh Thạch!'", "shop": [{"item": "hoi_huyet_dan", "cost": 30}, {"item": "luyen_khi_dan", "cost": 60}] },
+      { "id": "mc_relics",     "text": "Lão già thu mua cổ vật: 'Có bảo vật gì không? Ta trả giá hậu hĩnh.'", "shop": [{"item": "phap_bao_so_cap", "cost": 200}, {"item": "tran_phap_co_ban", "cost": 350}] },
+      { "id": "mc_mystic",     "text": "Thương nhân bí ẩn: 'Ta bán... những thứ không nên tồn tại.'", "shop": [{"item": "pha_gioi_dan", "cost": 300}, {"item": "phu_ho_menh", "cost": 150}] }
+    ]
+  }
+}

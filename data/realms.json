@@ -1,12 +1,20 @@
 {
   "realms": [
-    { "id": "luyen_khi",    "name": "Luyện Khí",    "order": 1, "hpBonus": 0,    "linhKhiMax": 100,   "tuoiThoMax": 120 },
-    { "id": "truc_co",      "name": "Trúc Cơ",      "order": 2, "hpBonus": 200,  "linhKhiMax": 300,   "tuoiThoMax": 200 },
-    { "id": "kim_dan",      "name": "Kim Đan",      "order": 3, "hpBonus": 600,  "linhKhiMax": 800,   "tuoiThoMax": 500 },
-    { "id": "nguyen_anh",   "name": "Nguyên Anh",   "order": 4, "hpBonus": 1500, "linhKhiMax": 2000,  "tuoiThoMax": 1000 },
-    { "id": "hoa_than",     "name": "Hóa Thần",     "order": 5, "hpBonus": 4000, "linhKhiMax": 5000,  "tuoiThoMax": 2000 },
-    { "id": "luyen_hu",     "name": "Luyện Hư",     "order": 6, "hpBonus": 10000,"linhKhiMax": 12000, "tuoiThoMax": 5000 },
-    { "id": "hop_the",      "name": "Hợp Thể",      "order": 7, "hpBonus": 25000,"linhKhiMax": 30000, "tuoiThoMax": 10000 },
-    { "id": "dai_thua",     "name": "Đại Thừa",     "order": 8, "hpBonus": 60000,"linhKhiMax": 80000, "tuoiThoMax": 30000 }
+    { "id": "luyen_khi",    "name": "Luyện Khí",    "order": 1, "hpBonus": 0,    "linhKhiMax": 100,   "tuoiThoMax": 120,
+      "breakthrough": { "linhKhiRequired": 80,  "tuViRequired": 50,   "baseSuccessRate": 0.8,  "hasTribulation": false, "hpLossOnFail": 20,  "lkLossOnFail": 30 } },
+    { "id": "truc_co",      "name": "Trúc Cơ",      "order": 2, "hpBonus": 200,  "linhKhiMax": 300,   "tuoiThoMax": 200,
+      "breakthrough": { "linhKhiRequired": 250, "tuViRequired": 200,  "baseSuccessRate": 0.7,  "hasTribulation": false, "hpLossOnFail": 40,  "lkLossOnFail": 60 } },
+    { "id": "kim_dan",      "name": "Kim Đan",      "order": 3, "hpBonus": 600,  "linhKhiMax": 800,   "tuoiThoMax": 500,
+      "breakthrough": { "linhKhiRequired": 700, "tuViRequired": 500,  "baseSuccessRate": 0.55, "hasTribulation": true,  "hpLossOnFail": 80,  "lkLossOnFail": 120, "tribulationStrikes": 3, "tribulationDamage": 60 } },
+    { "id": "nguyen_anh",   "name": "Nguyên Anh",   "order": 4, "hpBonus": 1500, "linhKhiMax": 2000,  "tuoiThoMax": 1000,
+      "breakthrough": { "linhKhiRequired": 1800,"tuViRequired": 1200, "baseSuccessRate": 0.4,  "hasTribulation": true,  "hpLossOnFail": 150, "lkLossOnFail": 200, "tribulationStrikes": 5, "tribulationDamage": 120 } },
+    { "id": "hoa_than",     "name": "Hóa Thần",     "order": 5, "hpBonus": 4000, "linhKhiMax": 5000,  "tuoiThoMax": 2000,
+      "breakthrough": { "linhKhiRequired": 4500,"tuViRequired": 3000, "baseSuccessRate": 0.3,  "hasTribulation": true,  "hpLossOnFail": 300, "lkLossOnFail": 400, "tribulationStrikes": 7, "tribulationDamage": 250 } },
+    { "id": "luyen_hu",     "name": "Luyện Hư",     "order": 6, "hpBonus": 10000,"linhKhiMax": 12000, "tuoiThoMax": 5000,
+      "breakthrough": { "linhKhiRequired": 11000,"tuViRequired": 8000,"baseSuccessRate": 0.25, "hasTribulation": true,  "hpLossOnFail": 600, "lkLossOnFail": 800, "tribulationStrikes": 9, "tribulationDamage": 400 } },
+    { "id": "hop_the",      "name": "Hợp Thể",      "order": 7, "hpBonus": 25000,"linhKhiMax": 30000, "tuoiThoMax": 10000,
+      "breakthrough": { "linhKhiRequired": 27000,"tuViRequired": 20000,"baseSuccessRate": 0.2,  "hasTribulation": true,  "hpLossOnFail": 1200,"lkLossOnFail": 1500,"tribulationStrikes": 12, "tribulationDamage": 700 } },
+    { "id": "dai_thua",     "name": "Đại Thừa",     "order": 8, "hpBonus": 60000,"linhKhiMax": 80000, "tuoiThoMax": 30000,
+      "breakthrough": null }
   ]
 }

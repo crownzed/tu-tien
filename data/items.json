@@ -1,0 +1,14 @@
+{
+  "items": {
+    "hoi_huyet_dan":    { "name": "Hồi Huyết Đan",   "type": "consumable", "icon": "💊", "rarity": "common",   "desc": "Hồi 40% HP tức thì",                              "effect": { "healPct": 0.4 } },
+    "luyen_khi_dan":    { "name": "Luyện Khí Đan",   "type": "consumable", "icon": "💊", "rarity": "rare",     "desc": "Tăng vĩnh viễn 10 Linh Khí max",                  "effect": { "linhKhiMaxUp": 10 } },
+    "pha_gioi_dan":     { "name": "Phá Giới Đan",    "type": "consumable", "icon": "💊", "rarity": "legendary","desc": "Tăng 20% tỉ lệ đột phá (1 lần dùng, hết sau 1 kiếp)", "effect": { "breakthroughBonus": 0.2 } },
+    "phu_ho_menh":      { "name": "Phù Hộ Mệnh",     "type": "consumable", "icon": "📜", "rarity": "rare",     "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",       "effect": { "deathSave": true } },
+    "phu_truyen_tong":  { "name": "Phù Truyền Tống", "type": "consumable", "icon": "📜", "rarity": "rare",     "desc": "Thoát khỏi combat ngay lập tức",                  "effect": { "fleeGuaranteed": true } },
+    "ky_bao_ha_pham":   { "name": "Kỳ Bảo Hạ Phẩm",  "type": "equipment",  "icon": "⚜️", "rarity": "mythic",   "desc": "Pháp bảo cổ: ATK +15, giảm 10% sát thương thiên kiếp", "slot": "accessory", "stats": { "attackBonus": 15, "tribulationReduction": 0.1 } },
+    "phap_bao_so_cap":  { "name": "Pháp Bảo Sơ Cấp", "type": "equipment",  "icon": "⚒️", "rarity": "rare",     "desc": "ATK +20, đột phá +5%",                             "slot": "weapon",   "stats": { "attackBonus": 20, "breakthroughBonus": 0.05 } },
+    "phap_bao_trung_cap":{"name": "Pháp Bảo Trung Cấp","type": "equipment", "icon": "⚒️", "rarity": "legendary","desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",      "slot": "weapon",   "stats": { "attackBonus": 50, "breakthroughBonus": 0.1, "tribulationReduction": 0.2 } },
+    "tran_phap_co_ban": { "name": "Trận Pháp Cơ Bản","type": "equipment",  "icon": "🔮", "rarity": "rare",     "desc": "Giảm 15% sát thương trong combat",                 "slot": "armor",    "stats": { "damageReduction": 0.15 } },
+    "ngoc_gian_co":     { "name": "Ngọc Giản Cổ",    "type": "consumable", "icon": "📿", "rarity": "mythic",   "desc": "Chứa bí thuật cổ: tăng 30 Tu Vi",                 "effect": { "tuViUp": 30 } }
+  }
+}

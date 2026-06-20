@@ -7,7 +7,8 @@
       "weight": 1,
       "isGood": true,
       "desc": "Đơn linh căn thuần khiết. Hồi Linh Khí x2, đột phá Luyện Khí/Trúc Cơ 100% thành công.",
-      "modifiers": { "cultivationSpeed": 2.0, "linhKhiRegen": 2.0, "breakthroughBonus": 1.0 }
+      "modifiers": { "cultivationSpeed": 2.0, "linhKhiRegen": 2.0, "breakthroughBonus": 1.0 },
+      "element": "kim"
     },
     {
       "id": "bien_di_thanh_the",
@@ -16,7 +17,8 @@
       "weight": 0.5,
       "isGood": true,
       "desc": "Cực hiếm. Mở khóa các lựa chọn ẩn (vd: Lôi Linh Căn nuốt Lôi kiếp).",
-      "modifiers": { "cultivationSpeed": 1.5, "linhKhiRegen": 1.5, "hiddenChoices": true }
+      "modifiers": { "cultivationSpeed": 1.5, "linhKhiRegen": 1.5, "hiddenChoices": true },
+      "element": "hoa"
     },
     {
       "id": "chan_linh_can",
@@ -25,7 +27,8 @@
       "weight": 15,
       "isGood": true,
       "desc": "2-3 hệ. Chuẩn mực trung bình.",
-      "modifiers": { "cultivationSpeed": 1.0, "linhKhiRegen": 1.0 }
+      "modifiers": { "cultivationSpeed": 1.0, "linhKhiRegen": 1.0 },
+      "element": "moc"
     },
     {
       "id": "tap_linh_can",
@@ -34,7 +37,8 @@
       "weight": 35,
       "isGood": false,
       "desc": "4-5 hệ. Tu luyện chậm, dễ tẩu hỏa nhập ma, nhưng dễ dùng Phù chú.",
-      "modifiers": { "cultivationSpeed": 0.6, "linhKhiRegen": 0.8, "tauHoaRisk": 1.5, "phuChuBonus": 1.3 }
+      "modifiers": { "cultivationSpeed": 0.6, "linhKhiRegen": 0.8, "tauHoaRisk": 1.5, "phuChuBonus": 1.3 },
+      "element": "tho"
     }
   ],
   "gia_canh": [

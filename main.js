@@ -18,7 +18,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    backgroundColor: '#000000',
+    backgroundColor: '#f2efe8',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -60,7 +60,11 @@ ipcMain.handle('game:getData', () => {
     linhCan: data.linhCan,
     giaCanh: data.giaCanh,
     events: data.events,
-    realms: data.realms
+    realms: data.realms,
+    itemDefs: data.itemDefs,
+    map: data.map,
+    shop: data.shop,
+    recipeCategories: data.recipeCategories
   };
 });
 
@@ -83,6 +87,61 @@ ipcMain.handle('game:rollEvent', () => {
   return { event: data.eventById[id] };
 });
 ipcMain.handle('game:processDeath', () => svc.processDeath());
+
+// ---------- IPC: combat ----------
+ipcMain.handle('game:startCombat', (e, opts) => svc.startCombat(opts?.isBoss || false));
+ipcMain.handle('game:getCombatView', () => svc.getCombatView());
+ipcMain.handle('game:playerAttack', () => svc.playerAttack());
+ipcMain.handle('game:playerCast', () => svc.playerCast());
+ipcMain.handle('game:playerFlee', () => svc.playerFlee());
+ipcMain.handle('game:playerForbiddenArt', () => svc.playerForbiddenArt());
+
+// ---------- IPC: map / event chain ----------
+ipcMain.handle('game:getMapView', () => svc.getMapView());
+ipcMain.handle('game:selectNode', (e, nodeIndex) => svc.selectNode(nodeIndex));
+ipcMain.handle('game:enterNode', () => svc.enterNode());
+ipcMain.handle('game:resolveChoice', (e, choiceIndex) => svc.resolveChoice(choiceIndex));
+ipcMain.handle('game:completeCombatNode', () => svc.completeCombatNode());
+
+// ---------- IPC: breakthrough / tribulation ----------
+ipcMain.handle('game:canBreakthrough', () => svc.canBreakthrough());
+ipcMain.handle('game:attemptBreakthrough', () => svc.attemptBreakthrough());
+ipcMain.handle('game:endureTribulation', () => svc.endureTribulation());
+
+// ---------- IPC: crafting ----------
+ipcMain.handle('game:getCraftingRecipes', (e, category) => svc.getCraftingRecipes(category));
+ipcMain.handle('game:craftItem', (e, recipeId) => svc.craftItem(recipeId));
+
+// ---------- IPC: sect ----------
+ipcMain.handle('game:getSectState', () => svc.getSectState());
+ipcMain.handle('game:listSects', () => svc.listSects());
+ipcMain.handle('game:joinSect', (e, sectId) => svc.joinSect(sectId));
+ipcMain.handle('game:leaveSect', () => svc.leaveSect());
+ipcMain.handle('game:contribute', (e, amount) => svc.contribute(amount));
+
+// ---------- IPC: shop / metaprogression ----------
+ipcMain.handle('game:getShopItems', () => svc.getShopItems());
+ipcMain.handle('game:buyShopItem', (e, itemId) => svc.buyShopItem(itemId));
+ipcMain.handle('game:getRunHistory', (e, limit) => svc.getRunHistory(limit || 10));
+ipcMain.handle('game:getAccountStats', () => svc.getAccountStats());
+
+// ---------- IPC: items / equipment ----------
+ipcMain.handle('game:useItem', (e, itemId) => svc.useItem(itemId));
+ipcMain.handle('game:equipItem', (e, itemId, slot) => svc.equipItem(itemId, slot));
+ipcMain.handle('game:unequipItem', (e, slot) => svc.unequipItem(slot));
+ipcMain.handle('game:getEquipmentView', () => svc.getEquipmentView());
+
+// ---------- IPC: meditation ----------
+ipcMain.handle('game:meditate', (e, minutes) => svc.meditate(minutes || 10));
+
+// ---------- IPC: achievements ----------
+ipcMain.handle('game:checkAchievements', () => svc.checkAchievements());
+ipcMain.handle('game:getAchievementsView', () => svc.getAchievementsView());
+
+// ---------- IPC: travel ----------
+ipcMain.handle('game:travelStep', () => svc.travelStep());
+ipcMain.handle('game:travelBuy', (e, itemId, cost) => svc.travelBuy(itemId, cost));
+ipcMain.handle('game:resolveTravelChoice', (e, choiceIndex) => svc.resolveTravelChoice(choiceIndex));
 
 // ---------- IPC: inventory ----------
 ipcMain.handle('game:addItem', (e, item) => { repos.inventory.add(item); return { ok: true }; });

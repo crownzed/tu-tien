@@ -103,10 +103,12 @@ ipcMain.handle('game:enterNode', () => svc.enterNode());
 ipcMain.handle('game:resolveChoice', (e, choiceIndex) => svc.resolveChoice(choiceIndex));
 ipcMain.handle('game:completeCombatNode', () => svc.completeCombatNode());
 
-// ---------- IPC: breakthrough / tribulation ----------
+// ---------- IPC: breakthrough / tribulation / stage-up ----------
 ipcMain.handle('game:canBreakthrough', () => svc.canBreakthrough());
 ipcMain.handle('game:attemptBreakthrough', () => svc.attemptBreakthrough());
 ipcMain.handle('game:endureTribulation', () => svc.endureTribulation());
+ipcMain.handle('game:canStageUp', () => svc.canStageUp());
+ipcMain.handle('game:attemptStageUp', () => svc.attemptStageUp());
 
 // ---------- IPC: crafting ----------
 ipcMain.handle('game:getCraftingRecipes', (e, category) => svc.getCraftingRecipes(category));

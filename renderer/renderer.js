@@ -151,10 +151,11 @@ function renderStats() {
   set('tho-val', `${Math.floor(run.tuoi_tho)}/${Math.floor(run.tuoi_tho_max)} YRS`);
   set('luck-val', run.luck);
 
-  // Realm name
+  // Realm name with stage
   if (gameData?.realms) {
     const realm = gameData.realms.find(r => r.id === run.realm_id);
-    set('realm-val', realm?.name || run.realm_id);
+    const stage = (run.realm_stage || 0) + 1;
+    set('realm-val', realm ? `${realm.name} tầng ${stage}` : run.realm_id);
   }
 }
 
@@ -276,7 +277,8 @@ function showIdleChoices() {
         { label: '🚶 Đi tiếp', action: 'travel', primary: true },
         { label: '🗺️ Bản đồ', action: 'command', cmd: 'map' },
         { label: '🧘 Thiền', action: 'command', cmd: 'meditate 10' },
-        { label: '⬆️ Đột phá', action: 'command', cmd: 'breakthrough' },
+        { label: '⬆️ Tăng tầng', action: 'command', cmd: 'stageup' },
+        { label: '🌟 Đột phá', action: 'command', cmd: 'breakthrough' },
         { label: '🎒 Túi đồ', action: 'command', cmd: 'inventory' },
       ]);
       break;
@@ -608,10 +610,13 @@ const commands = {
         
         const renderEq = (item, type, icon) => {
           if (!item) return `<div class="inv-card" style="opacity:0.6; border:1px dashed #e9ecef;"><div class="inv-card-title" style="color:var(--text-dim);">${icon} Trống</div><div class="inv-card-sub">[${type}]</div></div>`;
-          return `<div class="inv-card" style="border-color:var(--jade); background:var(--jade-light);">
-            <div class="inv-card-title" style="color:var(--jade);">${icon} ${item.name}</div>
-            <div class="inv-card-sub" style="color:var(--jade);">[${type}]</div>
-            <div class="inv-card-btns"><button onclick="window.dispatch('unequip ${type}')">Tháo</button></div>
+          const eqRarity = item.rarity || 'common';
+          return `<div class="inv-card rarity-${eqRarity}" data-rarity="${eqRarity}">
+            <div style="font-size:1.5rem;">${icon}</div>
+            <div class="inv-card-title" style="color:var(--text-primary);">${item.name}</div>
+            <div style="font-size:0.65rem;font-weight:700;color:var(--gold-500);text-transform:uppercase;letter-spacing:1px;">${eqRarity}</div>
+            <div class="inv-card-sub">[${type}]</div>
+            <div class="inv-card-btns"><button style="font-size:0.75rem;background:var(--crimson-50);border-color:rgba(192,57,43,0.2);color:var(--crimson-600);" onclick="window._modalUnequip('${type}')">Tháo</button></div>
           </div>`;
         };
         html += renderEq(eq.weapon, 'weapon', '🔪');
@@ -628,9 +633,13 @@ const commands = {
         html += '<div class="inv-grid">';
         inv.forEach(it => {
           const d = defs[it.item_id];
+          const rarity = d?.rarity || 'common';
+          const rarityLabel = { common: 'Thường', rare: 'Hiếm', epic: 'Sử Thi', legendary: 'Huyền Thoại', mythic: 'Thần Thoại' }[rarity] || '';
           const typeStr = d?.type==='equipment' ? `[${d.slot}]` : d?.type==='consumable' ? '[Đan Dược]' : '[Vật Phẩm]';
-          html += `<div class="inv-card">
-            <div class="inv-card-title">${d?.icon||'📦'} ${d?.name||it.item_name} <span style="color:var(--gold)">x${it.quantity}</span></div>
+          html += `<div class="inv-card rarity-${rarity}" data-rarity="${rarity}">
+            <div style="font-size:1.8rem;">${d?.icon||'📦'}</div>
+            <div class="inv-card-title">${d?.name||it.item_name} <span style="color:var(--gold);font-size:0.8rem;">x${it.quantity}</span></div>
+            <div style="font-size:0.65rem;font-weight:700;color:var(--gold-500);text-transform:uppercase;letter-spacing:1px;">${rarityLabel}</div>
             <div class="inv-card-sub" style="font-style:italic;">${d?.desc||''} <br>${typeStr}</div>
             <div class="inv-card-btns">`;
           if (d?.type === 'consumable') html += `<button style="background:var(--jade-light); border-color:var(--jade); font-weight:bold;" onclick="window._modalUse('${it.item_id}')">Dùng</button>`;
@@ -700,6 +709,24 @@ const commands = {
         log(`Cảnh giới mới: ${state.run.realm_id.toUpperCase()}!`, 'success');
         showIdleChoices();
       }
+    }
+  },
+
+  stageup: {
+    desc: 'Tăng tiểu tầng trong cảnh giới hiện tại',
+    requiresAlive: true,
+    run: async () => {
+      await refreshState();
+      if (state.run.fsm_state !== 'IDLE') { log(`Không thể tăng tầng khi ${state.run.fsm_state}.`, 'error'); return; }
+      const check = await window.game.canStageUp();
+      if (!check.ok) { log(`[LỖI] ${check.error}`, 'error'); return; }
+      if (!check.canAttempt) { log(`[LỖI] ${check.reason}`, 'error'); return; }
+      log(`Tăng tầng: ${check.realmName} → tầng ${check.currentStage + 1} | Tỉ lệ ${(check.successRate*100).toFixed(1)}%`, 'system');
+      const res = await window.game.attemptStageUp();
+      if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
+      log(res.message, res.success ? 'success' : 'error');
+      await refreshState(); renderStats();
+      showIdleChoices();
     }
   },
 
@@ -1171,6 +1198,7 @@ async function processDeathAndShowSummary() {
 // ── Window Helpers (for modal button onclick) ──
 window._modalUse = async (id) => { hideModal(); await commands.use.run(['use', id]); };
 window._modalEquip = async (id, slot) => { hideModal(); await commands.equip.run(['equip', id]); };
+window._modalUnequip = async (slot) => { hideModal(); await commands.unequip.run(['unequip', slot]); };
 window._shopBuy = async (id) => { await commands.shop.run(['shop', 'buy', id]); };
 window._craftMake = async (id) => { await commands.craft.run(['craft', 'make', id]); };
 window._sectJoin = async (id) => { await commands.sect.run(['sect', 'join', id]); };

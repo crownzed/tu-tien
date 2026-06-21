@@ -1,14 +1,53 @@
 {
   "items": {
-    "hoi_huyet_dan":    { "name": "Hồi Huyết Đan",   "type": "consumable", "icon": "💊", "rarity": "common",   "desc": "Hồi 40% HP tức thì",                              "effect": { "healPct": 0.4 } },
-    "luyen_khi_dan":    { "name": "Luyện Khí Đan",   "type": "consumable", "icon": "💊", "rarity": "rare",     "desc": "Tăng vĩnh viễn 10 Linh Khí max",                  "effect": { "linhKhiMaxUp": 10 } },
-    "pha_gioi_dan":     { "name": "Phá Giới Đan",    "type": "consumable", "icon": "💊", "rarity": "legendary","desc": "Tăng 20% tỉ lệ đột phá (1 lần dùng, hết sau 1 kiếp)", "effect": { "breakthroughBonus": 0.2 } },
-    "phu_ho_menh":      { "name": "Phù Hộ Mệnh",     "type": "consumable", "icon": "📜", "rarity": "rare",     "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",       "effect": { "deathSave": true } },
-    "phu_truyen_tong":  { "name": "Phù Truyền Tống", "type": "consumable", "icon": "📜", "rarity": "rare",     "desc": "Thoát khỏi combat ngay lập tức",                  "effect": { "fleeGuaranteed": true } },
-    "ky_bao_ha_pham":   { "name": "Kỳ Bảo Hạ Phẩm",  "type": "equipment",  "icon": "⚜️", "rarity": "mythic",   "desc": "Pháp bảo cổ: ATK +15, giảm 10% sát thương thiên kiếp", "slot": "accessory", "stats": { "attackBonus": 15, "tribulationReduction": 0.1 } },
-    "phap_bao_so_cap":  { "name": "Pháp Bảo Sơ Cấp", "type": "equipment",  "icon": "⚒️", "rarity": "rare",     "desc": "ATK +20, đột phá +5%",                             "slot": "weapon",   "stats": { "attackBonus": 20, "breakthroughBonus": 0.05 } },
-    "phap_bao_trung_cap":{"name": "Pháp Bảo Trung Cấp","type": "equipment", "icon": "⚒️", "rarity": "legendary","desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",      "slot": "weapon",   "stats": { "attackBonus": 50, "breakthroughBonus": 0.1, "tribulationReduction": 0.2 } },
-    "tran_phap_co_ban": { "name": "Trận Pháp Cơ Bản","type": "equipment",  "icon": "🔮", "rarity": "rare",     "desc": "Giảm 15% sát thương trong combat",                 "slot": "armor",    "stats": { "damageReduction": 0.15 } },
-    "ngoc_gian_co":     { "name": "Ngọc Giản Cổ",    "type": "consumable", "icon": "📿", "rarity": "mythic",   "desc": "Chứa bí thuật cổ: tăng 30 Tu Vi",                 "effect": { "tuViUp": 30 } }
+    "─── ĐAN DƯỢC (Consumable) ───": "_",
+
+    "hoi_huyet_dan":       { "name": "Hồi Huyết Đan",       "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 35% Khí Huyết tức thì",                           "effect": { "healPct": 0.35 } },
+    "tue_huyet_dan":       { "name": "Tục Huyết Đan",       "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 15% Khí Huyết mỗi 10s trong 30s",                 "effect": { "healOverTime": { "pct": 0.15, "ticks": 3 } } },
+    "dai_hoan_dan":        { "name": "Đại Hoàn Đan",        "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Hồi đầy Khí Huyết và Chân Nguyên",                   "effect": { "fullHeal": true } },
+    "hoi_linh_dan":        { "name": "Hồi Linh Đan",        "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 40% Chân Nguyên tức thì",                         "effect": { "lkHealPct": 0.4 } },
+
+    "luyen_khi_dan":       { "name": "Luyện Khí Đan",       "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Tăng vĩnh viễn 10 Chân Nguyên max",                    "effect": { "linhKhiMaxUp": 10 } },
+    "tinh_hoa_dan":        { "name": "Tinh Hoa Đan",        "type": "consumable", "icon": "💊", "rarity": "epic",      "desc": "Tăng vĩnh viễn 25 Chân Nguyên max + 10 HP max",       "effect": { "linhKhiMaxUp": 25, "hpMaxUp": 10 } },
+    "tho_nguyen_dan":      { "name": "Thọ Nguyên Đan",      "type": "consumable", "icon": "💊", "rarity": "epic",      "desc": "Kéo dài tuổi thọ thêm 20 năm",                        "effect": { "tuoiThoUp": 20 } },
+
+    "tu_vi_dan":           { "name": "Tụ Vi Đan",           "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Tăng 50 Tu Vi tức thì",                               "effect": { "tuViUp": 50 } },
+    "dai_tu_vi_dan":       { "name": "Đại Tụ Vi Đan",       "type": "consumable", "icon": "💊", "rarity": "legendary", "desc": "Tăng 200 Tu Vi tức thì",                              "effect": { "tuViUp": 200 } },
+    "ngoc_gian_co":        { "name": "Ngọc Giản Cổ",        "type": "consumable", "icon": "📿", "rarity": "mythic",    "desc": "Chứa bí thuật cổ: tăng 300 Tu Vi + 5 Luck vĩnh viễn", "effect": { "tuViUp": 300, "luckUp": 5 } },
+
+    "─── PHÙ CHÚ (Consumable) ───": "_",
+
+    "phu_ho_menh":         { "name": "Phù Hộ Mệnh",         "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",              "effect": { "deathSave": true } },
+    "phu_kim_cang":        { "name": "Phù Kim Cang",        "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Giảm 30% sát thương nhận trong 5 lượt combat tiếp theo", "effect": { "damageResistPct": 0.3 } },
+    "phu_truyen_tong":     { "name": "Phù Truyền Tống",     "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Thoát khỏi combat ngay lập tức, giữ toàn bộ chiến lợi phẩm", "effect": { "fleeGuaranteed": true } },
+    "phu_chu_giem":        { "name": "Phù Chú Kiếm",        "type": "consumable", "icon": "📜", "rarity": "epic",      "desc": "Đòn đánh kế gây 200% sát thương",                       "effect": { "nextAttackDouble": true } },
+
+    "─── ĐAN DƯỢC ĐẶC BIỆT ───": "_",
+
+    "pha_gioi_dan":        { "name": "Phá Giới Đan",        "type": "consumable", "icon": "💊", "rarity": "legendary", "desc": "Tăng 20% tỉ lệ đột phá cảnh giới (1 lần)",               "effect": { "breakthroughBonus": 0.2 } },
+    "thien_pha_dan":       { "name": "Thiên Phá Đan",       "type": "consumable", "icon": "💊", "rarity": "mythic",    "desc": "Tăng 40% tỉ lệ đột phá + giảm 30% sát thương thiên kiếp", "effect": { "breakthroughBonus": 0.4, "tribulationReduction": 0.3 } },
+
+    "─── VŨ KHÍ (Equipment - Weapon) ───": "_",
+
+    "kiem_sat":            { "name": "Kiếm Sắt",            "type": "equipment",  "icon": "🗡️", "rarity": "common",    "desc": "ATK +8",                                                                       "slot": "weapon", "stats": { "attackBonus": 8 } },
+    "phap_bao_so_cap":     { "name": "Pháp Bảo Sơ Cấp",     "type": "equipment",  "icon": "⚒️", "rarity": "rare",      "desc": "ATK +20, đột phá +5%",                                                          "slot": "weapon", "stats": { "attackBonus": 20, "breakthroughBonus": 0.05 } },
+    "thanh_phong_kiem":    { "name": "Thanh Phong Kiếm",    "type": "equipment",  "icon": "⚔️", "rarity": "epic",      "desc": "ATK +35, Luck +5 trong combat",                                                "slot": "weapon", "stats": { "attackBonus": 35, "luckBonus": 5 } },
+    "phap_bao_trung_cap":  { "name": "Pháp Bảo Trung Cấp",  "type": "equipment",  "icon": "⚒️", "rarity": "legendary", "desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",                                   "slot": "weapon", "stats": { "attackBonus": 50, "breakthroughBonus": 0.1, "tribulationReduction": 0.2 } },
+    "hac_am_chuy":         { "name": "Hắc Ám Chùy",         "type": "equipment",  "icon": "🔨", "rarity": "legendary", "desc": "ATK +60, 15% cơ hội gây gấp đôi sát thương",                                  "slot": "weapon", "stats": { "attackBonus": 60, "critChance": 0.15 } },
+    "tien_thien_kiem":     { "name": "Tiên Thiên Kiếm",     "type": "equipment",  "icon": "⚔️", "rarity": "mythic",    "desc": "ATK +80, đột phá +15%, giảm 30% thiên kiếp, Luck +10",                        "slot": "weapon", "stats": { "attackBonus": 80, "breakthroughBonus": 0.15, "tribulationReduction": 0.3, "luckBonus": 10 } },
+
+    "─── HỘ GIÁP (Equipment - Armor) ───": "_",
+
+    "ao_vai_tho":          { "name": "Áo Vải Thô",          "type": "equipment",  "icon": "👘", "rarity": "common",    "desc": "Giảm 5% sát thương",                                                           "slot": "armor",  "stats": { "damageReduction": 0.05 } },
+    "tran_phap_co_ban":    { "name": "Trận Pháp Cơ Bản",    "type": "equipment",  "icon": "🔮", "rarity": "rare",      "desc": "Giảm 15% sát thương",                                                          "slot": "armor",  "stats": { "damageReduction": 0.15 } },
+    "hoang_giap":          { "name": "Huyền Hoàng Giáp",    "type": "equipment",  "icon": "🛡️", "rarity": "epic",      "desc": "Giảm 22% sát thương + HP max +20",                                             "slot": "armor",  "stats": { "damageReduction": 0.22, "hpBonus": 20 } },
+    "bat_dai_giap":        { "name": "Bất Diệt Giáp",       "type": "equipment",  "icon": "🛡️", "rarity": "legendary", "desc": "Giảm 30% sát thương + chặn 1 đòn chí mạng mỗi combat",                         "slot": "armor",  "stats": { "damageReduction": 0.30, "deathSavePerCombat": true } },
+
+    "─── PHÁP KHÍ (Equipment - Accessory) ───": "_",
+
+    "ngoc_boi_thach":      { "name": "Ngọc Bội Thạch",      "type": "equipment",  "icon": "💠", "rarity": "common",    "desc": "Chân Nguyên max +15",                                                         "slot": "accessory", "stats": { "linhKhiBonus": 15 } },
+    "han_ngoc":            { "name": "Hàn Ngọc Bội",        "type": "equipment",  "icon": "💠", "rarity": "rare",      "desc": "Giảm 10% thiên kiếp + Chân Nguyên max +25",                                    "slot": "accessory", "stats": { "tribulationReduction": 0.1, "linhKhiBonus": 25 } },
+    "ky_bao_ha_pham":      { "name": "Kỳ Bảo Hạ Phẩm",      "type": "equipment",  "icon": "⚜️", "rarity": "epic",      "desc": "ATK +15, giảm 15% sát thương thiên kiếp, Luck +5",                              "slot": "accessory", "stats": { "attackBonus": 15, "tribulationReduction": 0.15, "luckBonus": 5 } },
+    "tien_thien_linh_chau":{ "name": "Tiên Thiên Linh Châu", "type": "equipment", "icon": "💎", "rarity": "mythic",    "desc": "ATK +25, giảm 25% thiên kiếp, đột phá +10%, Luck +10",                          "slot": "accessory", "stats": { "attackBonus": 25, "tribulationReduction": 0.25, "breakthroughBonus": 0.1, "luckBonus": 10 } }
   }
 }

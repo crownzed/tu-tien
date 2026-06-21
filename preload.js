@@ -29,6 +29,9 @@ contextBridge.exposeInMainWorld('game', {
   canBreakthrough:    () => ipcRenderer.invoke('game:canBreakthrough'),
   attemptBreakthrough:() => ipcRenderer.invoke('game:attemptBreakthrough'),
   endureTribulation:  () => ipcRenderer.invoke('game:endureTribulation'),
+  // stage-up
+  canStageUp:         () => ipcRenderer.invoke('game:canStageUp'),
+  attemptStageUp:     () => ipcRenderer.invoke('game:attemptStageUp'),
   // crafting
   getCraftingRecipes: (category) => ipcRenderer.invoke('game:getCraftingRecipes', category),
   craftItem:          (recipeId) => ipcRenderer.invoke('game:craftItem', recipeId),

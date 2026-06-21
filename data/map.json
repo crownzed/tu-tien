@@ -1,36 +1,78 @@
 {
   "nodeTypes": {
-    "combat":   { "icon": "⚔️", "color": "#ff4444", "desc": "Chiến đấu" },
-    "elite":    { "icon": "💀", "color": "#ff6644", "desc": "Quái Tinh Anh" },
-    "treasure": { "icon": "💎", "color": "#ffdd00", "desc": "Kho báu" },
-    "rest":     { "icon": "🏕️", "color": "#00ff88", "desc": "Nghỉ ngơi" },
-    "npc":      { "icon": "👤", "color": "#88aaff", "desc": "Gặp NPC" },
-    "event":    { "icon": "❓", "color": "#aa88ff", "desc": "Sự kiện" },
-    "boss":     { "icon": "👑", "color": "#ff0000", "desc": "BOSS" }
+    "combat":   { "icon": "⚔️", "color": "#e74c3c", "desc": "Chiến đấu" },
+    "elite":    { "icon": "💀", "color": "#c0392b", "desc": "Quái Tinh Anh" },
+    "treasure": { "icon": "💎", "color": "#f39c12", "desc": "Kho báu" },
+    "rest":     { "icon": "🏕️", "color": "#27ae60", "desc": "Nghỉ ngơi" },
+    "npc":      { "icon": "👤", "color": "#3498db", "desc": "Gặp gỡ NPC" },
+    "event":    { "icon": "❓", "color": "#8e44ad", "desc": "Sự kiện bí ẩn" },
+    "cave":     { "icon": "🕳️", "color": "#7f8c8d", "desc": "Hang động" },
+    "sect":     { "icon": "🏛️", "color": "#b8860b", "desc": "Tông môn" },
+    "merchant_event": { "icon": "🧑‍💼", "color": "#e67e22", "desc": "Thương nhân" },
+    "npc_talk": { "icon": "💬", "color": "#2ecc71", "desc": "Đối thoại" },
+    "boss":     { "icon": "👑", "color": "#c0392b", "desc": "BOSS CUỐI" }
   },
   "maps": [
     {
-      "realmMin": 0, "realmMax": 2,
+      "realmMin": 1, "realmMax": 1,
       "layers": 5,
-      "nodeDistribution": { "combat": 40, "treasure": 20, "rest": 10, "npc": 15, "event": 15 },
+      "nodeDistribution": {
+        "combat": 35, "treasure": 18, "rest": 10, "npc": 15, "npc_talk": 8, "event": 14
+      },
       "hasElite": false
     },
     {
-      "realmMin": 3, "realmMax": 4,
+      "realmMin": 2, "realmMax": 3,
       "layers": 6,
-      "nodeDistribution": { "combat": 35, "elite": 10, "treasure": 20, "rest": 10, "npc": 15, "event": 10 },
+      "nodeDistribution": {
+        "combat": 30, "elite": 8, "treasure": 18, "rest": 9, "npc": 12,
+        "npc_talk": 8, "event": 10, "cave": 5, "merchant_event": 5
+      },
       "hasElite": true
     },
     {
-      "realmMin": 5, "realmMax": 6,
+      "realmMin": 4, "realmMax": 5,
       "layers": 7,
-      "nodeDistribution": { "combat": 30, "elite": 15, "treasure": 20, "rest": 10, "npc": 10, "event": 15 },
+      "nodeDistribution": {
+        "combat": 25, "elite": 12, "treasure": 17, "rest": 8, "npc": 10,
+        "npc_talk": 8, "event": 12, "cave": 6, "sect": 5, "merchant_event": 5
+      },
       "hasElite": true
     },
     {
-      "realmMin": 7, "realmMax": 8,
+      "realmMin": 6, "realmMax": 7,
       "layers": 8,
-      "nodeDistribution": { "combat": 25, "elite": 20, "treasure": 20, "rest": 10, "npc": 10, "event": 15 },
+      "nodeDistribution": {
+        "combat": 22, "elite": 15, "treasure": 16, "rest": 7, "npc": 8,
+        "npc_talk": 7, "event": 12, "cave": 7, "sect": 6, "merchant_event": 6
+      },
+      "hasElite": true
+    },
+    {
+      "realmMin": 8, "realmMax": 10,
+      "layers": 9,
+      "nodeDistribution": {
+        "combat": 20, "elite": 18, "treasure": 14, "rest": 6, "npc": 6,
+        "npc_talk": 6, "event": 14, "cave": 8, "sect": 8, "merchant_event": 6
+      },
+      "hasElite": true
+    },
+    {
+      "realmMin": 11, "realmMax": 12,
+      "layers": 10,
+      "nodeDistribution": {
+        "combat": 18, "elite": 20, "treasure": 12, "rest": 5, "npc": 5,
+        "npc_talk": 5, "event": 15, "cave": 8, "sect": 8, "merchant_event": 4
+      },
+      "hasElite": true
+    },
+    {
+      "realmMin": 13, "realmMax": 15,
+      "layers": 12,
+      "nodeDistribution": {
+        "combat": 15, "elite": 22, "treasure": 10, "rest": 5, "npc": 4,
+        "npc_talk": 4, "event": 16, "cave": 10, "sect": 10, "merchant_event": 4
+      },
       "hasElite": true
     }
   ]

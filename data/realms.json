@@ -1,20 +1,169 @@
 {
   "realms": [
-    { "id": "luyen_khi",    "name": "Luyện Khí",    "order": 1, "hpBonus": 0,    "linhKhiMax": 100,   "tuoiThoMax": 120,
-      "breakthrough": { "linhKhiRequired": 80,  "tuViRequired": 50,   "baseSuccessRate": 0.8,  "hasTribulation": false, "hpLossOnFail": 20,  "lkLossOnFail": 30 } },
-    { "id": "truc_co",      "name": "Trúc Cơ",      "order": 2, "hpBonus": 200,  "linhKhiMax": 300,   "tuoiThoMax": 200,
-      "breakthrough": { "linhKhiRequired": 250, "tuViRequired": 200,  "baseSuccessRate": 0.7,  "hasTribulation": false, "hpLossOnFail": 40,  "lkLossOnFail": 60 } },
-    { "id": "kim_dan",      "name": "Kim Đan",      "order": 3, "hpBonus": 600,  "linhKhiMax": 800,   "tuoiThoMax": 500,
-      "breakthrough": { "linhKhiRequired": 700, "tuViRequired": 500,  "baseSuccessRate": 0.55, "hasTribulation": true,  "hpLossOnFail": 80,  "lkLossOnFail": 120, "tribulationStrikes": 3, "tribulationDamage": 60 } },
-    { "id": "nguyen_anh",   "name": "Nguyên Anh",   "order": 4, "hpBonus": 1500, "linhKhiMax": 2000,  "tuoiThoMax": 1000,
-      "breakthrough": { "linhKhiRequired": 1800,"tuViRequired": 1200, "baseSuccessRate": 0.4,  "hasTribulation": true,  "hpLossOnFail": 150, "lkLossOnFail": 200, "tribulationStrikes": 5, "tribulationDamage": 120 } },
-    { "id": "hoa_than",     "name": "Hóa Thần",     "order": 5, "hpBonus": 4000, "linhKhiMax": 5000,  "tuoiThoMax": 2000,
-      "breakthrough": { "linhKhiRequired": 4500,"tuViRequired": 3000, "baseSuccessRate": 0.3,  "hasTribulation": true,  "hpLossOnFail": 300, "lkLossOnFail": 400, "tribulationStrikes": 7, "tribulationDamage": 250 } },
-    { "id": "luyen_hu",     "name": "Luyện Hư",     "order": 6, "hpBonus": 10000,"linhKhiMax": 12000, "tuoiThoMax": 5000,
-      "breakthrough": { "linhKhiRequired": 11000,"tuViRequired": 8000,"baseSuccessRate": 0.25, "hasTribulation": true,  "hpLossOnFail": 600, "lkLossOnFail": 800, "tribulationStrikes": 9, "tribulationDamage": 400 } },
-    { "id": "hop_the",      "name": "Hợp Thể",      "order": 7, "hpBonus": 25000,"linhKhiMax": 30000, "tuoiThoMax": 10000,
-      "breakthrough": { "linhKhiRequired": 27000,"tuViRequired": 20000,"baseSuccessRate": 0.2,  "hasTribulation": true,  "hpLossOnFail": 1200,"lkLossOnFail": 1500,"tribulationStrikes": 12, "tribulationDamage": 700 } },
-    { "id": "dai_thua",     "name": "Đại Thừa",     "order": 8, "hpBonus": 60000,"linhKhiMax": 80000, "tuoiThoMax": 30000,
-      "breakthrough": null }
+    {
+      "id": "luyen_khi",
+      "name": "Luyện Khí",
+      "order": 1,
+      "hpBonus": 0,
+      "linhKhiMax": 100,
+      "tuoiThoMax": 120,
+      "stageBonuses": { "hpPerStage": 10, "lkPerStage": 15 },
+      "breakthrough": { "linhKhiRequired": 80, "tuViRequired": 50, "baseSuccessRate": 0.80, "hasTribulation": false, "hpLossOnFail": 20, "lkLossOnFail": 30 },
+      "stageUp": { "tuViRequired": 20, "baseSuccessRate": 0.90, "hpLossOnFail": 5 }
+    },
+    {
+      "id": "truc_co",
+      "name": "Trúc Cơ",
+      "order": 2,
+      "hpBonus": 200,
+      "linhKhiMax": 300,
+      "tuoiThoMax": 200,
+      "stageBonuses": { "hpPerStage": 25, "lkPerStage": 40 },
+      "breakthrough": { "linhKhiRequired": 250, "tuViRequired": 200, "baseSuccessRate": 0.70, "hasTribulation": false, "hpLossOnFail": 40, "lkLossOnFail": 60 },
+      "stageUp": { "tuViRequired": 50, "baseSuccessRate": 0.85, "hpLossOnFail": 12 }
+    },
+    {
+      "id": "kim_dan",
+      "name": "Kim Đan",
+      "order": 3,
+      "hpBonus": 600,
+      "linhKhiMax": 800,
+      "tuoiThoMax": 500,
+      "stageBonuses": { "hpPerStage": 60, "lkPerStage": 80 },
+      "breakthrough": { "linhKhiRequired": 700, "tuViRequired": 500, "baseSuccessRate": 0.55, "hasTribulation": true, "hpLossOnFail": 80, "lkLossOnFail": 120, "tribulationStrikes": 3, "tribulationDamage": 60 },
+      "stageUp": { "tuViRequired": 120, "baseSuccessRate": 0.80, "hpLossOnFail": 25 }
+    },
+    {
+      "id": "nguyen_anh",
+      "name": "Nguyên Anh",
+      "order": 4,
+      "hpBonus": 1500,
+      "linhKhiMax": 2000,
+      "tuoiThoMax": 1000,
+      "stageBonuses": { "hpPerStage": 150, "lkPerStage": 200 },
+      "breakthrough": { "linhKhiRequired": 1800, "tuViRequired": 1200, "baseSuccessRate": 0.40, "hasTribulation": true, "hpLossOnFail": 150, "lkLossOnFail": 200, "tribulationStrikes": 5, "tribulationDamage": 120 },
+      "stageUp": { "tuViRequired": 300, "baseSuccessRate": 0.75, "hpLossOnFail": 50 }
+    },
+    {
+      "id": "hoa_than",
+      "name": "Hóa Thần",
+      "order": 5,
+      "hpBonus": 4000,
+      "linhKhiMax": 5000,
+      "tuoiThoMax": 2000,
+      "stageBonuses": { "hpPerStage": 400, "lkPerStage": 500 },
+      "breakthrough": { "linhKhiRequired": 4500, "tuViRequired": 3000, "baseSuccessRate": 0.30, "hasTribulation": true, "hpLossOnFail": 300, "lkLossOnFail": 400, "tribulationStrikes": 7, "tribulationDamage": 250 },
+      "stageUp": { "tuViRequired": 700, "baseSuccessRate": 0.70, "hpLossOnFail": 100 }
+    },
+    {
+      "id": "luyen_hu",
+      "name": "Luyện Hư",
+      "order": 6,
+      "hpBonus": 10000,
+      "linhKhiMax": 12000,
+      "tuoiThoMax": 5000,
+      "stageBonuses": { "hpPerStage": 1000, "lkPerStage": 1200 },
+      "breakthrough": { "linhKhiRequired": 11000, "tuViRequired": 8000, "baseSuccessRate": 0.25, "hasTribulation": true, "hpLossOnFail": 600, "lkLossOnFail": 800, "tribulationStrikes": 9, "tribulationDamage": 400 },
+      "stageUp": { "tuViRequired": 1800, "baseSuccessRate": 0.65, "hpLossOnFail": 200 }
+    },
+    {
+      "id": "hop_the",
+      "name": "Hợp Thể",
+      "order": 7,
+      "hpBonus": 25000,
+      "linhKhiMax": 30000,
+      "tuoiThoMax": 10000,
+      "stageBonuses": { "hpPerStage": 2500, "lkPerStage": 3000 },
+      "breakthrough": { "linhKhiRequired": 27000, "tuViRequired": 20000, "baseSuccessRate": 0.20, "hasTribulation": true, "hpLossOnFail": 1200, "lkLossOnFail": 1500, "tribulationStrikes": 12, "tribulationDamage": 700 },
+      "stageUp": { "tuViRequired": 4500, "baseSuccessRate": 0.60, "hpLossOnFail": 400 }
+    },
+    {
+      "id": "dai_thua",
+      "name": "Đại Thừa",
+      "order": 8,
+      "hpBonus": 60000,
+      "linhKhiMax": 80000,
+      "tuoiThoMax": 30000,
+      "stageBonuses": { "hpPerStage": 6000, "lkPerStage": 8000 },
+      "breakthrough": { "linhKhiRequired": 70000, "tuViRequired": 50000, "baseSuccessRate": 0.15, "hasTribulation": true, "hpLossOnFail": 2500, "lkLossOnFail": 3000, "tribulationStrikes": 15, "tribulationDamage": 1500 },
+      "stageUp": { "tuViRequired": 10000, "baseSuccessRate": 0.55, "hpLossOnFail": 800 }
+    },
+    {
+      "id": "do_kiep",
+      "name": "Độ Kiếp",
+      "order": 9,
+      "hpBonus": 150000,
+      "linhKhiMax": 200000,
+      "tuoiThoMax": 80000,
+      "stageBonuses": { "hpPerStage": 15000, "lkPerStage": 18000 },
+      "breakthrough": { "linhKhiRequired": 180000, "tuViRequired": 120000, "baseSuccessRate": 0.12, "hasTribulation": true, "hpLossOnFail": 5000, "lkLossOnFail": 6000, "tribulationStrikes": 18, "tribulationDamage": 3000 },
+      "stageUp": { "tuViRequired": 25000, "baseSuccessRate": 0.50, "hpLossOnFail": 1500 }
+    },
+    {
+      "id": "chan_tien",
+      "name": "Chân Tiên",
+      "order": 10,
+      "hpBonus": 400000,
+      "linhKhiMax": 500000,
+      "tuoiThoMax": 200000,
+      "stageBonuses": { "hpPerStage": 40000, "lkPerStage": 50000 },
+      "breakthrough": { "linhKhiRequired": 450000, "tuViRequired": 300000, "baseSuccessRate": 0.10, "hasTribulation": true, "hpLossOnFail": 10000, "lkLossOnFail": 12000, "tribulationStrikes": 21, "tribulationDamage": 6000 },
+      "stageUp": { "tuViRequired": 60000, "baseSuccessRate": 0.45, "hpLossOnFail": 3000 }
+    },
+    {
+      "id": "kim_tien",
+      "name": "Kim Tiên",
+      "order": 11,
+      "hpBonus": 1000000,
+      "linhKhiMax": 1200000,
+      "tuoiThoMax": 500000,
+      "stageBonuses": { "hpPerStage": 100000, "lkPerStage": 120000 },
+      "breakthrough": { "linhKhiRequired": 1100000, "tuViRequired": 700000, "baseSuccessRate": 0.08, "hasTribulation": true, "hpLossOnFail": 20000, "lkLossOnFail": 25000, "tribulationStrikes": 27, "tribulationDamage": 12000 },
+      "stageUp": { "tuViRequired": 150000, "baseSuccessRate": 0.40, "hpLossOnFail": 6000 }
+    },
+    {
+      "id": "thai_at",
+      "name": "Thái Ất",
+      "order": 12,
+      "hpBonus": 2500000,
+      "linhKhiMax": 3000000,
+      "tuoiThoMax": 1000000,
+      "stageBonuses": { "hpPerStage": 250000, "lkPerStage": 300000 },
+      "breakthrough": { "linhKhiRequired": 2700000, "tuViRequired": 1800000, "baseSuccessRate": 0.06, "hasTribulation": true, "hpLossOnFail": 40000, "lkLossOnFail": 50000, "tribulationStrikes": 33, "tribulationDamage": 25000 },
+      "stageUp": { "tuViRequired": 350000, "baseSuccessRate": 0.35, "hpLossOnFail": 12000 }
+    },
+    {
+      "id": "dai_la",
+      "name": "Đại La",
+      "order": 13,
+      "hpBonus": 6000000,
+      "linhKhiMax": 8000000,
+      "tuoiThoMax": 3000000,
+      "stageBonuses": { "hpPerStage": 600000, "lkPerStage": 800000 },
+      "breakthrough": { "linhKhiRequired": 7000000, "tuViRequired": 4500000, "baseSuccessRate": 0.04, "hasTribulation": true, "hpLossOnFail": 80000, "lkLossOnFail": 100000, "tribulationStrikes": 39, "tribulationDamage": 50000 },
+      "stageUp": { "tuViRequired": 800000, "baseSuccessRate": 0.30, "hpLossOnFail": 25000 }
+    },
+    {
+      "id": "hon_nguyen",
+      "name": "Hỗn Nguyên",
+      "order": 14,
+      "hpBonus": 15000000,
+      "linhKhiMax": 20000000,
+      "tuoiThoMax": 10000000,
+      "stageBonuses": { "hpPerStage": 1500000, "lkPerStage": 2000000 },
+      "breakthrough": { "linhKhiRequired": 18000000, "tuViRequired": 12000000, "baseSuccessRate": 0.02, "hasTribulation": true, "hpLossOnFail": 150000, "lkLossOnFail": 200000, "tribulationStrikes": 45, "tribulationDamage": 100000 },
+      "stageUp": { "tuViRequired": 2000000, "baseSuccessRate": 0.25, "hpLossOnFail": 50000 }
+    },
+    {
+      "id": "hong_mong",
+      "name": "Hồng Mông",
+      "order": 15,
+      "hpBonus": 50000000,
+      "linhKhiMax": 80000000,
+      "tuoiThoMax": 99999999,
+      "stageBonuses": { "hpPerStage": 5000000, "lkPerStage": 8000000 },
+      "breakthrough": null,
+      "stageUp": { "tuViRequired": 5000000, "baseSuccessRate": 0.20, "hpLossOnFail": 100000 }
+    }
   ]
 }

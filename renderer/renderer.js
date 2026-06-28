@@ -8,6 +8,24 @@
 let state = null;
 let gameData = null;
 
+// Composite item id "baseId@quality": tra def theo baseId, lấy nhãn phẩm chất.
+function splitItemId(itemId) {
+  const at = (itemId || '').indexOf('@');
+  if (at === -1) return { baseId: itemId, qualityId: null };
+  return { baseId: itemId.slice(0, at), qualityId: itemId.slice(at + 1) };
+}
+function itemDefOf(itemId) {
+  const { baseId } = splitItemId(itemId);
+  return (gameData?.itemDefs || {})[baseId] || null;
+}
+const QUALITY_LABEL = {
+  ha_pham: 'Hạ Phẩm', trung_pham: 'Trung Phẩm', thuong_pham: 'Thượng Phẩm', cuc_pham: 'Cực Phẩm'
+};
+function qualityLabelOf(itemId) {
+  const { qualityId } = splitItemId(itemId);
+  return qualityId ? (QUALITY_LABEL[qualityId] || null) : null;
+}
+
 // ── Audio System ──
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 function playSound(type) {
@@ -157,6 +175,24 @@ function renderStats() {
     const stage = (run.realm_stage || 0) + 1;
     set('realm-val', realm ? `${realm.name} tầng ${stage}` : run.realm_id);
   }
+
+  // Core Attributes (STR/CON/AGI/INT/SPR/LUK)
+  try {
+    const meta = JSON.parse(run.metadata || '{}');
+    const attrs = meta.coreAttrs || { str: 0, con: 0, agi: 0, int: 0, spr: 0, luk: 0 };
+    set('attr-str', attrs.str);
+    set('attr-con', attrs.con);
+    set('attr-agi', attrs.agi);
+    set('attr-int', attrs.int);
+    set('attr-spr', attrs.spr);
+    set('attr-luk', attrs.luk);
+    const attrsRow = document.getElementById('core-attrs-row');
+    if (attrsRow) attrsRow.style.display = meta.coreAttrs ? '' : 'none';
+  } catch {
+    // Fallback: ẩn row nếu metadata lỗi
+    const attrsRow = document.getElementById('core-attrs-row');
+    if (attrsRow) attrsRow.style.display = 'none';
+  }
 }
 
 function renderAsciiBar(fillId, emptyId, pct) {
@@ -224,8 +260,17 @@ function showCombatOverlay(combat) {
   if (!ov) return;
   document.getElementById('enemy-name').textContent = combat.enemyName;
   document.getElementById('enemy-hp-text').textContent = `${combat.enemyHp}/${combat.enemyMaxHp}`;
+  const staggerStatus = combat.staggered ? ' 💥PHÁ THỂ' : '';
   document.getElementById('enemy-stats').textContent =
-    `ATK:${combat.enemyAttack} | DEF:${combat.enemyDefense}${combat.enemyElement ? ` | ${combat.enemyElement.toUpperCase()}` : ''}`;
+    `ATK:${combat.enemyAttack} | DEF:${combat.enemyDefense}${combat.enemyElement ? ` | ${combat.enemyElement.toUpperCase()}` : ''}${staggerStatus}`;
+  // Thêm crit rate & dodge nếu combat state có
+  const critInfo = combat.playerCritRate != null ? `⚔️Bạo:${Math.round(combat.playerCritRate * 100)}%` : '';
+  const dodgeInfo = combat.playerDodgeChance != null ? `🌀Né:${Math.round(combat.playerDodgeChance * 100)}%` : '';
+  const glanceInfo = combat.playerGlanceChance != null ? `💨Sượt:${Math.round(combat.playerGlanceChance * 100)}%` : '';
+  if (critInfo || dodgeInfo || glanceInfo) {
+    const sub = document.getElementById('enemy-stats-sub');
+    if (sub) sub.textContent = [critInfo, dodgeInfo, glanceInfo].filter(Boolean).join(' | ');
+  }
   renderAsciiBar('enemy-hp-fill', 'enemy-hp-empty', Math.max(0, combat.enemyHp / combat.enemyMaxHp));
   document.getElementById('combat-log').innerHTML = '';
   ov.style.display = 'flex';
@@ -275,7 +320,6 @@ function showIdleChoices() {
     case 'IDLE':
       updateQuickActions([
         { label: '🚶 Đi tiếp', action: 'travel', primary: true },
-        { label: '🗺️ Bản đồ', action: 'command', cmd: 'map' },
         { label: '🧘 Thiền', action: 'command', cmd: 'meditate 10' },
         { label: '⬆️ Tăng tầng', action: 'command', cmd: 'stageup' },
         { label: '🌟 Đột phá', action: 'command', cmd: 'breakthrough' },
@@ -365,7 +409,17 @@ async function executeChoice(choice) {
     const res = await window.game.resolveTravelChoice(choice.choiceIndex);
     if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
     log(res.message, res.outcome === 'success' ? 'success' : 'error');
-    await refreshState(); renderStats(); showIdleChoices();
+    await refreshState(); renderStats();
+    // Rẽ nhánh: sự kiện dẫn tới scenario con — render tiếp lựa chọn thay vì về IDLE.
+    if (res.branched && res.scenario?.choices) {
+      log(`── ${res.scenario.text} ──`, 'system');
+      const branchChoices = res.scenario.choices.map((text, i) => ({
+        label: text, action: 'choose_event', choiceIndex: i
+      }));
+      showChoices(branchChoices);
+    } else {
+      showIdleChoices();
+    }
   }
   else if (choice.action === 'buy_item') {
     const res = await window.game.travelBuy(choice.itemId, choice.cost);
@@ -400,7 +454,6 @@ async function handleCombatResult(res) {
     hideCombatOverlay();
     log(`🎉 Chiến thắng! Nhận ${res.rewards?.spiritStones || 0} Linh Thạch, +${res.rewards?.expReward || 0} EXP.${res.rewards?.leveledUp ? ` ⬆️ RUN LV.${res.rewards.runLevel}!` : ''}`, 'success');
     if (state.run) log(`HP còn: ${state.run.hp}/${state.run.hp_max}`, 'info');
-    await window.game.completeCombatNode();
     showIdleChoices();
   } else if (res.defeat) {
     hideCombatOverlay();
@@ -445,9 +498,6 @@ const commands = {
       await refreshState(); renderStats();
       const realm = gameData.realms.find(r => r.id === run.realm_id);
       log(`Chuyển sinh hoàn tất. Cảnh giới: ${realm?.name || '?'}.`, 'success');
-      // Show map
-      const view = await window.game.getMapView();
-      if (view?.mapState) renderMapModal(view.mapState);
       showIdleChoices();
     }
   },
@@ -495,68 +545,35 @@ const commands = {
           <p><b>Cơ Duyên:</b> ${run.luck}</p>
           <p><b>Số địch đã hạ:</b> ${run.monsters_killed}</p>
         </div>`;
+
+        const attrs = await window.game.getAttributesView();
+        if (attrs) {
+          const fp = attrs.free_points || 0;
+          const rows = [
+            ['str', 'Lực (STR)', 'Sát thương vật lý'],
+            ['con', 'Thể (CON)', 'Khí Huyết tối đa'],
+            ['agi', 'Nhanh (AGI)', 'Né tránh & sượt đòn'],
+            ['int', 'Trí (INT)', 'Pháp thuật & tu luyện'],
+            ['spr', 'Thần (SPR)', 'Chân Nguyên tối đa'],
+            ['luk', 'May (LUK)', 'Bạo kích & cơ duyên']
+          ].map(([k, label, hint]) => {
+            const btn = fp > 0
+              ? `<button class="btn-attr-plus" onclick="window._modalSpendAttr('${k}')" style="cursor:pointer;border:1px solid var(--jade);background:rgba(39,174,96,0.15);color:var(--jade);border-radius:4px;padding:0 8px;font-weight:bold;">+</button>`
+              : '';
+            return `<p style="display:flex;justify-content:space-between;align-items:center;gap:6px;"><span><b>${label}:</b> ${attrs[k] ?? 0} <span style="opacity:.5;font-size:.85em;">${hint}</span></span>${btn}</p>`;
+          }).join('');
+          html += `<div class="status-block" style="grid-column:1/-1;">
+            <h3 style="color:var(--jade); border-bottom:1px solid rgba(39,174,96,0.2); padding-bottom:5px;">⚜️ Thuộc Tính Tu Luyện — Điểm tự do: <span class="gold-text">${fp}</span></h3>
+            ${rows}
+          </div>`;
+        }
       }
       html += '</div>';
       showModal('📜 Hồ Sơ Nhân Vật', html);
     }
   },
 
-  map: {
-    desc: 'Hiển thị bản đồ',
-    requiresAlive: true,
-    run: async () => {
-      await refreshState();
-      if (state.run.fsm_state === 'COMBAT') { log('Đang trong combat!', 'warning'); return; }
-      const view = await window.game.getMapView();
-      if (!view?.mapState) { log('Chưa có bản đồ. Gõ "start".', 'warning'); return; }
-      renderMapModal(view.mapState);
-    }
-  },
-
-  enter: {
-    desc: 'Vào node hiện tại trên bản đồ',
-    requiresAlive: true,
-    run: async () => {
-      await refreshState();
-      if (state.run.fsm_state === 'COMBAT') { log('Đang chiến đấu!', 'warning'); return; }
-      const res = await window.game.enterNode();
-      if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
-      await handleNodeResult(res);
-    }
-  },
-
-  next: {
-    desc: 'Chọn node tiếp theo: next <số>',
-    requiresAlive: true,
-    run: async (args) => {
-      const idx = parseInt(args[1], 10);
-      if (isNaN(idx)) { log('Usage: next <số>. Xem map để biết các node.', 'error'); return; }
-      const res = await window.game.selectNode(idx);
-      if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
-      log(`Đã chọn: ${res.currentNode.icon} ${res.currentNode.desc}`, 'success');
-      renderMapModal(res.mapState);
-    }
-  },
-
-  choose: {
-    desc: 'Chọn trong event: choose <số>',
-    requiresAlive: true,
-    run: async (args) => {
-      const idx = parseInt(args[1], 10);
-      if (isNaN(idx)) { log('Usage: choose <số>', 'error'); return; }
-      const res = await window.game.resolveChoice(idx);
-      if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
-      log(res.result.outcomeText, res.result.outcome === 'success' ? 'success' : 'error');
-      if (res.result.reward) log(`  → Thưởng: ${JSON.stringify(res.result.reward)}`, 'info');
-      if (res.result.damage) log(`  → Thiệt hại: ${JSON.stringify(res.result.damage)}`, 'error');
-      if (res.died) { await refreshState(); renderStats(); log('💀 Tử vong!', 'error'); return; }
-      await refreshState(); renderStats();
-      if (res.mapState) renderMapModal(res.mapState);
-      showIdleChoices();
-    }
-  },
-
-  attack: {
+ attack: {
     desc: 'Tấn công thường', requiresAlive: true, requiresCombat: true,
     run: async () => {
       const res = await window.game.playerAttack();
@@ -593,6 +610,138 @@ const commands = {
     }
   },
 
+  phapbao: {
+    desc: 'Xem Tàng Kinh Các (Công Pháp & Pháp Bảo)',
+    run: async () => {
+      await refreshState();
+      const inv = state.inventory;
+      const defs = gameData?.itemDefs || {};
+      const eq = await window.game.getEquipmentView();
+      let html = '<div class="phapbao-modal modal-panel">';
+      html += '<h2>📿 Tàng Kinh Các 📿</h2>';
+      
+      const isHighTier = (tier) => ['epic', 'legendary', 'mythic'].includes(tier);
+
+      // --- TRANG BỊ HIỆN TẠI ---
+      html += '<div class="phapbao-section-title">✨ Thần Khí Đang Dùng</div>';
+      html += '<div class="phapbao-grid">';
+      
+      const renderEq = (item, type, icon) => {
+        if (!item || !isHighTier(item.rarity || item.tier)) return '';
+        const rarity = item.rarity || item.tier || 'epic';
+        return `<div class="phapbao-card rarity-${rarity}">
+          <div class="phapbao-icon">${icon}</div>
+          <div class="phapbao-title">${item.name}</div>
+          <div class="phapbao-tier">${rarity} [${type}]</div>
+          <div class="phapbao-btns">
+            <button class="phapbao-btn danger" onclick="window._modalUnequip('${type}'); window._reopenPhapBao();">Tháo</button>
+          </div>
+        </div>`;
+      };
+      
+      const eqWeaponHtml = renderEq(eq.weapon, 'weapon', '🔪');
+      const eqArmorHtml = renderEq(eq.armor, 'armor', '🛡️');
+      const eqAccessoryHtml = renderEq(eq.accessory, 'accessory', '💍');
+      const eqManualHtml = renderEq(eq.manual, 'manual', '📚');
+      
+      if (eqWeaponHtml || eqArmorHtml || eqAccessoryHtml || eqManualHtml) {
+        html += eqWeaponHtml + eqArmorHtml + eqAccessoryHtml + eqManualHtml;
+      } else {
+        html += '<div style="color:rgba(255,255,255,0.5); font-style:italic; grid-column:1/-1;">Chưa trang bị Thần khí nào...</div>';
+      }
+      html += '</div>';
+
+      // --- KHO TÀNG CƠ DUYÊN ---
+      html += '<div class="phapbao-section-title">🔮 Kho Tàng Cơ Duyên</div>';
+      html += '<div class="phapbao-grid">';
+      
+      let hasMythicItems = false;
+      inv.forEach(it => {
+        const d = itemDefOf(it.item_id);
+        if (!d) return;
+        const tier = d.tier || d.rarity || 'common';
+        if (!isHighTier(tier)) return; // Chỉ lấy đồ xịn
+        
+        hasMythicItems = true;
+        const icon = d.type === 'equipment' ? (d.slot === 'weapon' ? '🔪' : '🛡️') : '📚';
+        const typeStr = d.type === 'equipment' ? `[${d.slot}]` : '[Công Pháp]';
+        
+        html += `<div class="phapbao-card rarity-${tier}">
+          <div class="phapbao-icon">${icon}</div>
+          <div class="phapbao-title">${d.name} ${it.quantity > 1 ? `x${it.quantity}` : ''}</div>
+          <div class="phapbao-tier">${tier} ${typeStr}</div>
+          <div class="phapbao-desc">${d.desc || 'Thiên địa kỳ vật.'}</div>
+          <div class="phapbao-btns">`;
+          
+        if (d.type === 'consumable') {
+          html += `<button class="phapbao-btn" onclick="window._modalUse('${it.item_id}'); window._reopenPhapBao();">Lĩnh ngộ</button>`;
+        } else if (d.type === 'equipment') {
+          html += `<button class="phapbao-btn" onclick="window._modalEquip('${it.item_id}','${d.slot}'); window._reopenPhapBao();">Trang bị</button>`;
+        }
+        
+        html += `<button class="phapbao-btn danger" onclick="window._modalDrop('${it.item_id}',1); window._reopenPhapBao();">Vứt bỏ</button>`;
+        html += `</div></div>`;
+      });
+      
+      if (!hasMythicItems) {
+        html += '<div style="color:rgba(255,255,255,0.5); font-style:italic; grid-column:1/-1;">Kho tàng trống rỗng. Hãy đi tìm cơ duyên!</div>';
+      }
+      
+      html += '</div></div>';
+      openModal(html);
+    }
+  },
+
+  congphap: {
+    desc: 'Tàng Kinh Các (Công Pháp Tu Luyện)',
+    run: async () => {
+      await refreshState();
+      const list = await window.game.listCongPhap();
+      if (!list || !list.length) { log('Không có dữ liệu công pháp.', 'warning'); return; }
+      const isCombat = state.run?.fsm_state === 'COMBAT';
+      let html = '<div class="phapbao-modal modal-panel">';
+      html += '<h2>📜 Tàng Kinh Các — Công Pháp</h2>';
+      html += '<div class="phapbao-grid">';
+      for (const cp of list) {
+        const skills = Array.isArray(cp.skills) ? cp.skills.map(s => s.ten).join(', ') : '(Không)';
+        const tier = (cp.do_hiem || '').toLowerCase();
+        const tierClass = ['thần thoại','mythic'].some(t => tier.includes(t)) ? 'mythic' :
+                          ['truyền thuyết','legendary'].some(t => tier.includes(t)) ? 'legendary' : 'epic';
+        let btns = '';
+        if (cp.learned) {
+          btns += cp.active
+            ? `<span style="color:var(--jade);font-weight:bold;">⚜️ Đang Chủ Tu</span>`
+            : `<button class="phapbao-btn" onclick="window._congPhapActivate('${cp.id}')">Kích Hoạt</button>`;
+          if (!cp.evolved && cp.evolveThreshold != null) {
+            const ok = cp.proficiency >= cp.evolveThreshold;
+            btns += `<button class="phapbao-btn" ${ok ? '' : 'disabled'} onclick="window._congPhapEvolve('${cp.id}')" title="Cần ${cp.evolveThreshold} độ thuần thục (hiện ${cp.proficiency})">${ok ? '⏫ Tiến Hóa' : `⏳ ${cp.proficiency}/${cp.evolveThreshold}`}</button>`;
+          } else if (cp.evolved) {
+            btns += `<span style="color:var(--gold);">✨ Đã Tiến Hóa</span>`;
+          }
+          if (isCombat && cp.active) {
+            for (const sk of (cp.skills || [])) {
+              btns += `<button class="phapbao-btn" style="background:var(--crimson);" onclick="window._congPhapCast('${sk.id}')">🌀 ${sk.ten} (${sk.lkCost} LK)</button>`;
+            }
+          }
+        } else if (cp.canLearn) {
+          btns += `<button class="phapbao-btn" onclick="window._congPhapLearn('${cp.id}')">📖 Học</button>`;
+        } else {
+          btns += `<span style="color:rgba(255,255,255,0.3);" title="${cp.reason || ''}">🔒 ${cp.reason || 'Chưa đủ'}</span>`;
+        }
+        html += `<div class="phapbao-card rarity-${tierClass}">
+          <div class="phapbao-icon">📖</div>
+          <div class="phapbao-title">${cp.ten}${cp.evolved ? ' ⭐' : ''}</div>
+          <div class="phapbao-tier">${cp.do_hiem || 'Cổ'} [${cp.ngu_hanh || '?'}]</div>
+          <div class="phapbao-desc" style="font-size:.82em;">Kỹ năng: ${skills}</div>
+          ${cp.learned ? `<div style="font-size:.75em;color:rgba(255,255,255,0.4);">Thuần thục: ${cp.proficiency}</div>` : ''}
+          <div class="phapbao-btns">${btns}</div>
+        </div>`;
+      }
+      html += '</div></div>';
+      openModal(html);
+    }
+  },
+
   inventory: {
     desc: 'Xem túi đồ + trang bị',
     run: async () => {
@@ -603,7 +752,7 @@ const commands = {
       let html = '';
       
       // Trang bị đang mặc
-      if (eq && (eq.weapon || eq.armor || eq.accessory)) {
+      if (eq && (eq.weapon || eq.armor || eq.accessory || eq.manual)) {
         html += '<div style="margin-bottom:1.5rem;">';
         html += '<h3 style="color:var(--gold); border-bottom:1px solid rgba(184,134,11,0.2); padding-bottom:5px; margin-bottom:10px;">⚔️ Trang Bị Hiện Tại</h3>';
         html += '<div class="inv-grid" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));">';
@@ -622,6 +771,7 @@ const commands = {
         html += renderEq(eq.weapon, 'weapon', '🔪');
         html += renderEq(eq.armor, 'armor', '🛡️');
         html += renderEq(eq.accessory, 'accessory', '💍');
+        html += renderEq(eq.manual, 'manual', '📚');
         html += '</div></div>';
       }
       
@@ -632,18 +782,27 @@ const commands = {
       } else {
         html += '<div class="inv-grid">';
         inv.forEach(it => {
-          const d = defs[it.item_id];
+          const d = itemDefOf(it.item_id);
           const rarity = d?.rarity || 'common';
           const rarityLabel = { common: 'Thường', rare: 'Hiếm', epic: 'Sử Thi', legendary: 'Huyền Thoại', mythic: 'Thần Thoại' }[rarity] || '';
           const typeStr = d?.type==='equipment' ? `[${d.slot}]` : d?.type==='consumable' ? '[Đan Dược]' : '[Vật Phẩm]';
+          const qLabel = qualityLabelOf(it.item_id);
+          const qBadge = qLabel ? ` <span style="color:var(--jade);font-weight:700;">「${qLabel}」</span>` : '';
           html += `<div class="inv-card rarity-${rarity}" data-rarity="${rarity}">
             <div style="font-size:1.8rem;">${d?.icon||'📦'}</div>
-            <div class="inv-card-title">${d?.name||it.item_name} <span style="color:var(--gold);font-size:0.8rem;">x${it.quantity}</span></div>
+            <div class="inv-card-title">${d?.name||it.item_name}${qBadge} <span style="color:var(--gold);font-size:0.8rem;">x${it.quantity}</span></div>
             <div style="font-size:0.65rem;font-weight:700;color:var(--gold-500);text-transform:uppercase;letter-spacing:1px;">${rarityLabel}</div>
             <div class="inv-card-sub" style="font-style:italic;">${d?.desc||''} <br>${typeStr}</div>
             <div class="inv-card-btns">`;
           if (d?.type === 'consumable') html += `<button style="background:var(--jade-light); border-color:var(--jade); font-weight:bold;" onclick="window._modalUse('${it.item_id}')">Dùng</button>`;
           if (d?.type === 'equipment') html += `<button onclick="window._modalEquip('${it.item_id}','${d.slot}')">Trang bị</button>`;
+          const dropBtnStyle = `font-size:0.75rem;background:var(--crimson-50);border-color:rgba(192,57,43,0.2);color:var(--crimson-600);`;
+          if (it.quantity > 1) {
+            html += `<button style="${dropBtnStyle}" onclick="window._modalDrop('${it.item_id}',1)">Bỏ 1</button>`;
+            html += `<button style="${dropBtnStyle}" onclick="window._modalDrop('${it.item_id}','all')">Bỏ hết</button>`;
+          } else {
+            html += `<button style="${dropBtnStyle}" onclick="window._modalDrop('${it.item_id}',1)">Bỏ</button>`;
+          }
           html += `</div></div>`;
         });
         html += '</div>';
@@ -919,6 +1078,19 @@ const commands = {
     }
   },
 
+  drop: {
+    desc: 'Bỏ vật phẩm: drop <id> [số lượng|all]',
+    requiresAlive: true,
+    run: async (args) => {
+      const id = args[1]; if (!id) { log('Usage: drop <itemId> [qty|all]', 'error'); return; }
+      const qtyArg = args[2];
+      const qty = (qtyArg === 'all') ? 'all' : (parseInt(qtyArg, 10) || 1);
+      const res = await window.game.dropItem(id, qty);
+      log(res.ok ? res.message : `[LỖI] ${res.error}`, res.ok ? 'success' : 'error');
+      await refreshState(); renderStats();
+    }
+  },
+
   equip: {
     desc: 'Trang bị: equip <id>',
     requiresAlive: true,
@@ -986,120 +1158,6 @@ function tierIcon(t) { return {legendary:'🌟',mythic:'⚡',rare:'✦',common:'
 function tierClass(t) { return {legendary:'success',mythic:'success',rare:'info',common:'warning'}[t]||''; }
 function pityTag(r) { return r.resetPity?' [PITY RESET]':` (pity ${r.pityCount+1})`; }
 
-// ── Map Modal ──
-function renderMapModal(mapState) {
-  if (!mapState?.layers) return;
-  const ntypes = gameData?.map?.nodeTypes || {};
-
-  // Calculate total layers for progress
-  const totalLayers = mapState.layers.length;
-  const currentLayer = mapState.currentLayer;
-  const progress = Math.round((currentLayer / Math.max(1, totalLayers - 1)) * 100);
-
-  let html = '';
-
-  // Progress indicator
-  html += `<div style="text-align:center;margin-bottom:12px;">
-    <div class="progress-track" style="height:6px;margin-bottom:6px;">
-      <div class="progress-fill mp-fill" style="width:${progress}%;"></div>
-    </div>
-    <span style="font-size:12px;color:var(--text-dim);">Tiến độ: ${currentLayer}/${totalLayers} lớp</span>
-  </div>`;
-
-  // Timeline layers
-  html += '<div style="max-height:55vh;overflow-y:auto;">';
-  mapState.layers.forEach((layer, li) => {
-    const isPast = li < currentLayer;
-    const isCurrent = li === currentLayer;
-    const isFuture = li > currentLayer;
-    const isLast = li === totalLayers - 1;
-
-    // Layer header with icon
-    const layerIcon = isPast ? '✅' : isCurrent ? '📍' : isLast ? '👑' : '🔒';
-    const layerLabel = isLast ? `BOSS CUỐI` : `Tầng ${li + 1}`;
-    const opacity = isPast ? '0.5' : isCurrent ? '1' : '0.6';
-
-    html += `<div style="opacity:${opacity};margin-bottom:10px;padding:8px 12px;border-radius:8px;${isCurrent?'background:var(--jade-light);border:1px solid var(--jade);':''}${isPast?'background:#f8f9fa;':''}${isFuture?'background:#fff;':''}">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-        <span style="font-weight:700;font-size:14px;">${layerIcon} ${layerLabel} ${isLast?'👑':''}</span>
-        ${isCurrent ? '<span style="font-size:11px;color:var(--jade);font-weight:700;">← HIỆN TẠI</span>' : ''}
-      </div>
-      <div class="map-node-row" style="gap:6px;">`;
-
-    layer.forEach((node, ni) => {
-      const st = mapState.nodeStates[node.id] || 'locked';
-      let cls = '';
-      if (st === 'cleared' || isPast) cls = 'done';
-      else if (isCurrent && ni === mapState.currentNodeIndex) cls = 'active';
-      else if (st === 'locked' || isFuture) cls = '';
-
-      const isCurrentNode = isCurrent && ni === mapState.currentNodeIndex;
-
-      html += `<div class="map-node-chip ${cls}" style="color:${node.color || '#333'};border-color:${node.color || '#ccc'};">
-        ${node.icon || '?'} ${node.desc}${isCurrentNode ? ' ◀' : ''}
-      </div>`;
-    });
-
-    html += '</div>';
-
-    // Show available next nodes when at current layer
-    if (isCurrent && currentLayer < totalLayers - 1) {
-      const conns = mapState.connections[currentLayer];
-      const cn = layer[mapState.currentNodeIndex];
-      const reachable = (conns && cn) ? (conns[cn.id] || []) : [];
-      const nextLayer = mapState.layers[currentLayer + 1];
-
-      if (reachable.length > 0) {
-        html += '<div style="margin-top:8px;font-size:12px;color:var(--text-dim);">⬇ Có thể tiến đến:</div>';
-        html += '<div class="map-node-row" style="gap:6px;margin-top:4px;">';
-        reachable.forEach(nid => {
-          const target = nextLayer.find(n => n.id === nid);
-          if (target) {
-            const targetIdx = nextLayer.indexOf(target);
-            html += `<div class="map-node-chip" style="color:${target.color};border-color:${target.color};cursor:pointer;"
-              onclick="window._mapSelectNode(${targetIdx})" title="Bấm để chọn node này">
-              ➡ ${target.icon} ${target.desc}
-            </div>`;
-          }
-        });
-        html += '</div>';
-      }
-    }
-
-    html += '</div>';
-  });
-  html += '</div>';
-
-  // Action buttons at bottom
-  html += '<div style="display:flex;gap:8px;margin-top:12px;border-top:1px solid #e9ecef;padding-top:12px;">';
-
-  // Enter current node button
-  if (currentLayer < totalLayers) {
-    const cn = mapState.layers[currentLayer]?.[mapState.currentNodeIndex];
-    const nodeState = cn ? mapState.nodeStates[cn.id] : 'locked';
-    if (nodeState !== 'cleared') {
-      html += `<button class="shop-buy-btn" onclick="window._mapEnterNode()" style="flex:1;">⚡ Vào ${cn?.desc || 'node'}</button>`;
-    }
-  }
-
-  html += `<button class="shop-buy-btn" onclick="window._closeMap()" style="flex:1;background:#fff;border-color:#ccc;color:var(--text-dim);">✕ Đóng</button>`;
-  html += '</div>';
-
-  // Legend
-  html += '<div style="margin-top:8px;font-size:10px;color:var(--text-dim);text-align:center;">';
-  for (const def of Object.values(ntypes)) {
-    html += `${def.icon} ${def.desc} &nbsp;`;
-  }
-  html += '</div>';
-
-  showModal('🗺️ Bản Đồ Hành Trình', html);
-
-  // Wire modal body close handlers
-  setTimeout(() => {
-    const closeBtn = document.querySelector('#modal-overlay .modal-close-x');
-    if (closeBtn) closeBtn.onclick = hideModal;
-  }, 50);
-}
 
 // ── Node Handler ──
 async function handleNodeResult(res) {
@@ -1197,24 +1255,49 @@ async function processDeathAndShowSummary() {
 
 // ── Window Helpers (for modal button onclick) ──
 window._modalUse = async (id) => { hideModal(); await commands.use.run(['use', id]); };
+window._reopenPhapBao = () => { setTimeout(() => commands.phapbao.run([]), 100); };
+window._modalDrop = async (id, qty) => {
+  const res = await window.game.dropItem(id, qty);
+  log(res.ok ? res.message : `[LỖI] ${res.error}`, res.ok ? 'warning' : 'error');
+  await refreshState();
+  await commands.inventory.run([]); // re-render túi đồ với số lượng mới
+};
+window._modalSpendAttr = async (attr) => {
+  const res = await window.game.spendStatPoint(attr);
+  log(res.ok ? `Cộng 1 điểm vào ${attr.toUpperCase()} (nay ${res.newValue}). Còn ${res.freePoints} điểm.` : `[LỖI] ${res.error}`, res.ok ? 'success' : 'error');
+  await refreshState();
+  await commands.status.run([]); // mở lại modal status với số liệu mới
+};
 window._modalEquip = async (id, slot) => { hideModal(); await commands.equip.run(['equip', id]); };
 window._modalUnequip = async (slot) => { hideModal(); await commands.unequip.run(['unequip', slot]); };
 window._shopBuy = async (id) => { await commands.shop.run(['shop', 'buy', id]); };
 window._craftMake = async (id) => { await commands.craft.run(['craft', 'make', id]); };
 window._sectJoin = async (id) => { await commands.sect.run(['sect', 'join', id]); };
+window._congPhapLearn = async (id) => {
+  const res = await window.game.learnCongPhap(id);
+  log(res.ok ? res.message : `[LỖI] ${res.error}`, res.ok ? 'success' : 'error');
+  await refreshState();
+  await commands.congphap.run([]);
+};
+window._congPhapActivate = async (id) => {
+  const res = await window.game.activateCongPhap(id);
+  log(res.ok ? res.message : `[LỖI] ${res.error}`, res.ok ? 'success' : 'error');
+  await refreshState();
+  await commands.congphap.run([]);
+};
+window._congPhapEvolve = async (id) => {
+  const res = await window.game.evolveCongPhap(id);
+  log(res.ok ? res.message : `[LỖI] ${res.error}`, res.ok ? 'success' : 'error');
+  await refreshState();
+  await commands.congphap.run([]);
+};
+window._congPhapCast = async (skillId) => {
+  const res = await window.game.castCongPhapSkill(skillId);
+  if (!res.ok) { log(`[LỖI] ${res.error}`, 'error'); return; }
+  res.combat?.log?.forEach(l => addCombatLog(l));
+  await handleCombatResult(res);
+};
 
-// Map modal interactive helpers
-window._mapSelectNode = async (idx) => {
-  hideModal();
-  await commands.next.run(['next', String(idx)]);
-  const view = await window.game.getMapView();
-  if (view?.mapState) renderMapModal(view.mapState);
-};
-window._mapEnterNode = async () => {
-  hideModal();
-  await commands.enter.run([]);
-};
-window._closeMap = () => hideModal();
 
 // ═══════════════════════════════════════════════
 // BOOTSTRAP
@@ -1254,12 +1337,12 @@ window.addEventListener('DOMContentLoaded', async () => {
         playSound('enter');
         if (nav === 'status') {
           await commands.status.run([]);
+        } else if (nav === 'phapbao') {
+          await commands.phapbao.run([]);
         } else if (nav === 'inventory') {
           await commands.inventory.run([]);
         } else if (nav === 'shop') {
           await commands.shop.run([]);
-        } else if (nav === 'map') {
-          await commands.map.run([]);
         }
       });
     });

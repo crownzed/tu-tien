@@ -8,14 +8,33 @@
     "dev": "NODE_ENV=development electron .",
     "rebuild": "electron-rebuild -f -w better-sqlite3",
     "postinstall": "electron-rebuild -f -w better-sqlite3",
-    "test": "ELECTRON_RUN_AS_NODE=1 electron test/run-tests.js"
+    "test": "ELECTRON_RUN_AS_NODE=1 electron test/run-tests.js",
+    "build": "electron-builder --windows"
+  },
+  "build": {
+    "appId": "com.poseidon.hackertutien",
+    "productName": "Hacker Tu Tien",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "directories": {
+      "output": "dist"
+    }
   },
   "keywords": [],
   "author": "Poseidon",
   "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.11.1"
+  },
   "devDependencies": {
     "@electron/rebuild": "^4.0.4",
-    "better-sqlite3": "^12.11.1",
-    "electron": "^35.7.5"
+    "electron": "^35.7.5",
+    "electron-builder": "^26.15.3"
   }
 }

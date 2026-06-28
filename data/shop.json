@@ -5,16 +5,18 @@
     "items": { "name": "Vật Phẩm Khởi Đầu", "icon": "🎒", "desc": "Mang theo vật phẩm khi bắt đầu kiếp mới" }
   },
   "items": [
-    { "id": "innate_hp_10",   "category": "stats", "name": "Huyết Mạch Cường Hóa I",  "desc": "+10 HP vĩnh viễn cho mọi kiếp",        "cost": 100,  "maxLevel": 10, "effect": { "innate_hp_bonus": 10 } },
-    { "id": "innate_hp_25",   "category": "stats", "name": "Huyết Mạch Cường Hóa II", "desc": "+25 HP vĩnh viễn cho mọi kiếp",        "cost": 300,  "maxLevel": 5,  "effect": { "innate_hp_bonus": 25 },  "requires": { "innate_hp_10": 5 } },
-    { "id": "innate_lk_10",   "category": "stats", "name": "Linh Mạch Khuếch Trương I","desc": "+10 Linh Khí vĩnh viễn cho mọi kiếp",    "cost": 100,  "maxLevel": 10, "effect": { "innate_linhkhi_bonus": 10 } },
-    { "id": "innate_lk_25",   "category": "stats", "name": "Linh Mạch Khuếch Trương II","desc": "+25 Linh Khí vĩnh viễn cho mọi kiếp",    "cost": 300,  "maxLevel": 5,  "effect": { "innate_linhkhi_bonus": 25 }, "requires": { "innate_lk_10": 5 } },
-    { "id": "innate_luck_5",  "category": "stats", "name": "Thiên Mệnh Gia Hộ I",     "desc": "+5 Luck vĩnh viễn cho mọi kiếp",         "cost": 150,  "maxLevel": 10, "effect": { "innate_luck_bonus": 5 } },
-    { "id": "innate_luck_10", "category": "stats", "name": "Thiên Mệnh Gia Hộ II",    "desc": "+10 Luck vĩnh viễn cho mọi kiếp",        "cost": 400,  "maxLevel": 5,  "effect": { "innate_luck_bonus": 10 }, "requires": { "innate_luck_5": 5 } },
-    { "id": "cultivation_1",  "category": "perks", "name": "Ngộ Tính Thiên Phú I",    "desc": "+5% tốc độ tu luyện (cultivationSpeed)",  "cost": 200,  "maxLevel": 5,  "effect": { "cultivation_speed_bonus": 0.05 } },
-    { "id": "cultivation_2",  "category": "perks", "name": "Ngộ Tính Thiên Phú II",   "desc": "+10% tốc độ tu luyện",                   "cost": 500,  "maxLevel": 3,  "effect": { "cultivation_speed_bonus": 0.10 }, "requires": { "cultivation_1": 3 } },
-    { "id": "tauhoa_resist",  "category": "perks", "name": "Tâm Ma Kháng Tính",       "desc": "Giảm 20% nguy cơ tẩu hỏa nhập ma",       "cost": 300,  "maxLevel": 5,  "effect": { "cancco_reduction": 0.2 } },
-    { "id": "start_stones",   "category": "items", "name": "Linh Thạch Dự Trữ",       "desc": "+50 Linh Thạch khởi đầu mỗi kiếp",       "cost": 80,   "maxLevel": 10, "effect": { "start_spirit_stones": 50 } },
+    { "id": "innate_hp_10",   "category": "stats", "name": "Huyết Mạch Cường Hóa I",  "desc": "+1 HP vĩnh viễn cho mọi kiếp",        "cost": 15,   "maxLevel": 50, "effect": { "innate_hp_bonus": 1 } },
+    { "id": "innate_hp_25",   "category": "stats", "name": "Huyết Mạch Cường Hóa II", "desc": "+3 HP vĩnh viễn cho mọi kiếp",        "cost": 50,   "maxLevel": 50, "effect": { "innate_hp_bonus": 3 },   "requires": { "innate_hp_10": 25 } },
+    { "id": "innate_hp_pct_1", "category": "stats", "name": "Huyết Mạch Đột Biến I", "desc": "+0.5% HP vĩnh viễn cho mọi kiếp",     "cost": 100,  "maxLevel": 20, "effect": { "innate_hp_pct_bonus": 0.005 }, "requires": { "innate_hp_25": 10 } },
+    { "id": "innate_lk_10",   "category": "stats", "name": "Linh Mạch Khuếch Trương I","desc": "+1 Linh Khí vĩnh viễn cho mọi kiếp",    "cost": 15,   "maxLevel": 50, "effect": { "innate_linhkhi_bonus": 1 } },
+    { "id": "innate_lk_25",   "category": "stats", "name": "Linh Mạch Khuếch Trương II","desc": "+3 Linh Khí vĩnh viễn cho mọi kiếp",    "cost": 50,   "maxLevel": 50, "effect": { "innate_linhkhi_bonus": 3 },  "requires": { "innate_lk_10": 25 } },
+    { "id": "innate_lk_pct_1", "category": "stats", "name": "Linh Mạch Đột Biến I",  "desc": "+0.5% Linh Khí vĩnh viễn cho mọi kiếp", "cost": 100,  "maxLevel": 20, "effect": { "innate_linhkhi_pct_bonus": 0.005 }, "requires": { "innate_lk_25": 10 } },
+    { "id": "innate_luck_5",  "category": "stats", "name": "Thiên Mệnh Gia Hộ I",     "desc": "+1 Luck vĩnh viễn cho mọi kiếp",         "cost": 50,   "maxLevel": 10, "effect": { "innate_luck_bonus": 1 } },
+    { "id": "innate_luck_10", "category": "stats", "name": "Thiên Mệnh Gia Hộ II",    "desc": "+1 Luck vĩnh viễn cho mọi kiếp",         "cost": 150,  "maxLevel": 10, "effect": { "innate_luck_bonus": 1 },  "requires": { "innate_luck_5": 5 } },
+    { "id": "cultivation_1",  "category": "perks", "name": "Ngộ Tính Thiên Phú I",    "desc": "+0.5% tốc độ tu luyện",                  "cost": 40,   "maxLevel": 20, "effect": { "cultivation_speed_bonus": 0.005 } },
+    { "id": "cultivation_2",  "category": "perks", "name": "Ngộ Tính Thiên Phú II",   "desc": "+1% tốc độ tu luyện",                    "cost": 120,  "maxLevel": 20, "effect": { "cultivation_speed_bonus": 0.01 }, "requires": { "cultivation_1": 10 } },
+    { "id": "tauhoa_resist",  "category": "perks", "name": "Tâm Ma Kháng Tính",       "desc": "Giảm 0.5% nguy cơ tẩu hỏa nhập ma",      "cost": 40,   "maxLevel": 20, "effect": { "cancco_reduction": 0.005 } },
+    { "id": "start_stones",   "category": "items", "name": "Linh Thạch Dự Trữ",       "desc": "+5 Linh Thạch khởi đầu mỗi kiếp",        "cost": 10,   "maxLevel": 50, "effect": { "start_spirit_stones": 5 } },
     { "id": "start_dan",      "category": "items", "name": "Đan Dược Dự Phòng",       "desc": "Bắt đầu với 1 Hồi Huyết Đan mỗi kiếp",   "cost": 120,  "maxLevel": 5,  "effect": { "start_item": "hoi_huyet_dan" } },
     { "id": "start_phu",      "category": "items", "name": "Phù Chú Hộ Thân",         "desc": "Bắt đầu với 1 Phù Hộ Mệnh mỗi kiếp",     "cost": 250,  "maxLevel": 3,  "effect": { "start_item": "phu_ho_menh" } }
   ]

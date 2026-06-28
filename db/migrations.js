@@ -95,6 +95,10 @@ const MIGRATIONS = [
   // v5: run_exp — EXP tích lũy trong kiếp
   (db) => {
     db.exec(`ALTER TABLE run ADD COLUMN run_exp INTEGER NOT NULL DEFAULT 0`);
+  },
+  // v6: realm_stage — tiểu tầng (0-8 = tầng 1-9) trong cảnh giới hiện tại
+  (db) => {
+    db.exec(`ALTER TABLE run ADD COLUMN realm_stage INTEGER NOT NULL DEFAULT 0`);
   }
   // v3... thêm vào đây khi schema đổi. KHÔNG sửa migration cũ.
 ];

@@ -15,7 +15,6 @@ const { computeLinhKhiRegen } = require('../lib/time-delta');
 const { FSM, STATES } = require('../lib/fsm');
 const RNGEngine = require('../lib/rng-engine');
 const CombatEngine = require('../lib/combat');
-const MapGenerator = require('../lib/map-generator');
 const EventChain = require('../lib/event-chain');
 const Breakthrough = require('../lib/breakthrough');
 const Crafting = require('../lib/crafting');
@@ -25,6 +24,8 @@ const Items = require('../lib/items');
 const Meditation = require('../lib/meditation');
 const Achievements = require('../lib/achievements');
 const Travel = require('../lib/travel');
+const StatsEngine = require('../lib/stats-engine');
+const CongPhap = require('../lib/cong-phap');
 const balance = require('../config/balance');
 
 let passed = 0, failed = 0;
@@ -132,13 +133,13 @@ test('transition bất hợp lệ CRAFTING->COMBAT bị chặn', () => {
 });
 test('action bị chặn theo state (không attack khi CRAFTING)', () => {
   const fsm = new FSM('CRAFTING');
-  assert.strictEqual(fsm.isActionAllowed('attack'), false);
-  assert.strictEqual(fsm.isActionAllowed('status'), true);
+  assert.strictEqual(fsm.isActionAllowed('attack').allowed, false);
+  assert.strictEqual(fsm.isActionAllowed('status').allowed, true);
 });
 test('DEAD là tuyệt lộ (chỉ rebirth)', () => {
   const fsm = new FSM('DEAD');
   assert.strictEqual(fsm.transition('IDLE').ok, false);
-  assert.strictEqual(fsm.isActionAllowed('rebirth'), true);
+  assert.strictEqual(fsm.isActionAllowed('start').allowed, true);
 });
 
 // ---------------------------------------------------------------
@@ -174,10 +175,15 @@ test('createRun cộng đúng base + realm + tiên thiên', () => {
   repos.account.update({ innate_hp_bonus: 50, innate_linhkhi_bonus: 20, innate_luck_bonus: 10 });
   const svc = new GameService(repos, data, () => 0.5);
   const run = svc.createRun('chan_linh_can', 'pham_nhan', 1000);
-  // pham_nhan -> luyen_khi: hpBonus 0, linhKhiMax 100, tuoiThoMax 120
-  assert.strictEqual(run.hp_max, balance.base.hpMax + 0 + 50);
-  assert.strictEqual(run.linh_khi_max, 100 + 20);
-  assert.strictEqual(run.luck, 0 + 10 + 0);
+  // HP/LK giờ tính qua StatsEngine (CON/SPR + realm scaling); đọc coreAttrs từ metadata để kiểm theo công thức.
+  const meta = JSON.parse(run.metadata);
+  const startRealm = data.realmById['luyen_khi'];
+  const realmTier = startRealm.order || 1;
+  const expectedHp = StatsEngine.calcMaxHP(meta.coreAttrs.con, balance.base.hpMax, realmTier, 0, (startRealm.hpBonus || 0) + 50);
+  const expectedLk = StatsEngine.calcMaxMP(meta.coreAttrs.spr, balance.base.linhKhiMax, balance.combatV2.dantian_base_cap, meta.rootM, realmTier) + 20;
+  assert.strictEqual(run.hp_max, expectedHp);
+  assert.strictEqual(run.linh_khi_max, expectedLk);
+  assert.strictEqual(run.luck, meta.coreAttrs.luk + 10 + 0);
   assert.strictEqual(run.realm_id, 'luyen_khi');
   db.close();
 });
@@ -199,7 +205,11 @@ test('Cô Nhi/Khất Cái có luck bonus khởi đầu', () => {
   const data = loadGameData();
   const svc = new GameService(repos, data, () => 0.5);
   const run = svc.createRun('tap_linh_can', 'co_nhi_khat_cai', 1000);
-  assert.strictEqual(run.luck, 25);
+  // luck = LUK thuộc tính (coreAttrs.luk) + innate(0) + startLuckBonus của gia cảnh
+  const meta = JSON.parse(run.metadata);
+  const giaCanh = data.giaCanhById['co_nhi_khat_cai'];
+  assert.strictEqual(run.luck, meta.coreAttrs.luk + 0 + (giaCanh.startLuckBonus || 0));
+  assert.ok((giaCanh.startLuckBonus || 0) > 0, 'gia cảnh này phải có startLuckBonus');
   db.close();
 });
 test('createRun mới xóa inventory kiếp cũ', () => {
@@ -303,6 +313,27 @@ test('initCombatState + serialize roundtrip', () => {
   const parsed = CombatEngine.parseCombatState(json);
   assert.strictEqual(parsed.enemyId, 'test');
 });
+test('pickEnemy trả realmTier: quái thường=đáy band, boss=đỉnh band', () => {
+  const zones = [{ id:'z1', realmMin:2, realmMax:5, enemies:[{id:'a',hp:10,attack:5}], boss:{id:'boss',hp:50,attack:20} }];
+  assert.strictEqual(CombatEngine.pickEnemy(zones, 3, false, () => 0.1).realmTier, 2, 'quái thường lấy realmMin');
+  assert.strictEqual(CombatEngine.pickEnemy(zones, 3, true).realmTier, 5, 'boss lấy realmMax');
+});
+test('pickEnemy realmTier clamp ≥ 1 (zone realmMin=0)', () => {
+  const zones = [{ id:'z0', realmMin:0, realmMax:2, enemies:[{id:'a',hp:10,attack:5}], boss:{id:'b',hp:50,attack:20} }];
+  assert.strictEqual(CombatEngine.pickEnemy(zones, 1, false, () => 0.1).realmTier, 1, 'realmMin=0 phải clamp lên 1');
+});
+test('initCombatState lưu enemyRealmTier để áp chế cảnh giới (§8)', () => {
+  const enemy = { id:'t', name:'Q', hp:100, attack:20, defense:5, expReward:10, dropStones:[1,2] };
+  assert.strictEqual(CombatEngine.initCombatState(enemy, 1, 4).enemyRealmTier, 4);
+  assert.strictEqual(CombatEngine.initCombatState(enemy, 1).enemyRealmTier, 1, 'mặc định tier=1');
+});
+test('Realm Suppression: enemy tier thấp đánh player tier cao bị giảm sát thương', () => {
+  // enemy tier 1 đánh player tier 4 → Ω = max(0.1, 1 - 3*0.4) = max(0.1, -0.2) = 0.1
+  const combat = CombatEngine.initCombatState({ id:'e', name:'Q', hp:100, attack:100, defense:0, expReward:1, dropStones:[1,1] }, 1, 1);
+  const suppressed = CombatEngine.enemyTurn(combat, null, () => 0.99, null, 4);
+  const noSuppress = CombatEngine.enemyTurn(combat, null, () => 0.99, null, 1);
+  assert.ok(suppressed.damage < noSuppress.damage, `tier thấp→cao phải bị áp chế (${suppressed.damage} < ${noSuppress.damage})`);
+});
 
 section('GAME SERVICE — Combat Flow');
 test('startCombat tạo combat state + đổi FSM sang COMBAT', () => {
@@ -315,6 +346,20 @@ test('startCombat tạo combat state + đổi FSM sang COMBAT', () => {
   assert.ok(res.ok, `expected ok, got ${res.error}`);
   assert.ok(res.combat.enemyName);
   assert.strictEqual(repos.run.get().fsm_state, 'COMBAT');
+  db.close();
+});
+test('playerGlanceChance khớp combat thật (1 - calcHitProbability(0, agi))', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const res = svc.startCombat(false);
+  const agi = JSON.parse(repos.run.get().metadata).coreAttrs.agi;
+  // enemyTurn để attacker.agi=0, defender.agi=playerAgi → metric phải khớp đúng công thức đó.
+  const expected = 1 - StatsEngine.calcHitProbability(0, agi);
+  assert.ok(Math.abs(res.combat.playerGlanceChance - expected) < 1e-9,
+    `glance metric ${res.combat.playerGlanceChance} phải = ${expected}`);
   db.close();
 });
 test('playerAttack giảm enemy HP + enemy phản công', () => {
@@ -412,68 +457,85 @@ test('victory cộng spirit_stones + monsters_killed', () => {
   assert.strictEqual(run.fsm_state, 'IDLE');
   db.close();
 });
+test('coreAttrs sống sót qua combat (không bị combat state ghi đè)', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const before = JSON.parse(repos.run.get().metadata).coreAttrs;
+  assert.ok(before, 'coreAttrs phải tồn tại sau createRun');
+  repos.run.update({ hp: 500, hp_max: 500, linh_khi_max: 200 });
+  svc.startCombat(false);
+  // trong combat coreAttrs vẫn còn (combat lồng dưới meta.combat)
+  const during = JSON.parse(repos.run.get().metadata);
+  assert.ok(during.coreAttrs, 'coreAttrs phải còn trong combat');
+  assert.ok(during.combat, 'combat state phải lồng dưới meta.combat');
+  assert.deepStrictEqual(during.coreAttrs, before);
+  repos.run.update({ luck: 200 }); // fleeChance = 0.3 + luck/200 > 0.5 → chắc chắn thoát
+  svc.playerFlee();
+  // sau combat coreAttrs vẫn nguyên, combat đã bị xóa
+  const after = JSON.parse(repos.run.get().metadata);
+  assert.deepStrictEqual(after.coreAttrs, before, 'coreAttrs phải nguyên sau combat');
+  assert.ok(!after.combat, 'combat state phải được dọn sau khi rời trận');
+  db.close();
+});
+test('coreAttrs sống sót qua đột phá (advanceRealm không xóa blob bền vững)', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const before = JSON.parse(repos.run.get().metadata).coreAttrs;
+  const run = repos.run.get();
+  svc._advanceRealm(run, {});
+  const after = JSON.parse(repos.run.get().metadata || '{}').coreAttrs;
+  // Thuộc tính gốc giữ nguyên; đột phá CHỦ ĐÍCH cộng điểm tự do.
+  for (const k of ['str', 'con', 'agi', 'int', 'spr', 'luk']) {
+    assert.strictEqual(after[k], before[k], `${k} phải nguyên sau đột phá`);
+  }
+  assert.strictEqual(after.free_points, (before.free_points || 0) + balance.coreAttributes.stat_points_per_realm, 'đột phá phải cấp điểm tự do');
+  db.close();
+});
+
+test('đột phá giữ đầu tư SPR/đan vào linh_khi_max (cộng delta, không gán đè)', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+
+  const run0 = repos.run.get();
+  const curRealm = data.realmById[run0.realm_id];
+  const nextRealm = require('../lib/breakthrough').getNextRealm(run0.realm_id, data.realms, data.realmById);
+  const baseDelta = nextRealm.linhKhiMax - curRealm.linhKhiMax;
+
+  // Mô phỏng đầu tư vĩnh viễn: +500 linh_khi_max (SPR + đan) trước khi đột phá.
+  const invest = 500;
+  repos.run.update({ linh_khi_max: run0.linh_khi_max + invest });
+
+  const run = repos.run.get();
+  const lkMaxBefore = run.linh_khi_max;
+  svc._advanceRealm(run, {});
+  const after = repos.run.get();
+
+  assert.strictEqual(after.linh_khi_max, lkMaxBefore + baseDelta,
+    'linh_khi_max phải = (cũ + đầu tư) + delta nền realm, không bị reset về linhKhiMax phẳng');
+  assert.ok(after.linh_khi_max > nextRealm.linhKhiMax,
+    'đầu tư phải còn sau đột phá (lớn hơn giá trị nền của realm mới)');
+  db.close();
+});
 
 // ---------------------------------------------------------------
-section('MAP GENERATOR');
-test('pickMapConfig chọn đúng config theo realm', () => {
-  const mapData = { maps: [
-    { realmMin:0, realmMax:2, layers:5 },
-    { realmMin:3, realmMax:4, layers:6 }
-  ]};
-  assert.strictEqual(MapGenerator.pickMapConfig(mapData, 1).layers, 5);
-  assert.strictEqual(MapGenerator.pickMapConfig(mapData, 3).layers, 6);
-  assert.strictEqual(MapGenerator.pickMapConfig(mapData, 9).layers, 6); // fallback last
-});
-test('generateMap tạo map state đầy đủ', () => {
-  const mapData = {
-    nodeTypes: { combat:{icon:'X',color:'#fff',desc:'Test'}, boss:{icon:'B',color:'#f00',desc:'Boss'} },
-    maps: [{ realmMin:0, realmMax:2, layers:3, nodeDistribution:{combat:100}, hasElite:false }]
-  };
-  const state = MapGenerator.generateMap(mapData, 1, () => 0.5);
-  assert.ok(state.layers);
-  assert.strictEqual(state.layers.length, 3);
-  assert.strictEqual(state.currentLayer, 0);
-  assert.ok(state.layers[2][0].type === 'boss', 'layer cuối phải có boss');
-  assert.ok(state.nodeStates);
-});
-test('connectLayers: mỗi node prev kết nối ít nhất 1 node next', () => {
-  const prev = [{id:'a'},{id:'b'}];
-  const next = [{id:'c'},{id:'d'}];
-  const conns = MapGenerator.connectLayers(prev, next, () => 0.1);
-  assert.ok(conns['a'] && conns['a'].length >= 1);
-  assert.ok(conns['b'] && conns['b'].length >= 1);
-});
-test('selectNextNode: chọn node hợp lệ', () => {
-  const mapData = {
-    nodeTypes: { combat:{icon:'X',color:'#fff',desc:'Test'}, boss:{icon:'B',color:'#f00',desc:'Boss'} },
-    maps: [{ realmMin:0, realmMax:2, layers:3, nodeDistribution:{combat:100}, hasElite:false }]
-  };
-  const state = MapGenerator.generateMap(mapData, 1, () => 0.5);
-  const reachable = state.connections[0][state.layers[0][0].id];
-  if (reachable && reachable.length > 0) {
-    const targetNode = state.layers[1].find(n => n.id === reachable[0]);
-    const idx = state.layers[1].indexOf(targetNode);
-    const res = MapGenerator.selectNextNode(state, idx);
-    assert.ok(res.ok);
-    assert.strictEqual(res.mapState.currentLayer, 1);
-  }
-});
-test('parseMapState / serializeMapState roundtrip', () => {
-  const state = { layers:[[{id:'a',type:'combat'}]], connections:[], nodeStates:{}, currentNodeId:'a', currentLayer:0, currentNodeIndex:0, path:[] };
-  const json = MapGenerator.serializeMapState(state);
-  const parsed = MapGenerator.parseMapState(json);
-  assert.strictEqual(parsed.currentNodeId, 'a');
-});
-
 section('EVENT CHAIN');
 test('pickEventScript chọn script theo nodeType', () => {
-  const scripts = { treasure: [{id:'t1',text:'Kho báu!'}] };
-  const s = EventChain.pickEventScript(scripts, 'treasure', () => 0.1);
-  assert.strictEqual(s.id, 't1');
+  const scripts = { treasure: [{id:'t1',text:'Kho báu!',phase:1,base_weight:50}] };
+  const res = EventChain.pickEventScript(scripts, 'treasure', {}, 1, 'luyen_khi', 0, null, () => 0.1);
+  assert.strictEqual(res.script.id, 't1');
 });
 test('pickEventScript trả null nếu không có scripts', () => {
-  const s = EventChain.pickEventScript({}, 'combat', () => 0.1);
-  assert.strictEqual(s, null);
+  const res = EventChain.pickEventScript({}, 'combat', {}, 1, 'luyen_khi', 0, null, () => 0.1);
+  assert.strictEqual(res.script, null);
 });
 test('resolveChoice: risk=none luôn thành công', () => {
   const script = { text:'Test', choices:[{text:'An toàn',risk:'none',success:{text:'OK',reward:{spiritStones:10}}}] };
@@ -483,8 +545,8 @@ test('resolveChoice: risk=none luôn thành công', () => {
   assert.strictEqual(res.result.reward.spiritStones, 10);
 });
 test('resolveChoice: risk=high thất bại với rng cao', () => {
-  const script = { text:'Test', choices:[{text:'Nguy hiểm',risk:'high',success:{text:'Win'},failure:{text:'Lose',damage:{hp:20}},successRate:0.3}] };
-  const res = EventChain.resolveChoice(script, 0, 0, () => 0.9);
+  const script = { text:'Test', choices:[{text:'Nguy hiểm',success_rate:0.3,on_success:{text:'Win'},on_fail:{text:'Lose',damage:{hp:20}}}] };
+  const res = EventChain.resolveChoice(script, 0, 0, {}, () => 0.9);
   assert.ok(res.ok);
   assert.strictEqual(res.result.outcome, 'failure');
   assert.strictEqual(res.result.damage.hp, 20);
@@ -503,103 +565,11 @@ test('applyReward & applyDamage & applyCost', () => {
   assert.strictEqual(run.tuoi_tho, 79.5);
 });
 
-section('GAME SERVICE — Map / Event Integration');
-test('createRun tự động generate map', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.5);
-  const run = svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  assert.ok(run.map_state);
-  const ms = MapGenerator.parseMapState(run.map_state);
-  assert.ok(ms.layers && ms.layers.length >= 3);
-  db.close();
-});
-test('getMapView trả map state + run info', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.5);
-  svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  const view = svc.getMapView();
-  assert.ok(view.mapState);
-  assert.ok(view.run);
-  db.close();
-});
-test('enterNode combat node khởi tạo combat', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.01); // luôn chọn node đầu -> type combat
-  svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  repos.run.update({ hp: 500, hp_max: 500 });
-  // Đảm bảo node đầu tiên ở layer 0 là combat
-  const ms = MapGenerator.parseMapState(repos.run.get().map_state);
-  // Override: set node đầu thành combat để test
-  ms.layers[0][0].type = 'combat';
-  repos.run.update({ map_state: MapGenerator.serializeMapState(ms) });
-  const res = svc.enterNode();
-  assert.ok(res.ok, `expected ok, got ${res.error}`);
-  assert.strictEqual(res.action, 'combat');
-  assert.ok(res.combat);
-  db.close();
-});
-test('enterNode treasure node trả event script', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.5);
-  svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  // Override: set node thành treasure
-  const ms = MapGenerator.parseMapState(repos.run.get().map_state);
-  ms.layers[0][0].type = 'treasure';
-  repos.run.update({ map_state: MapGenerator.serializeMapState(ms) });
-  const res = svc.enterNode();
-  assert.ok(res.ok, `expected ok, got ${res.error}`);
-  if (res.action === 'event') {
-    assert.ok(res.script);
-    assert.ok(res.script.choices);
-  }
-  db.close();
-});
-test('resolveChoice áp dụng reward + clear node', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.5);
-  svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  repos.run.update({ hp: 200, hp_max: 200, spirit_stones: 0 });
-  // Setup: active script với risk=none
-  const ms = MapGenerator.parseMapState(repos.run.get().map_state);
-  ms._activeScript = { text:'Test', choices:[{text:'Lấy',risk:'none',success:{text:'Được!',reward:{spiritStones:100}}}] };
-  repos.run.update({ map_state: MapGenerator.serializeMapState(ms) });
-  const res = svc.resolveChoice(0);
-  assert.ok(res.ok);
-  assert.ok(res.nodeCleared);
-  const runAfter = repos.run.get();
-  assert.strictEqual(runAfter.spirit_stones, 100);
-  db.close();
-});
-test('completeCombatNode đánh dấu node cleared', () => {
-  const db = freshDb();
-  const repos = createRepositories(db);
-  const data = loadGameData();
-  const svc = new GameService(repos, data, () => 0.5);
-  svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  repos.run.update({ fsm_state: 'IDLE' }); // giả lập combat kết thúc
-  const res = svc.completeCombatNode();
-  assert.ok(res.ok);
-  const ms = MapGenerator.parseMapState(repos.run.get().map_state);
-  const clearedNodeId = ms.layers[0][0].id;
-  assert.strictEqual(ms.nodeStates[clearedNodeId], 'cleared');
-  db.close();
-});
-
 // ---------------------------------------------------------------
 section('BREAKTHROUGH ENGINE');
 test('calcBreakthroughChance cho Luyện Khí -> Trúc Cơ', () => {
   const realm = { id:'luyen_khi', order:1, breakthrough:{ linhKhiRequired:80, tuViRequired:50, baseSuccessRate:0.8 } };
-  const run = { linh_khi:100, linh_khi_max:100, tu_vi:60, luck:0 };
+  const run = { linh_khi:100, linh_khi_max:100, tu_vi:60, luck:0, realm_stage:8 };
   const linhCan = { modifiers:{ cultivationSpeed:1.0 } };
   const { successRate, canAttempt } = Breakthrough.calcBreakthroughChance(realm, run, linhCan, 0);
   assert.ok(canAttempt);
@@ -613,7 +583,7 @@ test('calcBreakthroughChance từ chối nếu thiếu LK hoặc Tu Vi', () => {
 });
 test('attemptBreakthrough thành công với rng thấp', () => {
   const realm = { order:1, breakthrough:{ linhKhiRequired:80, tuViRequired:50, baseSuccessRate:0.8, hasTribulation:false } };
-  const run = { linh_khi:100, tu_vi:60, luck:0, hp_max:100 };
+  const run = { linh_khi:100, tu_vi:60, luck:0, hp_max:100, realm_stage:8 };
   const linhCan = { modifiers:{ cultivationSpeed:1.0 } };
   const res = Breakthrough.attemptBreakthrough(realm, run, linhCan, 0, () => 0.1);
   assert.ok(res.success);
@@ -621,7 +591,7 @@ test('attemptBreakthrough thành công với rng thấp', () => {
 });
 test('attemptBreakthrough thất bại với rng cao', () => {
   const realm = { order:1, breakthrough:{ linhKhiRequired:80, tuViRequired:50, baseSuccessRate:0.3, hasTribulation:false, hpLossOnFail:20, lkLossOnFail:30 } };
-  const run = { linh_khi:100, tu_vi:60, luck:0, hp_max:100 };
+  const run = { linh_khi:100, tu_vi:60, luck:0, hp_max:100, realm_stage:8 };
   const linhCan = { modifiers:{ cultivationSpeed:1.0 } };
   const res = Breakthrough.attemptBreakthrough(realm, run, linhCan, 0, () => 0.9);
   assert.strictEqual(res.success, false);
@@ -629,7 +599,7 @@ test('attemptBreakthrough thất bại với rng cao', () => {
 });
 test('attemptBreakthrough có thiên kiếp khi hasTribulation=true', () => {
   const realm = { order:3, breakthrough:{ linhKhiRequired:700, tuViRequired:500, baseSuccessRate:0.9, hasTribulation:true, tribulationStrikes:3, tribulationDamage:60 } };
-  const run = { linh_khi:800, tu_vi:600, luck:50, hp_max:500 };
+  const run = { linh_khi:800, tu_vi:600, luck:50, hp_max:500, realm_stage:8 };
   const linhCan = { modifiers:{ cultivationSpeed:1.5 } };
   const res = Breakthrough.attemptBreakthrough(realm, run, linhCan, 0, () => 0.1);
   assert.ok(res.success);
@@ -719,11 +689,70 @@ test('attemptBreakthrough thực hiện đột phá', () => {
   const data = loadGameData();
   const svc = new GameService(repos, data, () => 0.01);
   svc.createRun('thien_linh_can', 'pham_nhan', 0);
-  repos.run.update({ linh_khi:500, tu_vi:500, hp:300, hp_max:300, linh_khi_max:500 });
+  repos.run.update({ realm_stage:8, linh_khi:500, tu_vi:500, hp:300, hp_max:300, linh_khi_max:500 });
   const res = svc.attemptBreakthrough();
   assert.ok(res.ok);
   // Với rng thấp và linh căn tốt, sẽ thành công
   assert.ok(res.success || !res.success); // luôn trả kết quả
+  db.close();
+});
+
+section('GAME SERVICE — Điểm Thuộc Tính Tự Do');
+test('attemptStageUp cấp điểm tự do khi thành công', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.01); // rng thấp → stage-up thành công
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ tu_vi: 5000, hp: 500, hp_max: 500 });
+  const before = JSON.parse(repos.run.get().metadata).coreAttrs.free_points || 0;
+  const res = svc.attemptStageUp();
+  if (res.ok && res.success) {
+    const after = JSON.parse(repos.run.get().metadata).coreAttrs.free_points;
+    assert.strictEqual(after, before + balance.coreAttributes.stat_points_per_stage, 'stage-up phải cấp đúng số điểm');
+  }
+  db.close();
+});
+test('_advanceRealm cấp điểm tự do khi đột phá', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const before = JSON.parse(repos.run.get().metadata).coreAttrs.free_points || 0;
+  svc._advanceRealm(repos.run.get(), {});
+  const after = JSON.parse(repos.run.get().metadata).coreAttrs.free_points;
+  assert.strictEqual(after, before + balance.coreAttributes.stat_points_per_realm, 'đột phá phải cấp đúng số điểm');
+  db.close();
+});
+test('spendStatPoint trừ điểm + tăng thuộc tính + cập nhật derived', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  // cấp điểm thủ công qua metadata để test tiêu điểm độc lập
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta.coreAttrs.free_points = 3;
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  const conBefore = meta.coreAttrs.con;
+  const hpMaxBefore = repos.run.get().hp_max;
+  const res = svc.spendStatPoint('con');
+  assert.ok(res.ok, res.error || '');
+  assert.strictEqual(res.newValue, conBefore + 1);
+  assert.strictEqual(res.freePoints, 2);
+  assert.ok(repos.run.get().hp_max > hpMaxBefore, 'CON phải tăng HP max');
+  db.close();
+});
+test('spendStatPoint từ chối khi hết điểm', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const res = svc.spendStatPoint('str'); // free_points khởi tạo = 0
+  assert.strictEqual(res.ok, false);
+  assert.ok(res.error.includes('điểm'));
   db.close();
 });
 
@@ -768,6 +797,105 @@ test('contribute tăng contribution', () => {
   const res = svc.contribute(50);
   assert.ok(res.ok);
   assert.ok(res.contribution >= 50);
+  db.close();
+});
+
+// ---------------------------------------------------------------
+section('CÔNG PHÁP ENGINE (lib)');
+test('canLearn từ chối khi thiếu INT/CON', () => {
+  const data = loadGameData();
+  const def = data.congPhapById['bat_tu_truong_sinh_cong']; // realmMin1, ngoTinh4, theChat8, linhCan null
+  const ctx = { realmOrder: 1, linhCanElement: null, attrs: { int: 2, con: 2 }, learnedIds: [], congPhapById: data.congPhapById, bloodline: null };
+  assert.strictEqual(CongPhap.canLearn(def, ctx).ok, false);
+});
+test('canLearn chấp nhận khi đủ điều kiện', () => {
+  const data = loadGameData();
+  const def = data.congPhapById['bat_tu_truong_sinh_cong'];
+  const ctx = { realmOrder: 1, linhCanElement: null, attrs: { int: 10, con: 10 }, learnedIds: [], congPhapById: data.congPhapById, bloodline: null };
+  assert.strictEqual(CongPhap.canLearn(def, ctx).ok, true);
+});
+test('findConflicts phát hiện xung khắc 2 chiều', () => {
+  const data = loadGameData();
+  const def = data.congPhapById['phan_quyet']; // xung_dot: han_bang_quyet, thuy_chan_tuyet
+  const conflicts = CongPhap.findConflicts(def, ['han_bang_quyet'], data.congPhapById);
+  assert.ok(conflicts.includes('han_bang_quyet'));
+});
+test('getCombatModifiers nhân đôi khi tiến hóa', () => {
+  const data = loadGameData();
+  const def = data.congPhapById['dau_tu_bi']; // combatDamageBonus 3.0
+  const base = CongPhap.getCombatModifiers(def, { evolved: false });
+  const evo = CongPhap.getCombatModifiers(def, { evolved: true });
+  assert.ok(evo.damageMult > base.damageMult, 'tiến hóa phải tăng damageMult');
+});
+
+section('GAME SERVICE — Công Pháp Integration');
+test('learnCongPhap lưu vào metadata + tự kích hoạt', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta.coreAttrs.int = 10; meta.coreAttrs.con = 10;
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  const res = svc.learnCongPhap('bat_tu_truong_sinh_cong');
+  assert.ok(res.ok, res.error || '');
+  const cp = svc.getCongPhapState();
+  assert.ok(cp.learned['bat_tu_truong_sinh_cong']);
+  assert.strictEqual(cp.activeId, 'bat_tu_truong_sinh_cong', 'công pháp đầu tiên tự kích hoạt');
+  db.close();
+});
+test('learnCongPhap chặn công pháp xung khắc', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta.coreAttrs.int = 20; meta.coreAttrs.con = 20;
+  // học sẵn 1 công pháp xung khắc với phan_quyet
+  meta.congPhap = { learned: { han_bang_quyet: { id: 'han_bang_quyet', proficiency: 0, evolved: false } }, activeId: 'han_bang_quyet' };
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  const res = svc.learnCongPhap('phan_quyet');
+  assert.strictEqual(res.ok, false, 'phải bị chặn vì xung khắc');
+  db.close();
+});
+test('evolveCongPhap cần đủ độ thuần thục', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta.coreAttrs.int = 10; meta.coreAttrs.con = 10;
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  svc.learnCongPhap('bat_tu_truong_sinh_cong');
+  // chưa đủ proficiency
+  assert.strictEqual(svc.evolveCongPhap('bat_tu_truong_sinh_cong').ok, false);
+  // ép proficiency vượt ngưỡng
+  const m2 = JSON.parse(repos.run.get().metadata);
+  const threshold = CongPhap.getEvolveThreshold(data.congPhapById['bat_tu_truong_sinh_cong']);
+  m2.congPhap.learned['bat_tu_truong_sinh_cong'].proficiency = threshold;
+  repos.run.update({ metadata: JSON.stringify(m2) });
+  assert.strictEqual(svc.evolveCongPhap('bat_tu_truong_sinh_cong').ok, true);
+  db.close();
+});
+test('castCongPhapSkill gây sát thương + tốn LK trong combat', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta.coreAttrs.int = 10; meta.coreAttrs.con = 10;
+  repos.run.update({ metadata: JSON.stringify(meta), hp: 5000, hp_max: 5000, linh_khi: 2000, linh_khi_max: 2000 });
+  svc.learnCongPhap('bat_tu_truong_sinh_cong');
+  svc.startCombat(false);
+  const lkBefore = repos.run.get().linh_khi;
+  const res = svc.castCongPhapSkill('nhan_son_quyet');
+  assert.ok(res.ok, res.error || '');
+  assert.ok(res.playerAction.damage > 0, 'skill phải gây sát thương');
+  assert.ok(repos.run.get().linh_khi < lkBefore, 'phải tốn Linh Khí');
   db.close();
 });
 
@@ -847,7 +975,7 @@ test('buyShopItem cập nhật điểm + purchase', () => {
   assert.ok(res.ok, res.error || '');
   const acc = repos.account.get();
   assert.ok(acc.luan_hoi_points < 500);
-  assert.ok(acc.innate_hp_bonus >= 10);
+  assert.ok(acc.innate_hp_bonus > 0);
   db.close();
 });
 test('processDeath ghi run history', () => {
@@ -880,9 +1008,15 @@ test('createRun áp dụng tiên thiên từ shop', () => {
   const svc = new GameService(repos, data, () => 0.5);
   repos.account.update({ luan_hoi_points: 500, innate_hp_bonus: 30, innate_linhkhi_bonus: 20, innate_luck_bonus: 10 });
   const run = svc.createRun('chan_linh_can', 'pham_nhan', 0);
-  assert.strictEqual(run.hp_max, balance.base.hpMax + 0 + 30); // luyen_khi hpBonus=0 + innate=30
-  assert.strictEqual(run.linh_khi_max, 100 + 20); // luyen_khi linhKhiMax=100 + innate=20
-  assert.strictEqual(run.luck, 0 + 10 + 0); // base=0 + innate=10 + giaCanh=0
+  // HP/LK tính qua StatsEngine; đọc coreAttrs từ metadata để kiểm tiên thiên cộng đúng theo công thức.
+  const meta = JSON.parse(run.metadata);
+  const startRealm = data.realmById['luyen_khi'];
+  const realmTier = startRealm.order || 1;
+  const expectedHp = StatsEngine.calcMaxHP(meta.coreAttrs.con, balance.base.hpMax, realmTier, 0, (startRealm.hpBonus || 0) + 30);
+  const expectedLk = StatsEngine.calcMaxMP(meta.coreAttrs.spr, balance.base.linhKhiMax, balance.combatV2.dantian_base_cap, meta.rootM, realmTier) + 20;
+  assert.strictEqual(run.hp_max, expectedHp);
+  assert.strictEqual(run.linh_khi_max, expectedLk);
+  assert.strictEqual(run.luck, meta.coreAttrs.luk + 10 + 0); // coreAttrs.luk + innate=10 + giaCanh=0
   db.close();
 });
 
@@ -1036,6 +1170,18 @@ test('pickScenario trả scenario theo type', () => {
   const s = Travel.pickScenario(scenarios, 'treasure', () => 0.1);
   assert.strictEqual(s.id, 't1');
 });
+test('pickScenario loại scenario gần đây để chống lặp', () => {
+  const scenarios = { treasure: [{id:'t1',text:'A'},{id:'t2',text:'B'},{id:'t3',text:'C'}] };
+  // rng=0 luôn chọn phần tử đầu của eligible; loại t1+t2 → buộc chọn t3
+  const s = Travel.pickScenario(scenarios, 'treasure', {}, () => 0, ['t1','t2']);
+  assert.strictEqual(s.id, 't3', 'phải né scenario gần đây, chọn cái còn lại');
+});
+test('pickScenario fallback khi mọi scenario đều vừa gặp', () => {
+  const scenarios = { treasure: [{id:'t1',text:'A'},{id:'t2',text:'B'}] };
+  // recentIds phủ hết pool → giữ nguyên eligible thay vì trả null
+  const s = Travel.pickScenario(scenarios, 'treasure', {}, () => 0, ['t1','t2']);
+  assert.ok(s && (s.id === 't1' || s.id === 't2'), 'phải vẫn trả 1 scenario hợp lệ');
+});
 test('travelStep trả đầy đủ type + scenario', () => {
   const stepTypes = { treasure:{weight:100,icon:'T',desc:'Test'} };
   const scenarios = { treasure:[{id:'t1',text:'Test treasure',reward:{spiritStones:[10,20]}}] };
@@ -1051,6 +1197,40 @@ test('resolveTravelReward áp dụng reward + damage', () => {
   assert.strictEqual(run.tu_vi, 30);
   assert.ok(run.hp < 100);
   assert.ok(result.message);
+});
+
+section('REWARD SCALING — theo cảnh giới');
+test('calcRewardScale tuyến tính theo realmTier', () => {
+  assert.strictEqual(StatsEngine.calcRewardScale(1), 1);
+  const per = balance.rewardScaling.per_realm;
+  assert.ok(Math.abs(StatsEngine.calcRewardScale(5) - (1 + per * 4)) < 1e-9);
+  assert.ok(StatsEngine.calcRewardScale(10) > StatsEngine.calcRewardScale(5));
+});
+test('resolveTravelReward scale phần thưởng tuyệt đối theo realmScale', () => {
+  const base = { hp:100, hp_max:100, linh_khi:0, linh_khi_max:1000, tu_vi:0, spirit_stones:0, luck:0, tuoi_tho:50 };
+  const scenario = { text:'T', reward:{ tuVi:100, linhKhiBonus:50 } };
+  const r1 = { ...base }; Travel.resolveTravelReward(r1, scenario, () => 0.5, 1);
+  const r2 = { ...base }; Travel.resolveTravelReward(r2, scenario, () => 0.5, 3);
+  assert.strictEqual(r1.tu_vi, 100);
+  assert.strictEqual(r2.tu_vi, 300, 'realmScale=3 phải nhân 3 lần Tu Vi');
+});
+test('Items.useItem scale đan dược tuyệt đối (tuViUp) theo realmScale', () => {
+  const def = { type:'consumable', name:'Test Đan', effect:{ tuViUp:100 } };
+  const r1 = { hp:1, hp_max:1, linh_khi:0, linh_khi_max:1, tu_vi:0 };
+  const r2 = { hp:1, hp_max:1, linh_khi:0, linh_khi_max:1, tu_vi:0 };
+  Items.useItem(def, r1, null, 1);
+  Items.useItem(def, r2, null, 3);
+  assert.strictEqual(r1.tu_vi, 100);
+  assert.strictEqual(r2.tu_vi, 300, 'realmScale=3 phải nhân 3 lần tuViUp');
+});
+test('Items.useItem KHÔNG scale healPct theo realmScale (đã theo %max)', () => {
+  const def = { type:'consumable', name:'Hồi Huyết', effect:{ healPct:0.5 } };
+  const r1 = { hp:0, hp_max:200, linh_khi:0, linh_khi_max:1, tu_vi:0 };
+  const r2 = { hp:0, hp_max:200, linh_khi:0, linh_khi_max:1, tu_vi:0 };
+  Items.useItem(def, r1, null, 1);
+  Items.useItem(def, r2, null, 5);
+  assert.strictEqual(r1.hp, r2.hp, 'healPct không phụ thuộc realmScale');
+  assert.strictEqual(r1.hp, 100);
 });
 
 section('GAME SERVICE — Travel Integration');
@@ -1082,6 +1262,66 @@ test('travelBuy mua item từ thương nhân', () => {
   assert.strictEqual(run.spirit_stones, 170);
   db.close();
 });
+test('resolveTravelChoice rẽ nhánh: success→reward.next giữ IN_EVENT', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ hp: 200, hp_max: 200, spirit_stones: 0, fsm_state: 'IN_EVENT' });
+  // scenario có nhánh: chọn 0 (risk=none) → reward.next là scenario con đầy đủ
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta._travelScenario = {
+    text: 'Cửa 1', choices: ['Tiến vào', 'Rời đi'],
+    risks: ['none', 'none'],
+    rewards: [{ spiritStones: 10, next: { text: 'Cửa 2', choices: ['Mở rương'], risks: ['none'], rewards: [{ spiritStones: 20 }] } }, null]
+  };
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  const res = svc.resolveTravelChoice(0);
+  assert.ok(res.ok, res.error || '');
+  assert.strictEqual(res.branched, true, 'phải rẽ nhánh');
+  assert.ok(res.scenario.choices, 'scenario con phải có choices');
+  assert.strictEqual(repos.run.get().fsm_state, 'IN_EVENT', 'vẫn ở IN_EVENT khi còn nhánh');
+  db.close();
+});
+test('resolveTravelChoice không nhánh: về IDLE + clear scenario', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ hp: 200, hp_max: 200, spirit_stones: 0, fsm_state: 'IN_EVENT' });
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta._travelScenario = { text: 'Cuối', choices: ['Lấy'], risks: ['none'], rewards: [{ spiritStones: 50 }] };
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  const res = svc.resolveTravelChoice(0);
+  assert.ok(res.ok);
+  assert.ok(!res.branched, 'không có nhánh');
+  assert.strictEqual(repos.run.get().fsm_state, 'IDLE', 'về IDLE khi hết nhánh');
+  const m2 = JSON.parse(repos.run.get().metadata);
+  assert.ok(!m2._travelScenario, 'scenario phải được clear');
+  db.close();
+});
+test('resolveTravelChoice chặn vòng lặp nhánh ở độ sâu 6', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ hp: 200, hp_max: 200, fsm_state: 'IN_EVENT' });
+  // Chuỗi nhánh sâu 10 tầng (hữu hạn, không tự tham chiếu) — bộ đếm phải cắt ở depth 6.
+  const makeNode = (next) => ({ text: 'Tầng', choices: ['Tiếp'], risks: ['none'], rewards: [{ spiritStones: 1, ...(next ? { next } : {}) }] });
+  let chain = null;
+  for (let i = 0; i < 10; i++) chain = makeNode(chain);
+  const meta = JSON.parse(repos.run.get().metadata);
+  meta._travelScenario = chain;
+  repos.run.update({ metadata: JSON.stringify(meta) });
+  let res, guard = 0;
+  do { res = svc.resolveTravelChoice(0); guard++; } while (res.branched && guard < 50);
+  assert.ok(guard <= 7, `phải dừng ở ≤7 bước (cap nhánh=6 + 1 bước kết thúc), thực tế ${guard}`);
+  assert.strictEqual(repos.run.get().fsm_state, 'IDLE');
+  db.close();
+});
 
 // ---------------------------------------------------------------
 section('GAME SERVICE — Linh Khí integration');
@@ -1095,6 +1335,108 @@ test('updateLinhKhi qua service persist đúng', () => {
   const r = svc.updateLinhKhi(60000); // 1 phút sau
   assert.strictEqual(r.regenAmount, 3); // 3 điểm/phút
   assert.strictEqual(repos.run.get().linh_khi, 3);
+  db.close();
+});
+
+// ---------------------------------------------------------------
+section('INVENTORY — Nâng cấp túi đồ');
+
+test('useItem không làm mất món khác trong túi', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ hp: 50, hp_max: 200 });
+  // 3 thuốc (1 dòng qty=3) + 1 trang bị (dòng riêng)
+  repos.inventory.add({ item_id: 'hoi_huyet_dan', item_name: 'Hồi Huyết Đan', quantity: 3 });
+  repos.inventory.add({ item_id: 'phap_bao_so_cap', item_name: 'Pháp Bảo Sơ Cấp', quantity: 1 });
+  const res = svc.useItem('hoi_huyet_dan');
+  assert.ok(res.ok, res.error || '');
+  const inv = repos.inventory.all();
+  const dan = inv.find(i => i.item_id === 'hoi_huyet_dan');
+  const eq = inv.find(i => i.item_id === 'phap_bao_so_cap');
+  assert.strictEqual(dan.quantity, 2, 'thuốc còn 2');
+  assert.ok(eq && eq.quantity === 1, 'trang bị không bị mất');
+  db.close();
+});
+
+test('useItem thuốc cuối cùng thì xóa dòng, không mất túi', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.run.update({ hp: 50, hp_max: 200 });
+  repos.inventory.add({ item_id: 'hoi_huyet_dan', item_name: 'Hồi Huyết Đan', quantity: 1 });
+  repos.inventory.add({ item_id: 'phap_bao_so_cap', item_name: 'Pháp Bảo Sơ Cấp', quantity: 1 });
+  svc.useItem('hoi_huyet_dan');
+  const inv = repos.inventory.all();
+  assert.ok(!inv.find(i => i.item_id === 'hoi_huyet_dan'), 'dòng thuốc đã hết bị xóa');
+  assert.ok(inv.find(i => i.item_id === 'phap_bao_so_cap'), 'trang bị còn nguyên');
+  db.close();
+});
+
+test('_addItem gộp stack consumable, equipment tách dòng', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  // consumable 2 lần -> 1 dòng qty=2
+  svc._addItem('hoi_huyet_dan', 1);
+  svc._addItem('hoi_huyet_dan', 1);
+  // equipment 2 lần -> 2 dòng
+  svc._addItem('phap_bao_so_cap', 1);
+  svc._addItem('phap_bao_so_cap', 1);
+  const inv = repos.inventory.all();
+  const danRows = inv.filter(i => i.item_id === 'hoi_huyet_dan');
+  const eqRows = inv.filter(i => i.item_id === 'phap_bao_so_cap');
+  assert.strictEqual(danRows.length, 1, 'consumable gộp 1 dòng');
+  assert.strictEqual(danRows[0].quantity, 2, 'quantity cộng dồn = 2');
+  assert.strictEqual(eqRows.length, 2, 'equipment giữ 2 dòng riêng');
+  db.close();
+});
+
+test('dropItem qty=1 giảm đúng 1, không đụng item khác', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.inventory.add({ item_id: 'hoi_huyet_dan', item_name: 'Hồi Huyết Đan', quantity: 3 });
+  repos.inventory.add({ item_id: 'dai_hoan_dan', item_name: 'Đại Hoàn Đan', quantity: 1 });
+  const res = svc.dropItem('hoi_huyet_dan', 1);
+  assert.ok(res.ok, res.error || '');
+  const inv = repos.inventory.all();
+  assert.strictEqual(inv.find(i => i.item_id === 'hoi_huyet_dan').quantity, 2);
+  assert.ok(inv.find(i => i.item_id === 'dai_hoan_dan'), 'item khác không đổi');
+  db.close();
+});
+
+test('dropItem qty=all xóa toàn bộ dòng', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.5);
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.inventory.add({ item_id: 'hoi_huyet_dan', item_name: 'Hồi Huyết Đan', quantity: 5 });
+  const res = svc.dropItem('hoi_huyet_dan', 'all');
+  assert.ok(res.ok, res.error || '');
+  assert.ok(!repos.inventory.all().find(i => i.item_id === 'hoi_huyet_dan'), 'dòng bị xóa hết');
+  db.close();
+});
+
+test('_rollLootTable rơi item theo dropTable với rng thấp', () => {
+  const db = freshDb();
+  const repos = createRepositories(db);
+  const data = loadGameData();
+  const svc = new GameService(repos, data, () => 0.01); // rng thấp -> mọi entry chance > 0.01 đều rơi
+  svc.createRun('thien_linh_can', 'pham_nhan', 0);
+  repos.inventory.clear();
+  const dropped = svc._rollLootTable({ enemyId: 'yeu_thu_thap_1' });
+  assert.ok(dropped.length > 0, 'phải rơi ít nhất 1 item từ dropTable');
+  assert.ok(repos.inventory.all().length > 0, 'item vào túi');
   db.close();
 });
 

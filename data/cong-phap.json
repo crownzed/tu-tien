@@ -1,0 +1,359 @@
+{
+  "cong_phap": [
+    {
+      "id": "phan_quyet",
+      "ten": "Phần Quyết",
+      "ten_han": "焚诀",
+      "ten_anh": "Flame Mantra",
+
+      "ngu_hanh_enum": "hoa",
+      "yeu_cau": {
+        "realmMin": 1,
+        "linhCan": "hoa",
+        "ngoTinh": 8,
+        "theChat": 6,
+        "huyetMach": null
+      },
+      "effect": {
+        "hoaDamageBonus": 0.5,
+        "cooldownReductionHoa": 0.5,
+        "linhKhiRegenBonus": 0.0
+      },
+      "skills": [
+        { "id": "phat_no_hoa_lien", "ten": "Phật Nộ Hỏa Liên", "element": "hoa", "damage": 320, "lkCost": 120 },
+        { "id": "diem_phan_phe_lang", "ten": "Diễm Phân Phệ Lãng Xích", "element": "hoa", "damage": 180, "lkCost": 60 }
+      ],
+      "tien_hoa": {
+        "len": null,
+        "dieu_kien": { "thon_phe_di_hoa": 1 },
+        "nang_cap_cuoi": "viem_de_chi_ton_quyet"
+      },
+      "flags": [
+        "that_truyen", "truyen_thua", "pham_chat", "cap_sao",
+        "truyen_qua_huyet_mach", "truyen_qua_linh_hon",
+        "cuop_doat", "phong_an", "pha_giai", "luyen_hoan_my"
+      ],
+      "cong_phap_con": ["hap_chuong", "xuy_hoa_chuong"],
+      "cong_phap_me": null,
+      "cong_phap_xung_dot": ["han_bang_quyet", "thuy_chan_tuyet"],
+
+      "nguon": "Đấu Phá Thương Khung",
+      "the_gioi": "Đấu Khí Đại Lục",
+      "tac_gia": "Đà Xá Cổ Đế",
+      "cap_bac": "Hoàng Giai Đê Cấp (Tiến hóa vô hạn lên Thần Giai)",
+      "thuoc_tinh": "Hỏa, Thôn Phệ, Tạo Hóa",
+      "ngu_hanh": "Hỏa",
+      "am_duong": "Chí Dương",
+      "dao_van": "Hỏa Chi Bổn Nguyên Đạo Vận",
+      "loai_cong_phap": "Nội công tâm pháp cốt lõi",
+      "do_hiem": "Thần Thoại Độc Nhất",
+      "dieu_kien_hoc": "Cơ thể linh hoạt, ý chí sắt đá, đấu khí thuộc tính Hỏa pha Mộc.",
+      "dieu_kien_dot_pha": "Bắt buộc cắn nuốt và luyện hóa thành công Dị Hỏa.",
+      "dieu_kien_ke_thua": "Cần nạp giới chứa ngọc giản và linh hồn lực Thiên Cảnh.",
+      "dieu_kien_su_dung": "Vận đấu khí theo kinh mạch đặc thù để ép nén hỏa viêm.",
+      "dieu_kien_linh_ngo": "Cảm ngộ hủy diệt và tái sinh của ngọn lửa bản nguyên.",
+      "uu_diem": "Tiến hóa vô hạn, uy lực hỏa hệ tuyệt đối.",
+      "nhuoc_diem": "Khởi điểm cực yếu, tỷ lệ tử vong khi luyện Dị Hỏa cao.",
+      "tac_dung": "Sản sinh Phần Thiên Đấu Khí, hồi phục thể lực, dung hợp lửa.",
+      "hieu_ung": "Thiêu đốt chân nguyên kẻ địch, giảm 50% hồi chiêu hỏa hệ.",
+      "chi_phi": "Tiêu tốn đan dược hộ mạng (Huyết Liên Đan) và Băng Tuyền.",
+      "tieu_hao": "Tiêu hao linh hồn lực khổng lồ khi duy trì đa hỏa.",
+      "phan_phe": "Dị Hỏa cắn trả, thiêu rụi kinh mạch, hồn phi phách tán.",
+      "thien_kiep_lien_quan": "Đan Lôi Kiếp, Cửu Thiên Huyền Lôi.",
+      "dao_tam_yeu_cau": "Bất khuất, liều mạng bảo vệ tín niệm.",
+      "khac_che": "Công pháp Thủy, Mộc, hàn băng tà công cấp thấp.",
+      "bi_khac_che": "Huyền Băng cấp cực cao ở giai đoạn đầu.",
+      "tien_hoa_mo_ta": "Hoàng → Huyền → Địa → Thiên → Chúa Tể.",
+      "bien_di": "Kích phát dị biến tạo Hỏa Linh có linh trí.",
+      "dung_hop": "Dung hợp với 23 loại Dị Hỏa trong thiên địa.",
+      "cong_phap_tuong_thich": "Ngũ Luân Ly Hỏa Pháp, Lộng Diễm Quyết.",
+      "co_the_hop_thanh": "Đại Đạo Hỗn Nguyên Hỏa Quyết.",
+      "co_the_sang_tao": "Phật Nộ Hỏa Liên, Phật Nộ Luân Hồi.",
+      "co_the_nang_cap": "Viêm Đế Chí Tôn Quyết."
+    },
+    {
+      "id": "dau_tu_bi",
+      "ten": "Đấu Tự Bí",
+      "ten_han": "斗字秘",
+      "ten_anh": "Dou (Combat) Secret",
+
+      "ngu_hanh_enum": "hon_don",
+      "yeu_cau": {
+        "realmMin": 12,
+        "linhCan": "hon_don",
+        "ngoTinh": 10,
+        "theChat": 9,
+        "huyetMach": "hoang_co_thanh_the"
+      },
+      "effect": {
+        "combatDamageBonus": 3.0,
+        "skillCopyChance": 1.0,
+        "linhKhiRegenBonus": 0.0
+      },
+      "skills": [
+        { "id": "thai_cuc_do", "ten": "Thái Cực Đồ", "element": "hon_don", "damage": 1500, "lkCost": 800 },
+        { "id": "van_vat_mau_khi_dinh", "ten": "Vạn Vật Mẫu Khí Đỉnh", "element": "hon_don", "damage": 2000, "lkCost": 1200 }
+      ],
+      "tien_hoa": {
+        "len": null,
+        "dieu_kien": { "van_tran_sinh_tu": 10000 },
+        "nang_cap_cuoi": "dau_chien_dao_tac_chi_cao"
+      },
+      "flags": [
+        "that_truyen", "truyen_thua", "pham_chat", "cap_sao",
+        "tu_tien_hoa", "truyen_qua_linh_hon",
+        "phong_an", "luyen_hoan_my"
+      ],
+      "cong_phap_con": [],
+      "cong_phap_me": "cuu_bi_tong_tu",
+      "cong_phap_xung_dot": ["tu_tam_duong_tinh", "yem_the_quyet"],
+
+      "nguon": "Già Thiên",
+      "the_gioi": "Già Thiên Vũ Trụ",
+      "tac_gia": "Đạo Đức Thiên Tôn",
+      "cap_bac": "Tiên Đế Cấp Bí Thuật",
+      "thuoc_tinh": "Chiến Đấu, Mô Phỏng, Sát Phạt",
+      "ngu_hanh": "Hỗn Độn Ngũ Hành",
+      "am_duong": "Thái Cực Bao Dung",
+      "dao_van": "Đấu Chiến Thánh Đạo",
+      "loai_cong_phap": "Bí thuật chiến đấu tối thượng",
+      "do_hiem": "Thần Thoại Viễn Cổ",
+      "dieu_kien_hoc": "Ngộ tính tuyệt luân, nhìn thấu căn nguyên của mọi năng lượng chuyển động.",
+      "dieu_kien_dot_pha": "Trải qua hàng vạn trận chiến sinh tử để cô đọng đấu ý vô song.",
+      "dieu_kien_ke_thua": "Trích xuất từ tàn thạch, ấn ký không gian hư vô.",
+      "dieu_kien_su_dung": "Kích hoạt đấu chí đến mức đỉnh điểm, tâm trí tập trung tuyệt đối vào chiến trận.",
+      "dieu_kien_linh_ngo": "Biến vạn pháp phức tạp thành một đạo duy nhất, vạn kiếm quy tông.",
+      "uu_diem": "Mô phỏng chân thực và khuếch đại uy lực của mọi thần thông pháp thuật trong thiên hạ.",
+      "nhuoc_diem": "Tiêu hao nguyên khí và tinh thần khủng khiếp, khó duy trì lâu ở cảnh giới thấp.",
+      "tac_dung": "Biến hóa ra Thái Cực Đồ, Vạn Vật Mẫu Khí Đỉnh, Bảo Bình Đại Đạo.",
+      "hieu_ung": "Tăng cường 300% lực chiến cơ bản, 100% tỷ lệ sao chép sát chiêu của đối phương.",
+      "chi_phi": "Thiêu đốt sinh mệnh căn nguyên nếu lạm dụng.",
+      "tieu_hao": "Rút cạn thần quang, khí huyết.",
+      "phan_phe": "Mô phỏng tiên pháp vượt cảnh giới sẽ khiến cơ thể nổ tung thành huyết vụ.",
+      "thien_kiep_lien_quan": "Tiên Đài Diệt Kiếp.",
+      "dao_tam_yeu_cau": "Chiến ý vô song, không sợ thiên địa.",
+      "khac_che": "Mọi kỹ năng tấn công có quỹ đạo và quy luật rõ ràng.",
+      "bi_khac_che": "Pháp tắc nhân quả hoặc không gian vặn vẹo cực đoan.",
+      "tien_hoa_mo_ta": "Tiến hóa thành Đấu Chiến Đại Đạo.",
+      "bien_di": "Chuyển hóa thành Đấu Chiến Thánh Pháp Cực Hạn.",
+      "dung_hop": "Dung hợp hoàn hảo với 8 bí thuật còn lại (Giai, Hành, Binh...).",
+      "cong_phap_tuong_thich": "Lục Đạo Luân Hồi Quyền, Vạn Hóa Thánh Quyết.",
+      "co_the_hop_thanh": "Tiên Đế Ấn.",
+      "co_the_sang_tao": "Thiên Đế Chưởng.",
+      "co_the_nang_cap": "Đấu Chiến Đạo Tắc Chí Cao."
+    },
+    {
+      "id": "bat_tu_truong_sinh_cong",
+      "ten": "Bất Tử Trường Sinh Công",
+      "ten_han": "不死长生功",
+      "ten_anh": "Undying Live Forever Technique",
+
+      "ngu_hanh_enum": "moc",
+      "yeu_cau": {
+        "realmMin": 1,
+        "linhCan": null,
+        "ngoTinh": 4,
+        "theChat": 8,
+        "huyetMach": null
+      },
+      "effect": {
+        "hpRegenPct": 0.1,
+        "critImmune": 1.0,
+        "linhKhiRegenBonus": 0.0
+      },
+      "skills": [
+        { "id": "nhan_son_quyet", "ten": "Nhân Sơn Quyết", "element": "tho", "damage": 400, "lkCost": 150 },
+        { "id": "thuy_trach_quoc_do", "ten": "Thủy Trạch Quốc Độ", "element": "thuy", "damage": 350, "lkCost": 200 }
+      ],
+      "tien_hoa": {
+        "len": null,
+        "dieu_kien": { "hap_thu_sinh_co": 5000 },
+        "nang_cap_cuoi": "vinh_hang_tien_the"
+      },
+      "flags": [
+        "that_truyen", "truyen_thua", "pham_chat", "cap_sao",
+        "truyen_qua_huyet_mach", "truyen_qua_linh_hon",
+        "phong_an", "luyen_hoan_my"
+      ],
+      "cong_phap_con": ["toai_hau_toa", "toan_phong_cuoc"],
+      "cong_phap_me": "khoi_hoang_quyet",
+      "cong_phap_xung_dot": ["thi_luyen_huyet_duc_cong", "ta_dao_rut_mau"],
+
+      "nguon": "Nhất Niệm Vĩnh Hằng",
+      "the_gioi": "Vĩnh Hằng Tiên Vực",
+      "tac_gia": "Khôi Hoàng",
+      "cap_bac": "Tuyệt Thế Tiên Pháp",
+      "thuoc_tinh": "Sinh Mệnh, Bất Tử, Luyện Thể",
+      "ngu_hanh": "Mộc, Thổ",
+      "am_duong": "Thái Dương",
+      "dao_van": "Sinh Mệnh Đại Đạo",
+      "loai_cong_phap": "Công pháp luyện thể và thần thông sinh cơ",
+      "do_hiem": "Thần Thoại Thượng Cổ",
+      "dieu_kien_hoc": "Phải chịu được cơn đau xé rách tế bào và cơn đói khát điên cuồng khi cải tạo nhục thân.",
+      "dieu_kien_dot_pha": "Hấp thu lượng cực lớn sinh cơ từ thiên tài địa bảo hoặc tàn dư sinh mệnh.",
+      "dieu_kien_ke_thua": "Nhận truyền thừa từ Huyết Bi hoặc di chỉ tông môn Thượng Cổ.",
+      "dieu_kien_su_dung": "Kích hoạt huyết khí toàn thân, ngưng tụ lớp da và xương bất diệt.",
+      "dieu_kien_linh_ngo": "Nỗi sợ hãi tột cùng với cái chết, khát khao sinh tồn vô hạn.",
+      "uu_diem": "Sinh cơ vô tận, đứt chi mọc lại tức thì, phòng ngự vật lý và pháp thuật hoàn hảo.",
+      "nhuoc_diem": "Gây ra cơn đói khát đến mức có thể ăn luôn cả pháp bảo, tốn kém tài nguyên khủng khiếp.",
+      "tac_dung": "Khóa chặt sinh mệnh lực, hình thành Bất Tử Bì, Bất Tử Cốt, Bất Tử Huyết.",
+      "hieu_ung": "Hồi 10% lượng máu tối đa mỗi giây, miễn nhiễm bạo kích.",
+      "chi_phi": "Ăn sạch hàng vạn linh thực, đan dược, thú hạch.",
+      "tieu_hao": "Năng lượng sinh học khổng lồ.",
+      "phan_phe": "Nhịn đói quá lâu sẽ bị rút kiệt tuổi thọ, héo mòn thành thây khô.",
+      "thien_kiep_lien_quan": "Sinh Tử Lôi Kiếp, Diệt Cốt Thiên Kiếp.",
+      "dao_tam_yeu_cau": "Cực kỳ tham sống sợ chết, lì lợm kiên định.",
+      "khac_che": "Các chiêu thức tất sát một đòn (One-hit KO) yếu, sát thủ cận chiến.",
+      "bi_khac_che": "Pháp tắc nguyền rủa, kịch độc ăn mòn sinh cơ cấp Đạo Tổ.",
+      "tien_hoa_mo_ta": "Bất Tử Quyển → Trường Sinh Quyển → Vĩnh Hằng Tiên Thể.",
+      "bien_di": "Hóa thành Nhân Sơn Quyết.",
+      "dung_hop": "Dung hợp sức mạnh sinh cơ với Thủy Trạch Quốc Độ.",
+      "cong_phap_tuong_thich": "Các công pháp Thể Tu khác.",
+      "co_the_hop_thanh": "Bất Diệt Tiên Hoàng Quyết.",
+      "co_the_sang_tao": "Phá Thiên Quyền, Vẫn Thạch Khống Chế.",
+      "co_the_nang_cap": "Bổn Nguyên Sinh Mệnh Chi Lực."
+    },
+    {
+      "id": "luc_dao_luan_hoi_kinh",
+      "ten": "Trường Sinh Lục Đạo Luân Hồi Kinh",
+      "ten_han": "长生六道轮回经",
+      "ten_anh": "Six Paths Reincarnation Law",
+
+      "ngu_hanh_enum": "moc",
+      "yeu_cau": {
+        "realmMin": 1,
+        "linhCan": "moc",
+        "ngoTinh": 6,
+        "theChat": 6,
+        "huyetMach": null
+      },
+      "effect": {
+        "linhKhiRegenBonus": 2.0,
+        "hpRegenBonus": 2.0,
+        "linhKhiMaxBonus": 0.5
+      },
+      "skills": [
+        { "id": "luc_dao_luan_hoi_an", "ten": "Lục Đạo Luân Hồi Ấn", "element": "moc", "damage": 600, "lkCost": 300 },
+        { "id": "sinh_tu_huyen_tran", "ten": "Sinh Tử Huyễn Trận", "element": "moc", "damage": 450, "lkCost": 220 }
+      ],
+      "tien_hoa": {
+        "len": null,
+        "dieu_kien": { "vuot_luc_dao": 6 },
+        "nang_cap_cuoi": "bat_hu_moc_tien_quyet"
+      },
+      "flags": [
+        "that_truyen", "truyen_thua", "pham_chat",
+        "truyen_qua_linh_hon", "cuop_doat", "sao_chep",
+        "phong_an", "luyen_hoan_my"
+      ],
+      "cong_phap_con": ["records_of_coexistence", "mortality_records"],
+      "cong_phap_me": "thai_nhat_van_phap_quyet",
+      "cong_phap_xung_dot": ["grand_chariot_wisdom_law"],
+
+      "nguon": "Amazing Cultivation Simulator",
+      "the_gioi": "Giới Tu Chân (ACS)",
+      "tac_gia": "Thái Nhất Tông",
+      "cap_bac": "Chí Tôn Tiên Pháp (Supreme Law)",
+      "thuoc_tinh": "Mộc, Luân Hồi, Sinh Tử",
+      "ngu_hanh": "Mộc",
+      "am_duong": "Thái Âm",
+      "dao_van": "Luân Hồi Bổn Nguyên",
+      "loai_cong_phap": "Công pháp Tiên Đạo chủ tu",
+      "do_hiem": "Truyền Thuyết Cổ Đại",
+      "dieu_kien_hoc": "Thuộc tính cơ thể (Ngộ tính, Thể chất) tương thích với biểu đồ yêu cầu của công pháp.",
+      "dieu_kien_dot_pha": "Vượt qua Luyện Khí, Trúc Cơ, Kim Đan, Nguyên Thần trong điều kiện mưa bão mùa đông.",
+      "dieu_kien_ke_thua": "Khai quật từ Tàng Kinh Các hoặc phế tích Thái Nhất Tông.",
+      "dieu_kien_su_dung": "Vận hành linh lực thiên nhiên hệ Thủy để nuôi dưỡng Mộc linh căn, dẫn dắt u hồn.",
+      "dieu_kien_linh_ngo": "Thấu hiểu sự luân chuyển không ngừng của sinh tử và sáu nẻo luân hồi.",
+      "uu_diem": "Phục hồi cực nhanh, sở hữu năng lực hồi sinh và ngự sử linh thú bạo liệt.",
+      "nhuoc_diem": "Bị khắc chế khốc liệt bởi các cao thủ hệ Kim, đột phá Kim Đan tốn kém tài nguyên hệ Thủy.",
+      "tac_dung": "Gia tăng giới hạn Max Qi khổng lồ, luyện chế luân hồi đan.",
+      "hieu_ung": "Tăng 200% phục hồi linh khí và sinh lực, miễn nhiễm hiệu ứng thối rữa.",
+      "chi_phi": "Cần xây dựng trận pháp quy tụ linh khí hệ Thủy tinh khiết.",
+      "tieu_hao": "Tiêu hao nguyên thần mỗi lần thao túng pháp thuật luân hồi.",
+      "phan_phe": "Thất bại khi đột phá Nguyên Thần sẽ đọa vào Súc Sinh Đạo, mất trí nhớ và tu vi.",
+      "thien_kiep_lien_quan": "Luân Hồi Thiên Kiếp, Cửu Trùng Mộc Ma Kiếp.",
+      "dao_tam_yeu_cau": "Từ bi, siêu thoát và không dính nhân quả phàm trần.",
+      "khac_che": "Các công pháp Thổ hệ, độc thuật nguyền rủa thông thường.",
+      "bi_khac_che": "Thất Sát Kiếm Quyết, Grand Chariot Wisdom Law (Hệ Kim).",
+      "tien_hoa_mo_ta": "Phi thăng thành Mộc Đức Tiên Tôn.",
+      "bien_di": "Tử Vong Lục Đạo Kinh.",
+      "dung_hop": "Dung hợp với Earthen Absorption để gia tăng phòng ngự.",
+      "cong_phap_tuong_thich": "Myriad Artifact Law.",
+      "co_the_hop_thanh": "Hỗn Độn Thái Nhất Mộc Đạo.",
+      "co_the_sang_tao": "Sinh Tử Huyễn Trận.",
+      "co_the_nang_cap": "Bất Hủ Mộc Tiên Quyết."
+    },
+    {
+      "id": "dai_ngu_hanh_huyen_the_quyet",
+      "ten": "Đại Ngũ Hành Huyễn Thế Quyết",
+      "ten_han": "大五行幻世诀",
+      "ten_anh": "Great Five Elements Illusionary World Art",
+
+      "ngu_hanh_enum": "hon_don",
+      "yeu_cau": {
+        "realmMin": 10,
+        "linhCan": "hon_don",
+        "ngoTinh": 10,
+        "theChat": 8,
+        "huyetMach": null
+      },
+      "effect": {
+        "timeControlBonus": 1.0,
+        "dodgeAllNormal": 1.0,
+        "linhKhiRegenBonus": 0.0
+      },
+      "skills": [
+        { "id": "thoi_khong_ngung_dong", "ten": "Thời Không Ngưng Đọng", "element": "hon_don", "damage": 5000, "lkCost": 3000 },
+        { "id": "tue_nguyet_tram", "ten": "Tuế Nguyệt Trảm", "element": "hon_don", "damage": 8000, "lkCost": 4500 }
+      ],
+      "tien_hoa": {
+        "len": null,
+        "dieu_kien": { "dung_hop_5_bao_vat_thoi_gian": 5 },
+        "nang_cap_cuoi": "chi_cao_thoi_gian_dao_dien"
+      },
+      "flags": [
+        "that_truyen", "truyen_thua", "khi_linh", "pham_chat",
+        "tu_tien_hoa", "truyen_qua_linh_hon",
+        "phong_an", "pha_giai", "luyen_hoan_my"
+      ],
+      "cong_phap_con": ["ngu_hanh_huyen_anh_thuat"],
+      "cong_phap_me": "dong_at_than_moc_quyet",
+      "cong_phap_xung_dot": ["ma_dao_huy_diet_cuc_doan"],
+
+      "nguon": "Phàm Nhân Tu Tiên",
+      "the_gioi": "Tiên Giới",
+      "tac_gia": "Di La Lão Tổ",
+      "cap_bac": "Đạo Tổ Cấp Thần Công",
+      "thuoc_tinh": "Thời Gian, Ngũ Hành, Không Gian",
+      "ngu_hanh": "Hỗn Hợp Cả Năm Yếu Tố",
+      "am_duong": "Âm Dương Hài Hòa",
+      "dao_van": "Thời Gian Đạo Tắc Bổn Nguyên",
+      "loai_cong_phap": "Công pháp Tiên Giới Chủ Tu",
+      "do_hiem": "Tuyệt Thế Độc Nhất",
+      "dieu_kien_hoc": "Thu thập đủ 5 bảo vật chứa pháp tắc thời gian, luyện thành 5 môn ngũ hành thời gian kinh pháp.",
+      "dieu_kien_dot_pha": "Dung hợp 5 bảo vật thời gian thành Thời Gian Pháp Luân hoàn mỹ.",
+      "dieu_kien_ke_thua": "Nhận truyền thừa trực tiếp từ tháp Chân Ngôn Môn hoặc ngọc giản phong ấn.",
+      "dieu_kien_su_dung": "Đốt cháy Tiên Nguyên Lực và Tinh Thể Thời Gian.",
+      "dieu_kien_linh_ngo": "Luân hồi vạn kiếp, nhìn thấu sự nảy mầm, phát triển, và héo úa của càn khôn.",
+      "uu_diem": "Khống chế dòng chảy thời gian tuyệt đối (làm chậm, gia tốc, nghịch lưu), vô hiệu hóa mọi đòn đánh thông thường.",
+      "nhuoc_diem": "Cực kỳ khó luyện, tài nguyên luyện tập bằng cả một tiên vực, dễ bị Đạo Tổ Thời Gian truy sát.",
+      "tac_dung": "Thiết lập Huyễn Thế Linh Vực, định đoạt sinh tử, đảo ngược quỹ đạo tấn công.",
+      "hieu_ung": "Ngưng đọng thời gian kẻ địch trong 10 giây, phản đòn 100% về quá khứ.",
+      "chi_phi": "Hàng tỷ Tiên Nguyên Thạch và Thời Gian Tinh Sa.",
+      "tieu_hao": "Rút cạn 360 Tiên Khiếu chi lực với tốc độ ánh sáng.",
+      "phan_phe": "Bị cuốn vào khe nứt thời gian, thọ mệnh hóa thành cát bụi vĩnh viễn.",
+      "thien_kiep_lien_quan": "Tuế Nguyệt Đạo Kiếp, Thái Ất Tạo Hóa Lôi Kiếp.",
+      "dao_tam_yeu_cau": "Bất hủ, tĩnh lặng như nước, không bị hỉ nộ ái ố chi phối.",
+      "khac_che": "Tất cả các loại pháp thuật ngũ hành đơn thuần, không gian pháp tắc hạ vị.",
+      "bi_khac_che": "Pháp tắc Vận Mệnh chí cao, hoặc Đạo Tổ đương nhiệm áp chế.",
+      "tien_hoa_mo_ta": "Đột phá Đại La lên thẳng Đạo Tổ Thời Gian.",
+      "bien_di": "Hắc Ám Tuế Nguyệt Quyết (nếu rơi vào ma đạo).",
+      "dung_hop": "Dung hợp hoàn hảo với Chân Ngôn Hóa Luân Kinh.",
+      "cong_phap_tuong_thich": "Luyện Thần Thuật (cường hóa thần thức).",
+      "co_the_hop_thanh": "Đại Đạo Thời Không Quyết.",
+      "co_the_sang_tao": "Tuế Nguyệt Trảm.",
+      "co_the_nang_cap": "Chí Cao Thời Gian Đạo Điển."
+    }
+  ]
+}

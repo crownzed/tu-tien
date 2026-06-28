@@ -25,8 +25,8 @@
         <nav class="nav-bar">
           <button class="nav-btn" data-nav="status" title="Xem hồ sơ nhân vật">📜 Hồ Sơ</button>
           <button class="nav-btn" data-nav="inventory" title="Xem túi đồ &amp; trang bị">🎒 Túi Đồ</button>
+          <button class="nav-btn" data-nav="phapbao" title="Quản lý Công Pháp & Pháp Bảo">📿 Tàng Kinh Các</button>
           <button class="nav-btn" data-nav="shop" title="Cửa hàng Luân Hồi">🛒 Cửa Hàng</button>
-          <button class="nav-btn" data-nav="map" title="Xem bản đồ hành trình">🗺️ Bản Đồ</button>
         </nav>
       </div>
     </header>
@@ -67,6 +67,15 @@
         <div class="pill">🍀 Cơ Duyên <span id="luck-val" class="font-bold">0</span></div>
         <div class="pill">✨ Hệ <span id="realm-val" class="gold-text font-bold">--</span></div>
         <div class="pill seal-badge" id="state-badge" data-state="NO_RUN">NO_RUN</div>
+      </div>
+      <!-- Core Attributes -->
+      <div class="stat-row-extra" id="core-attrs-row" style="margin-top:6px;">
+        <div class="pill attr-pill">💪 STR <span id="attr-str" class="font-bold" style="color:#e74c3c;">0</span></div>
+        <div class="pill attr-pill">🛡️ CON <span id="attr-con" class="font-bold" style="color:#e67e22;">0</span></div>
+        <div class="pill attr-pill">🌀 AGI <span id="attr-agi" class="font-bold" style="color:#2ecc71;">0</span></div>
+        <div class="pill attr-pill">🔮 INT <span id="attr-int" class="font-bold" style="color:#3498db;">0</span></div>
+        <div class="pill attr-pill">👁️ SPR <span id="attr-spr" class="font-bold" style="color:#9b59b6;">0</span></div>
+        <div class="pill attr-pill">🍀 LUK <span id="attr-luk" class="font-bold" style="color:#f1c40f;">0</span></div>
       </div>
     </div>
 
@@ -112,6 +121,7 @@
             <span class="enemy-hp-text" id="enemy-hp-text">100/100</span>
           </div>
           <div class="enemy-stats-text" id="enemy-stats">ATK:0 | DEF:0</div>
+          <div class="enemy-stats-text" id="enemy-stats-sub" style="font-size:.85em;opacity:.7;"></div>
         </div>
       </div>
       <div class="combat-log-box" id="combat-log"></div>

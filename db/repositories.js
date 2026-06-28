@@ -92,10 +92,32 @@ class InventoryRepo {
   }
 
   add(item) {
+    // stackable: gộp quantity vào dòng cùng item_id thay vì tạo row mới.
+    // Chỉ áp cho consumable; equipment cố ý mỗi cái 1 row (có thể có metadata riêng).
+    if (item.stackable) {
+      const row = this.db.prepare('SELECT * FROM inventory WHERE item_id = ? ORDER BY id LIMIT 1').get(item.item_id);
+      if (row) {
+        this.db.prepare('UPDATE inventory SET quantity = ? WHERE id = ?')
+          .run(row.quantity + (item.quantity ?? 1), row.id);
+        return;
+      }
+    }
     this.db.prepare(
       'INSERT INTO inventory (item_id, item_name, quantity, metadata) VALUES (?, ?, ?, ?)'
     ).run(item.item_id, item.item_name, item.quantity ?? 1, item.metadata ?? null);
   }
+
+  /** Giảm quantity ĐÚNG 1 dòng theo item_id; xóa dòng khi quantity <= 0. Không đụng dòng khác. */
+  decrement(itemId, n = 1) {
+    const row = this.db.prepare('SELECT * FROM inventory WHERE item_id = ? ORDER BY id LIMIT 1').get(itemId);
+    if (!row) return false;
+    const newQty = row.quantity - n;
+    if (newQty > 0) this.db.prepare('UPDATE inventory SET quantity = ? WHERE id = ?').run(newQty, row.id);
+    else this.db.prepare('DELETE FROM inventory WHERE id = ?').run(row.id);
+    return true;
+  }
+
+  removeOne(itemId) { return this.decrement(itemId, 1); }
 
   clear() {
     this.db.prepare('DELETE FROM inventory').run();

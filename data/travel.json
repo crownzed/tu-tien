@@ -22,7 +22,12 @@
       { "id": "c_cave_beast",  "text": "Bạn nghe tiếng gầm vọng ra từ hang động tối. Thứ gì đó rất lớn.", "enemyDifficulty": 1.8, "isBoss": true },
       { "id": "c_assassin",    "text": "Một bóng đen từ trên cây lao xuống! Sát thủ tu sĩ đã mai phục bạn từ bao giờ!", "enemyDifficulty": 1.3, "isRival": true },
       { "id": "c_toad_king",   "text": "Đầm lầy trước mặt sủi bọt dữ dội. Một con Cóc Tinh khổng lồ trồi lên, mắt đỏ rực!", "enemyDifficulty": 1.6, "isBoss": true },
-      { "id": "c_bandits",     "text": "Một toán thổ phỉ tu sĩ từ sau mỏm đá nhảy ra. 'Nộp hết đồ quý, tha mạng cho!'", "enemyDifficulty": 0.9, "isRival": true }
+      { "id": "c_bandits",     "text": "Một toán thổ phỉ tu sĩ từ sau mỏm đá nhảy ra. 'Nộp hết đồ quý, tha mạng cho!'", "enemyDifficulty": 0.9, "isRival": true },
+      { "id": "c_corpse_puppet","text": "Một xác tu sĩ bất ngờ đứng dậy, mắt phát ánh lục quỷ dị. Khôi lỗi luyện thi!", "enemyDifficulty": 1.1 },
+      { "id": "c_winged_serpent","text": "Tiếng cánh đập rền vang. Một con Dực Xà phun nọc độc lao thẳng xuống bạn!", "enemyDifficulty": 1.4 },
+      { "id": "c_fallen_immortal","text": "Một lão tu sĩ tẩu hỏa nhập ma chặn đường, cười điên dại: 'Cho ta mượn nguyên thần của ngươi!'", "enemyDifficulty": 1.7, "isBoss": true },
+      { "id": "c_stone_guardian","text": "Pho tượng đá khổng lồ trước cổ động bỗng mở mắt. Thủ Hộ Thạch Linh đã thức tỉnh!", "enemyDifficulty": 1.5, "isBoss": true },
+      { "id": "c_thief",       "text": "Một tên trộm tu sĩ vừa cuỗm túi đồ của bạn rồi bỏ chạy! Phải đuổi theo lấy lại.", "enemyDifficulty": 0.7, "isRival": true, "rewardBonus": true }
     ],
 
     "treasure": [
@@ -35,7 +40,12 @@
       { "id": "t_shrine",       "text": "Miếu thần cổ bỏ hoang. Trên bàn thờ còn nguyên một viên linh châu sáng lấp lánh.", "reward": {"item": "tinh_hoa_dan"}, "risk": "medium" },
       { "id": "t_ancient_vault","text": "Cánh cửa đá nặng nề từ từ mở ra. Bên trong là kho báu của một tiền bối tu sĩ.", "reward": {"spiritStones": [200, 600], "item": "ngoc_boi_thach"}, "risk": "high" },
       { "id": "t_buried_urn",   "text": "Lưỡi cuốc của bạn va phải thứ gì đó cứng dưới đất. Một chiếc vò cổ chứa đầy linh thạch!", "reward": {"spiritStones": [150, 400], "item": "phu_truyen_tong"} },
-      { "id": "t_jade_statue",  "text": "Pho tượng ngọc bích nhỏ nằm giữa đống đổ nát. Đôi mắt tượng là hai viên linh thạch thượng hạng.", "reward": {"spiritStones": [250, 500], "item": "han_ngoc"}, "risk": "low" }
+      { "id": "t_jade_statue",  "text": "Pho tượng ngọc bích nhỏ nằm giữa đống đổ nát. Đôi mắt tượng là hai viên linh thạch thượng hạng.", "reward": {"spiritStones": [250, 500], "item": "han_ngoc"}, "risk": "low" },
+      { "id": "t_dragon_nest",  "text": "Một hang động ấm áp lạ thường. Giữa hang là tổ của một con linh thú đã rời đi, bỏ lại nội đan lấp lánh.", "reward": {"spiritStones": [150, 450], "item": "tinh_hoa_dan"}, "risk": "medium" },
+      { "id": "t_sunken_ship",  "text": "Xác một phi thuyền cổ mắc kẹt trên sườn núi. Khoang chứa hàng vẫn còn niêm phong.", "reward": {"spiritStones": [200, 550], "item": "phu_kim_cang"}, "risk": "medium" },
+      { "id": "t_frozen_tomb",  "text": "Băng đảo trong suốt như pha lê, bên trong đóng băng thi thể một cường giả, tay nắm chặt bảo vật.", "reward": {"spiritStones": [300, 700], "item": "tho_nguyen_dan"}, "risk": "high" },
+      { "id": "t_lucky_pouch",  "text": "Một túi gấm nhỏ ai đó đánh rơi bên đường. Bên trong sột soạt tiếng linh thạch.", "reward": {"spiritStones": [40, 100]}, "risk": "none" },
+      { "id": "t_relic_altar",  "text": "Bệ thờ đá khắc cổ văn, đặt một di vật phát ra linh quang nhu hòa.", "reward": {"spiritStones": [180, 500], "item": "ky_bao_ha_pham"}, "risk": "high" }
     ],
 
     "npc": [
@@ -47,7 +57,12 @@
       { "id": "n_blacksmith",  "text": "Lão thợ rèn già đang nghỉ chân bên lò rèn dã chiến. 'Này tu sĩ trẻ, ta có món này cho ngươi!'", "action": "gift", "reward": {"item": "kiem_sat"}, "risk": "none" },
       { "id": "n_fisherman",   "text": "Ngư ông bên bờ sông cất vó. 'Này cậu kia, lại đây giúp lão kéo vó với. Cá ở đây nặng lắm!'", "action": "help", "reward": {"spiritStones": [30, 80], "tuVi": 20} },
       { "id": "n_disciple",    "text": "Đệ tử tông môn trẻ tuổi đang loay hoay luyện 1 chiêu thức khó. Cậu ta đỏ mặt khi thấy bạn nhìn.", "action": "teach", "reward": {"tuVi": 40}, "risk": "none" },
-      { "id": "n_poet",        "text": "Một thi nhân tu sĩ đang ngâm thơ bên tảng đá: 'Thiên địa du du, độc thương nhiên nhi lệ...' Thấy bạn, ông ta mời rượu.", "action": "drink", "reward": {"tuVi": 60, "linhKhiRestore": 10} }
+      { "id": "n_poet",        "text": "Một thi nhân tu sĩ đang ngâm thơ bên tảng đá: 'Thiên địa du du, độc thương nhiên nhi lệ...' Thấy bạn, ông ta mời rượu.", "action": "drink", "reward": {"tuVi": 60, "linhKhiRestore": 10} },
+      { "id": "n_wandering_alchemist", "text": "Một luyện đan sư lang thang đang phơi đan dược trên tảng đá. 'Tiểu hữu, nếm thử đan mới luyện của ta chứ?'", "action": "taste", "reward": {"item": "dai_hoan_dan", "tuVi": 20}, "risk": "low" },
+      { "id": "n_lost_child",  "text": "Một tiểu hài tử tu sĩ lạc đường đang khóc bên vệ đường. Dẫn nó về thôn gần nhất, cha mẹ nó hậu tạ.", "action": "help", "reward": {"spiritStones": [40, 110], "karma": true} },
+      { "id": "n_old_rival",   "text": "Một cố nhân từ quá khứ nhận ra bạn: 'Lâu rồi không gặp! Để ta tặng ngươi chút lộ phí.'", "action": "reunion", "reward": {"spiritStones": [60, 160], "luckBoost": 5} },
+      { "id": "n_sword_spirit","text": "Một kiếm linh trú trong thanh cổ kiếm cắm bên đường cất tiếng: 'Ngươi có tư cách nghe ta truyền kiếm ý không?'", "action": "listen", "reward": {"tuVi": 90, "attackBonus": 8}, "risk": "medium" },
+      { "id": "n_drunk_immortal","text": "Một lão tửu tiên say khướt nằm dưới gốc đào. 'Hề hề... uống cùng ta một chén, ta cho ngươi bí kíp!'", "action": "drink", "reward": {"tuVi": 70, "item": "luyen_khi_dan"} }
     ],
 
     "hazard": [
@@ -57,7 +72,12 @@
       { "id": "h_blizzard",    "text": "Bão tuyết bất ngờ ập đến. Gió rét cắt da cắt thịt.", "damage": {"hpPct": 0.2, "lkDrain": 30} },
       { "id": "h_formation",   "text": "Bạn vô tình dẫm phải tàn tích của một cổ trận sát phạt.", "damage": {"hpPct": 0.3}, "risk": "high" },
       { "id": "h_lightning",   "text": "Sấm sét đánh xuống liên tục! Một cơn giông linh lực kỳ lạ.", "damage": {"hpPct": 0.2, "lkDrain": 20} },
-      { "id": "h_beast_stampede","text": "Mặt đất rung chuyển! Một bầy yêu thú hoảng loạn đang lao về phía bạn!", "damage": {"hpPct": 0.22} }
+      { "id": "h_beast_stampede","text": "Mặt đất rung chuyển! Một bầy yêu thú hoảng loạn đang lao về phía bạn!", "damage": {"hpPct": 0.22} },
+      { "id": "h_acid_swamp",  "text": "Đầm lầy axit sủi bọt xanh lè. Khí độc bốc lên nồng nặc ăn mòn da thịt.", "damage": {"hpPct": 0.18, "lkDrain": 15} },
+      { "id": "h_demonic_qi",  "text": "Một luồng ma khí đen kịt cuộn lên từ khe đá, xâm nhập kinh mạch bạn.", "damage": {"hpPct": 0.25, "lkDrain": 40}, "risk": "high" },
+      { "id": "h_collapse",    "text": "Trần hang động sụp đổ! Đá tảng rơi xuống như mưa.", "damage": {"hpPct": 0.28}, "cost": {"tuoiTho": 0.3} },
+      { "id": "h_spirit_vortex","text": "Một xoáy linh khí hỗn loạn cuốn lấy bạn, rút cạn chân nguyên.", "damage": {"hpPct": 0.12, "lkDrain": 60} },
+      { "id": "h_cursed_idol", "text": "Bạn chạm vào một thần tượng cổ bị nguyền rủa. Một dòng năng lượng đen tối phản phệ!", "damage": {"hpPct": 0.35}, "risk": "high", "cost": {"tuoiTho": 0.5} }
     ],
 
     "rest": [
@@ -66,7 +86,12 @@
       { "id": "r_temple",      "text": "Ngôi miếu cổ bỏ hoang, tượng thần đã phủ rêu phong. Không gian yên tĩnh lạ thường.", "healPct": 0.4, "tuViBonus": 20 },
       { "id": "r_hermit_hut",  "text": "Túp lều tranh của ẩn sĩ. Dường như chủ nhân đã đi lâu.", "healPct": 0.3, "reward": {"item": "hoi_huyet_dan"} },
       { "id": "r_cloud_platform","text": "Một tảng đá phẳng nhô ra khỏi biển mây. Ngồi đây ngắm mây, tâm hồn lắng đọng.", "healPct": 0.5, "tuViBonus": 30 },
-      { "id": "r_sakura_grove","text": "Rừng hoa anh đào nở rộ bên dòng suối nhỏ. Cánh hoa rơi như tuyết, đẹp đến nao lòng.", "healPct": 0.35, "tuViBonus": 15 }
+      { "id": "r_sakura_grove","text": "Rừng hoa anh đào nở rộ bên dòng suối nhỏ. Cánh hoa rơi như tuyết, đẹp đến nao lòng.", "healPct": 0.35, "tuViBonus": 15 },
+      { "id": "r_waterfall_cave","text": "Một hang động sau thác nước, tiếng nước chảy che giấu hơi thở của bạn. An toàn tuyệt đối.", "healPct": 0.45, "safe": true, "tuViBonus": 10 },
+      { "id": "r_bamboo_hut", "text": "Túp lều trúc của một ẩn sĩ đã viên tịch. Bên trong vẫn còn ấm trà và một viên đan dược.", "healPct": 0.3, "reward": {"item": "hoi_linh_dan"} },
+      { "id": "r_moon_altar", "text": "Đài ngắm trăng bằng bạch ngọc trên đỉnh núi. Ánh trăng tẩm bổ thần hồn.", "healPct": 0.4, "tuViBonus": 40 },
+      { "id": "r_spirit_well", "text": "Một giếng linh tuyền cổ, nước trong vắt phản chiếu ánh sao. Uống một ngụm, kinh mạch thông suốt.", "healPct": 0.5, "reward": {"linhKhiRestore": 50} },
+      { "id": "r_warm_inn",   "text": "Một quán trọ nhỏ bên đường mòn tu tiên. Chủ quán hiếu khách dọn cho bạn một bữa linh thực.", "healPct": 0.38, "tuViBonus": 25 }
     ],
 
     "mysterious": [
@@ -76,7 +101,26 @@
       { "id": "m_shadow",       "text": "Cái bóng của bạn... tự chuyển động! Nó vẫy tay gọi bạn đi theo.", "choices": ["Đi theo bóng", "Bỏ chạy"], "rewards": [{"item": "ky_bao_ha_pham"}, {"tuVi": 20}], "risks": ["high", "none"] },
       { "id": "m_mirror",       "text": "Một tấm gương đồng cổ lơ lửng trên không. Hình ảnh trong gương... không phải là bạn.", "choices": ["Chạm vào gương", "Lùi lại"], "rewards": [{"item": "thien_pha_dan"}, {"tuVi": 50}], "risks": ["high", "none"] },
       { "id": "m_fog_island",   "text": "Hòn đảo nhỏ giữa hồ sương mù. Trên đảo có một miếu thờ cổ với ánh sáng lập lòe.", "choices": ["Chèo thuyền ra đảo", "Đứng trên bờ quan sát"], "rewards": [{"item": "ngoc_gian_co", "tuVi": 150}, {"tuVi": 30}], "risks": ["medium", "none"] },
-      { "id": "m_void_rift",    "text": "Khe nứt không gian mở ra trước mặt. Bên trong là hư vô lấp lánh những vì sao.", "choices": ["Thò tay vào khe nứt", "Lùi xa"], "rewards": [{"item": "tien_thien_linh_chau"}, {"spiritStones": 50}], "risks": ["high", "none"] }
+      { "id": "m_void_rift",    "text": "Khe nứt không gian mở ra trước mặt. Bên trong là hư vô lấp lánh những vì sao.", "choices": ["Thò tay vào khe nứt", "Lùi xa"], "rewards": [{"item": "tien_thien_linh_chau"}, {"spiritStones": 50}], "risks": ["high", "none"] },
+      { "id": "m_stone_chess",  "text": "Hai ông lão tiên phong đạo cốt đang đánh cờ trên tảng đá. 'Tiểu hữu, vào một ván chăng?'", "choices": ["Ngồi xuống đấu cờ", "Cung kính rời đi"], "rewards": [{"tuVi": 120, "luckBoost": 10}, {"tuVi": 20}], "risks": ["medium", "none"] },
+      { "id": "m_floating_isle","text": "Một hòn đảo nhỏ lơ lửng giữa trời, neo bằng những sợi xích linh quang. Trên đảo có cổ vật phát sáng.", "choices": ["Nhảy lên đảo", "Đứng nhìn"], "rewards": [{"item": "phap_bao_trung_cap", "spiritStones": 100}, {"tuVi": 30}], "risks": ["high", "none"] },
+      { "id": "m_echo_valley",  "text": "Thung lũng vọng âm kỳ lạ. Tiếng nói của bạn vọng lại thành những lời tiên tri khó hiểu.", "reward": {"tuVi": 70, "luckBoost": 8} },
+      { "id": "m_fallen_star",  "text": "Một ngôi sao băng vừa rơi xuống, để lại hố sâu còn nghi ngút khói. Giữa hố là một tinh thạch rực sáng.", "choices": ["Lấy tinh thạch", "Tránh xa nguồn nhiệt"], "rewards": [{"item": "tinh_hoa_dan", "spiritStones": [100, 300]}, {"spiritStones": 30}], "risks": ["high", "none"] },
+      { "id": "m_butterfly",    "text": "Một đàn bướm linh quang vây quanh bạn, dẫn lối tới một đóa kỳ hoa nở giữa băng tuyết.", "reward": {"item": "tu_vi_dan", "tuVi": 50} },
+      { "id": "m_celestial_trial", "text": "Một cánh cổng ngọc khắc đầy thiên văn hiện ra. Giọng nói cổ xưa vọng tới: 'Kẻ hữu duyên, dám bước vào Thí Luyện Tinh Không chăng?'", "choices": ["Bước qua cổng ngọc", "Khấu đầu rồi rời đi"], "risks": ["medium", "none"], "rewards": [
+        { "tuVi": 60, "next": {
+          "text": "Bên trong là một mê cung sao trời. Hai con đường tỏa ra: một rực sáng đầy sát khí, một u tối tĩnh lặng.", "choices": ["Đi đường ánh sáng (thử thách chiến đấu)", "Đi đường bóng tối (thử thách tâm cảnh)"], "risks": ["high", "medium"], "rewards": [
+            { "spiritStones": [200, 400], "item": "tinh_hoa_dan", "next": {
+              "text": "Vượt qua thí luyện sát phạt, bạn chạm tới Đài Tinh Quân. Một bảo vật cổ chờ người hữu duyên.", "choices": ["Nhận Tiên Thiên Linh Châu", "Nhường lại cho thiên địa (tích đức)"], "risks": ["none", "none"], "rewards": [ {"item": "tien_thien_linh_chau"}, {"tuVi": 200, "luckBoost": 30} ]
+            } },
+            { "tuVi": 150, "item": "ngoc_gian_co" }
+          ]
+        } },
+        { "tuVi": 30 }
+      ], "failBranches": [
+        { "text": "Cổng ngọc khép lại, đẩy bạn vào một khoảng không hỗn loạn! Phải tìm lối thoát.", "choices": ["Dùng thần thức dò đường", "Phá vỡ không gian bằng sức mạnh"], "risks": ["medium", "high"], "rewards": [ {"linhKhiBonus": 20}, {"spiritStones": [50, 150]} ] },
+        null
+      ] }
     ],
 
     "training": [
@@ -85,7 +129,12 @@
       { "id": "tr_spar_dummy",   "text": "Bạn tìm thấy một Khôi Lỗi luyện tập còn hoạt động. Cơ hội rèn luyện chiến đấu.", "reward": {"tuVi": 30, "attackBonus": 5} },
       { "id": "tr_meditation_chamber","text": "Một động phủ nhỏ được bố trí tụ linh trận. Hoàn hảo để đột phá tu vi.", "reward": {"tuVi": 100, "item": "tu_vi_dan"} },
       { "id": "tr_gravity_field","text": "Khu vực có trọng lực gấp 3 lần bình thường. Tập luyện ở đây sẽ giúp thân thể cường tráng!", "reward": {"tuVi": 50, "attackBonus": 10} },
-      { "id": "tr_sword_hall",   "text": "Kiếm đường cổ với hàng trăm thanh kiếm cắm trên sàn. Ở giữa là một thanh kiếm phát sáng.", "reward": {"tuVi": 120, "item": "phap_bao_so_cap"} }
+      { "id": "tr_sword_hall",   "text": "Kiếm đường cổ với hàng trăm thanh kiếm cắm trên sàn. Ở giữa là một thanh kiếm phát sáng.", "reward": {"tuVi": 120, "item": "phap_bao_so_cap"} },
+      { "id": "tr_dao_enlighten","text": "Bạn ngồi tĩnh tâm dưới một gốc bồ đề cổ. Đạo vận thiên địa bỗng trở nên rõ ràng lạ thường.", "reward": {"tuVi": 90, "linhKhiRestore": 30} },
+      { "id": "tr_beast_taming", "text": "Một linh thú non bị thương đang rên rỉ. Bạn chữa trị, nó cảm kích truyền cho bạn chút thú huyết tinh hoa.", "reward": {"tuVi": 55, "attackBonus": 8} },
+      { "id": "tr_inner_demon",  "text": "Một ảo cảnh tâm ma trỗi dậy thử thách đạo tâm. Vượt qua sẽ khiến thần thức kiên cố hơn.", "reward": {"tuVi": 80}, "risk": "low", "damage": {"hpPct": 0.08} },
+      { "id": "tr_thunder_pool", "text": "Một hồ lôi điện lập lòe. Ngâm mình trong đó tôi luyện nhục thân chịu lôi kiếp tốt hơn.", "reward": {"tuVi": 70, "attackBonus": 6}, "damage": {"hpPct": 0.1} },
+      { "id": "tr_star_altar",   "text": "Đài quan tinh cổ trên đỉnh núi. Hấp thu tinh túy của các vì sao giúp tu vi tăng vọt.", "reward": {"tuVi": 150, "linhKhiRestore": 40} }
     ],
 
     "alchemy": [
@@ -94,7 +143,12 @@
       { "id": "al_mushroom",     "text": "Một gốc cây cổ thụ phủ đầy nấm linh chi phát quang. Đây là nguyên liệu luyện đan thượng hạng!", "reward": {"item": "dai_tu_vi_dan"}, "risk": "medium" },
       { "id": "al_failed_pills", "text": "Bạn phát hiện xác một lò luyện đan nổ tung. Trên đất còn vương vãi vài viên đan dược chưa hỏng.", "reward": {"item": "tue_huyet_dan", "spiritStones": [5, 20]}, "damage": {"hpPct": 0.05} },
       { "id": "al_rare_herb",    "text": "Một gốc Nhân Sâm ngàn năm tỏa ánh sáng vàng. Vô giá!", "reward": {"item": "tho_nguyen_dan", "spiritStones": [80, 200]} },
-      { "id": "al_crystal_cave", "text": "Hang động với những tinh thể linh thạch thô mọc đầy vách. Có thể luyện thành đan dược!", "reward": {"spiritStones": [60, 180], "item": "hoi_linh_dan"} }
+      { "id": "al_crystal_cave", "text": "Hang động với những tinh thể linh thạch thô mọc đầy vách. Có thể luyện thành đan dược!", "reward": {"spiritStones": [60, 180], "item": "hoi_linh_dan"} },
+      { "id": "al_blood_lotus",  "text": "Một đóa Huyết Liên nở giữa hồ máu cổ. Cánh hoa đỏ thẫm tỏa dược lực bừng bừng.", "reward": {"item": "dai_hoan_dan", "spiritStones": [40, 100]}, "risk": "low" },
+      { "id": "al_pill_recipe",  "text": "Một quyển đan phương cổ ố vàng nằm trong hộp ngọc. Kèm theo là vài viên thành phẩm.", "reward": {"item": "tinh_hoa_dan", "tuVi": 30} },
+      { "id": "al_spirit_fruit", "text": "Cây tiên đào ngàn năm trĩu quả vàng óng. Một trái thôi cũng đủ tăng tu vi đáng kể.", "reward": {"item": "tho_nguyen_dan", "tuVi": 60} },
+      { "id": "al_toxic_swamp",  "text": "Đầm lầy độc chứa kỳ hoa dị thảo. Hái được dược liệu nhưng phải chịu độc khí xâm thực.", "reward": {"item": "dai_tu_vi_dan", "spiritStones": [30, 90]}, "damage": {"hpPct": 0.1}, "risk": "medium" },
+      { "id": "al_ice_ginseng", "text": "Một củ Hàn Băng Sâm mọc trong động băng vạn năm, tỏa khí lạnh thấu xương nhưng dược tính cực thuần.", "reward": {"item": "luyen_khi_dan", "spiritStones": [50, 130]} }
     ],
 
     "forge": [
@@ -103,7 +157,12 @@
       { "id": "fg_master",      "text": "Một lão nhân tóc bạc đang đập búa xuống đe. 'Lại đây, ta dạy ngươi chút nghề!'", "reward": {"item": "ao_vai_tho"}, "tuViBonus": 30 },
       { "id": "fg_broken_sword","text": "Bạn tìm thấy một thanh kiếm gãy cắm trên tảng đá. Linh khí còn sót lại rất mạnh.", "reward": {"item": "hac_am_chuy"}, "risk": "medium", "damage": {"hpPct": 0.1} },
       { "id": "fg_forge_ruins", "text": "Phế tích lò rèn của một đại sư. Trong đống đổ nát lấp lánh một món bảo giáp.", "reward": {"item": "hoang_giap"}, "risk": "medium", "damage": {"hpPct": 0.12} },
-      { "id": "fg_spirit_anvil","text": "Đe rèn bằng linh thạch nguyên khối! Xung quanh là những mảnh pháp bảo vỡ vụn.", "reward": {"item": "phap_bao_trung_cap", "spiritStones": [50, 120]}, "risk": "medium" }
+      { "id": "fg_spirit_anvil","text": "Đe rèn bằng linh thạch nguyên khối! Xung quanh là những mảnh pháp bảo vỡ vụn.", "reward": {"item": "phap_bao_trung_cap", "spiritStones": [50, 120]}, "risk": "medium" },
+      { "id": "fg_dragon_forge","text": "Lò rèn được tạc thành hình đầu rồng, miệng phun lửa thật. Trong lò có một thanh kiếm sắp thành hình.", "reward": {"item": "thanh_phong_kiem"}, "risk": "high", "damage": {"hpPct": 0.15} },
+      { "id": "fg_meteor_iron", "text": "Một khối Vẫn Thiết đen tuyền rơi từ trời, vẫn còn nóng. Nguyên liệu rèn binh khí tuyệt hảo.", "reward": {"spiritStones": [120, 280]}, "hasCraftBonus": true },
+      { "id": "fg_armor_rack",  "text": "Giá để giáp trong một quân doanh cổ bỏ hoang. Một bộ chiến giáp còn nguyên vẹn.", "reward": {"item": "bat_dai_giap"}, "risk": "medium" },
+      { "id": "fg_runesmith",   "text": "Một khắc văn sư đang chạm phù lên binh khí. 'Ngươi giúp ta nhóm lửa, ta tặng ngươi món này.'", "reward": {"item": "tran_phap_co_ban"}, "tuViBonus": 25 },
+      { "id": "fg_cursed_blade","text": "Một thanh ma đao rỉ máu cắm giữa vũng đá nứt. Sát khí nồng đậm nhưng uy lực kinh người.", "reward": {"item": "hac_am_chuy", "spiritStones": [40, 100]}, "risk": "high", "damage": {"hpPct": 0.18} }
     ],
 
     "merchant": [
@@ -112,7 +171,12 @@
       { "id": "mc_mystic",      "text": "Thương nhân bí ẩn: 'Ta bán... những thứ không nên tồn tại.'", "shop": [{"item": "pha_gioi_dan", "cost": 300}, {"item": "phu_ho_menh", "cost": 150}] },
       { "id": "mc_rare",        "text": "Thương nhân thần bí từ phương xa: 'Hàng hiếm đây! Chỉ có hôm nay thôi!'", "shop": [{"item": "thanh_phong_kiem", "cost": 450}, {"item": "dai_hoan_dan", "cost": 120}, {"item": "phu_chu_giem", "cost": 250}] },
       { "id": "mc_armor",       "text": "Thợ rèn lão luyện bán giáp: 'Bảo vệ bản thân mới là quan trọng nhất!'", "shop": [{"item": "ao_vai_tho", "cost": 50}, {"item": "tran_phap_co_ban", "cost": 350}, {"item": "hoang_giap", "cost": 500}] },
-      { "id": "mc_scrolls",     "text": "Người bán phù chú ngồi dưới gốc cây: 'Phù chú tốt đây! Giá hữu nghị cho tu sĩ trẻ!'", "shop": [{"item": "phu_truyen_tong", "cost": 100}, {"item": "phu_ho_menh", "cost": 130}, {"item": "phu_kim_cang", "cost": 160}] }
+      { "id": "mc_scrolls",     "text": "Người bán phù chú ngồi dưới gốc cây: 'Phù chú tốt đây! Giá hữu nghị cho tu sĩ trẻ!'", "shop": [{"item": "phu_truyen_tong", "cost": 100}, {"item": "phu_ho_menh", "cost": 130}, {"item": "phu_kim_cang", "cost": 160}] },
+      { "id": "mc_caravan",     "text": "Một đoàn thương đội dừng chân nghỉ. Họ bày bán đủ loại đan dược trị thương và bồi nguyên.", "shop": [{"item": "dai_hoan_dan", "cost": 120}, {"item": "tue_huyet_dan", "cost": 40}, {"item": "hoi_linh_dan", "cost": 30}] },
+      { "id": "mc_old_woman",   "text": "Một bà lão bán hàng rong dưới mái hiên đổ nát: 'Mua giúp lão chút đan dược nhé, con...'", "shop": [{"item": "hoi_huyet_dan", "cost": 25}, {"item": "tu_vi_dan", "cost": 45}, {"item": "luyen_khi_dan", "cost": 90}] },
+      { "id": "mc_alchemist",   "text": "Một luyện đan sư du hành mở quầy: 'Đan dược trùng cảnh giới đây! Tăng tu vi, kéo dài thọ nguyên!'", "shop": [{"item": "tinh_hoa_dan", "cost": 280}, {"item": "tho_nguyen_dan", "cost": 320}, {"item": "dai_tu_vi_dan", "cost": 260}] },
+      { "id": "mc_treasure_hunter","text": "Một thợ săn bảo vật khoe chiến lợi phẩm: 'Toàn đồ móc từ bí cảnh ra cả, không mua phí lắm!'", "shop": [{"item": "ngoc_boi_thach", "cost": 220}, {"item": "han_ngoc", "cost": 380}, {"item": "ky_bao_ha_pham", "cost": 300}] },
+      { "id": "mc_war_vendor",  "text": "Một cựu chiến tu bày bán binh khí trận vong: 'Đồ của huynh đệ ta để lại. Cầm lấy mà dùng cho đáng.'", "shop": [{"item": "tien_thien_kiem", "cost": 600}, {"item": "phap_bao_trung_cap", "cost": 350}, {"item": "phu_chu_giem", "cost": 250}] }
     ]
   }
 }

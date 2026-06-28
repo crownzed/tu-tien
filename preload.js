@@ -19,12 +19,6 @@ contextBridge.exposeInMainWorld('game', {
   playerCast:        () => ipcRenderer.invoke('game:playerCast'),
   playerFlee:        () => ipcRenderer.invoke('game:playerFlee'),
   playerForbiddenArt:() => ipcRenderer.invoke('game:playerForbiddenArt'),
-  // map / event chain
-  getMapView:        () => ipcRenderer.invoke('game:getMapView'),
-  selectNode:        (nodeIndex) => ipcRenderer.invoke('game:selectNode', nodeIndex),
-  enterNode:         () => ipcRenderer.invoke('game:enterNode'),
-  resolveChoice:     (choiceIndex) => ipcRenderer.invoke('game:resolveChoice', choiceIndex),
-  completeCombatNode:() => ipcRenderer.invoke('game:completeCombatNode'),
   // breakthrough
   canBreakthrough:    () => ipcRenderer.invoke('game:canBreakthrough'),
   attemptBreakthrough:() => ipcRenderer.invoke('game:attemptBreakthrough'),
@@ -41,6 +35,13 @@ contextBridge.exposeInMainWorld('game', {
   joinSect:           (sectId) => ipcRenderer.invoke('game:joinSect', sectId),
   leaveSect:          () => ipcRenderer.invoke('game:leaveSect'),
   contribute:         (amount) => ipcRenderer.invoke('game:contribute', amount),
+  // công pháp
+  listCongPhap:       () => ipcRenderer.invoke('game:listCongPhap'),
+  getCongPhapState:   () => ipcRenderer.invoke('game:getCongPhapState'),
+  learnCongPhap:      (id) => ipcRenderer.invoke('game:learnCongPhap', id),
+  activateCongPhap:   (id) => ipcRenderer.invoke('game:activateCongPhap', id),
+  evolveCongPhap:     (id) => ipcRenderer.invoke('game:evolveCongPhap', id),
+  castCongPhapSkill:  (skillId) => ipcRenderer.invoke('game:castCongPhapSkill', skillId),
   // shop / metaprogression
   getShopItems:       () => ipcRenderer.invoke('game:getShopItems'),
   buyShopItem:        (itemId) => ipcRenderer.invoke('game:buyShopItem', itemId),
@@ -59,5 +60,10 @@ contextBridge.exposeInMainWorld('game', {
   // travel
   travelStep:         () => ipcRenderer.invoke('game:travelStep'),
   travelBuy:          (itemId, cost) => ipcRenderer.invoke('game:travelBuy', itemId, cost),
-  resolveTravelChoice:(choiceIndex) => ipcRenderer.invoke('game:resolveTravelChoice', choiceIndex)
+  resolveTravelChoice:(choiceIndex) => ipcRenderer.invoke('game:resolveTravelChoice', choiceIndex),
+  // inventory
+  dropItem:           (itemId, qty) => ipcRenderer.invoke('game:dropItem', itemId, qty),
+  // attributes
+  spendStatPoint:     (attr) => ipcRenderer.invoke('game:spendStatPoint', attr),
+  getAttributesView:  () => ipcRenderer.invoke('game:getAttributesView')
 });

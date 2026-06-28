@@ -62,7 +62,6 @@ ipcMain.handle('game:getData', () => {
     events: data.events,
     realms: data.realms,
     itemDefs: data.itemDefs,
-    map: data.map,
     shop: data.shop,
     recipeCategories: data.recipeCategories
   };
@@ -96,12 +95,6 @@ ipcMain.handle('game:playerCast', () => svc.playerCast());
 ipcMain.handle('game:playerFlee', () => svc.playerFlee());
 ipcMain.handle('game:playerForbiddenArt', () => svc.playerForbiddenArt());
 
-// ---------- IPC: map / event chain ----------
-ipcMain.handle('game:getMapView', () => svc.getMapView());
-ipcMain.handle('game:selectNode', (e, nodeIndex) => svc.selectNode(nodeIndex));
-ipcMain.handle('game:enterNode', () => svc.enterNode());
-ipcMain.handle('game:resolveChoice', (e, choiceIndex) => svc.resolveChoice(choiceIndex));
-ipcMain.handle('game:completeCombatNode', () => svc.completeCombatNode());
 
 // ---------- IPC: breakthrough / tribulation / stage-up ----------
 ipcMain.handle('game:canBreakthrough', () => svc.canBreakthrough());
@@ -109,6 +102,16 @@ ipcMain.handle('game:attemptBreakthrough', () => svc.attemptBreakthrough());
 ipcMain.handle('game:endureTribulation', () => svc.endureTribulation());
 ipcMain.handle('game:canStageUp', () => svc.canStageUp());
 ipcMain.handle('game:attemptStageUp', () => svc.attemptStageUp());
+ipcMain.handle('game:spendStatPoint', (e, attr) => svc.spendStatPoint(attr));
+ipcMain.handle('game:getAttributesView', () => svc.getAttributesView());
+
+// ---------- IPC: công pháp ----------
+ipcMain.handle('game:listCongPhap', () => svc.listCongPhap());
+ipcMain.handle('game:getCongPhapState', () => svc.getCongPhapState());
+ipcMain.handle('game:learnCongPhap', (e, id) => svc.learnCongPhap(id));
+ipcMain.handle('game:activateCongPhap', (e, id) => svc.activateCongPhap(id));
+ipcMain.handle('game:evolveCongPhap', (e, id) => svc.evolveCongPhap(id));
+ipcMain.handle('game:castCongPhapSkill', (e, skillId) => svc.castCongPhapSkill(skillId));
 
 // ---------- IPC: crafting ----------
 ipcMain.handle('game:getCraftingRecipes', (e, category) => svc.getCraftingRecipes(category));
@@ -147,6 +150,7 @@ ipcMain.handle('game:resolveTravelChoice', (e, choiceIndex) => svc.resolveTravel
 
 // ---------- IPC: inventory ----------
 ipcMain.handle('game:addItem', (e, item) => { repos.inventory.add(item); return { ok: true }; });
+ipcMain.handle('game:dropItem', (e, itemId, qty) => svc.dropItem(itemId, qty));
 
 // ---------- lifecycle ----------
 app.whenReady().then(() => {

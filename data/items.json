@@ -1,53 +1,3259 @@
 {
   "items": {
     "─── ĐAN DƯỢC (Consumable) ───": "_",
-
-    "hoi_huyet_dan":       { "name": "Hồi Huyết Đan",       "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 35% Khí Huyết tức thì",                           "effect": { "healPct": 0.35 } },
-    "tue_huyet_dan":       { "name": "Tục Huyết Đan",       "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 15% Khí Huyết mỗi 10s trong 30s",                 "effect": { "healOverTime": { "pct": 0.15, "ticks": 3 } } },
-    "dai_hoan_dan":        { "name": "Đại Hoàn Đan",        "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Hồi đầy Khí Huyết và Chân Nguyên",                   "effect": { "fullHeal": true } },
-    "hoi_linh_dan":        { "name": "Hồi Linh Đan",        "type": "consumable", "icon": "💊", "rarity": "common",    "desc": "Hồi 40% Chân Nguyên tức thì",                         "effect": { "lkHealPct": 0.4 } },
-
-    "luyen_khi_dan":       { "name": "Luyện Khí Đan",       "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Tăng vĩnh viễn 10 Chân Nguyên max",                    "effect": { "linhKhiMaxUp": 10 } },
-    "tinh_hoa_dan":        { "name": "Tinh Hoa Đan",        "type": "consumable", "icon": "💊", "rarity": "epic",      "desc": "Tăng vĩnh viễn 25 Chân Nguyên max + 10 HP max",       "effect": { "linhKhiMaxUp": 25, "hpMaxUp": 10 } },
-    "tho_nguyen_dan":      { "name": "Thọ Nguyên Đan",      "type": "consumable", "icon": "💊", "rarity": "epic",      "desc": "Kéo dài tuổi thọ thêm 20 năm",                        "effect": { "tuoiThoUp": 20 } },
-
-    "tu_vi_dan":           { "name": "Tụ Vi Đan",           "type": "consumable", "icon": "💊", "rarity": "rare",      "desc": "Tăng 50 Tu Vi tức thì",                               "effect": { "tuViUp": 50 } },
-    "dai_tu_vi_dan":       { "name": "Đại Tụ Vi Đan",       "type": "consumable", "icon": "💊", "rarity": "legendary", "desc": "Tăng 200 Tu Vi tức thì",                              "effect": { "tuViUp": 200 } },
-    "ngoc_gian_co":        { "name": "Ngọc Giản Cổ",        "type": "consumable", "icon": "📿", "rarity": "mythic",    "desc": "Chứa bí thuật cổ: tăng 300 Tu Vi + 5 Luck vĩnh viễn", "effect": { "tuViUp": 300, "luckUp": 5 } },
-
+    "hoi_huyet_dan": {
+      "name": "Hồi Huyết Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "common",
+      "desc": "Hồi 35% Khí Huyết tức thì",
+      "effect": {
+        "healPct": 0.35
+      }
+    },
+    "tue_huyet_dan": {
+      "name": "Tục Huyết Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "common",
+      "desc": "Hồi 15% Khí Huyết mỗi 10s trong 30s",
+      "effect": {
+        "healOverTime": {
+          "pct": 0.15,
+          "ticks": 3
+        }
+      }
+    },
+    "dai_hoan_dan": {
+      "name": "Đại Hoàn Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "rare",
+      "desc": "Hồi đầy Khí Huyết và Chân Nguyên",
+      "effect": {
+        "fullHeal": true
+      }
+    },
+    "hoi_linh_dan": {
+      "name": "Hồi Linh Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "common",
+      "desc": "Hồi 40% Chân Nguyên tức thì",
+      "effect": {
+        "lkHealPct": 0.4
+      }
+    },
+    "luyen_khi_dan": {
+      "name": "Luyện Khí Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "rare",
+      "desc": "Tăng vĩnh viễn 10 Chân Nguyên max",
+      "effect": {
+        "linhKhiMaxUp": 10
+      }
+    },
+    "tinh_hoa_dan": {
+      "name": "Tinh Hoa Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "epic",
+      "desc": "Tăng vĩnh viễn 25 Chân Nguyên max + 10 HP max",
+      "effect": {
+        "linhKhiMaxUp": 25,
+        "hpMaxUp": 10
+      }
+    },
+    "tho_nguyen_dan": {
+      "name": "Thọ Nguyên Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "epic",
+      "desc": "Kéo dài tuổi thọ thêm 20 năm",
+      "effect": {
+        "tuoiThoUp": 20
+      }
+    },
+    "tu_vi_dan": {
+      "name": "Tụ Vi Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "rare",
+      "desc": "Tăng 50 Tu Vi tức thì",
+      "effect": {
+        "tuViUp": 50
+      }
+    },
+    "dai_tu_vi_dan": {
+      "name": "Đại Tụ Vi Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "legendary",
+      "desc": "Tăng 200 Tu Vi tức thì",
+      "effect": {
+        "tuViUp": 200
+      }
+    },
+    "ngoc_gian_co": {
+      "name": "Ngọc Giản Cổ",
+      "type": "consumable",
+      "icon": "📿",
+      "rarity": "mythic",
+      "desc": "Chứa bí thuật cổ: tăng 300 Tu Vi + 5 Luck vĩnh viễn",
+      "effect": {
+        "tuViUp": 300,
+        "luckUp": 5
+      }
+    },
     "─── PHÙ CHÚ (Consumable) ───": "_",
-
-    "phu_ho_menh":         { "name": "Phù Hộ Mệnh",         "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",              "effect": { "deathSave": true } },
-    "phu_kim_cang":        { "name": "Phù Kim Cang",        "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Giảm 30% sát thương nhận trong 5 lượt combat tiếp theo", "effect": { "damageResistPct": 0.3 } },
-    "phu_truyen_tong":     { "name": "Phù Truyền Tống",     "type": "consumable", "icon": "📜", "rarity": "rare",      "desc": "Thoát khỏi combat ngay lập tức, giữ toàn bộ chiến lợi phẩm", "effect": { "fleeGuaranteed": true } },
-    "phu_chu_giem":        { "name": "Phù Chú Kiếm",        "type": "consumable", "icon": "📜", "rarity": "epic",      "desc": "Đòn đánh kế gây 200% sát thương",                       "effect": { "nextAttackDouble": true } },
-
+    "phu_ho_menh": {
+      "name": "Phù Hộ Mệnh",
+      "type": "consumable",
+      "icon": "📜",
+      "rarity": "rare",
+      "desc": "Chặn 1 đòn chí mạng, tự hủy sau khi dùng",
+      "effect": {
+        "deathSave": true
+      }
+    },
+    "phu_kim_cang": {
+      "name": "Phù Kim Cang",
+      "type": "consumable",
+      "icon": "📜",
+      "rarity": "rare",
+      "desc": "Giảm 30% sát thương nhận trong 5 lượt combat tiếp theo",
+      "effect": {
+        "damageResistPct": 0.3
+      }
+    },
+    "phu_truyen_tong": {
+      "name": "Phù Truyền Tống",
+      "type": "consumable",
+      "icon": "📜",
+      "rarity": "rare",
+      "desc": "Thoát khỏi combat ngay lập tức, giữ toàn bộ chiến lợi phẩm",
+      "effect": {
+        "fleeGuaranteed": true
+      }
+    },
+    "phu_chu_giem": {
+      "name": "Phù Chú Kiếm",
+      "type": "consumable",
+      "icon": "📜",
+      "rarity": "epic",
+      "desc": "Đòn đánh kế gây 200% sát thương",
+      "effect": {
+        "nextAttackDouble": true
+      }
+    },
     "─── ĐAN DƯỢC ĐẶC BIỆT ───": "_",
-
-    "pha_gioi_dan":        { "name": "Phá Giới Đan",        "type": "consumable", "icon": "💊", "rarity": "legendary", "desc": "Tăng 20% tỉ lệ đột phá cảnh giới (1 lần)",               "effect": { "breakthroughBonus": 0.2 } },
-    "thien_pha_dan":       { "name": "Thiên Phá Đan",       "type": "consumable", "icon": "💊", "rarity": "mythic",    "desc": "Tăng 40% tỉ lệ đột phá + giảm 30% sát thương thiên kiếp", "effect": { "breakthroughBonus": 0.4, "tribulationReduction": 0.3 } },
-
+    "pha_gioi_dan": {
+      "name": "Phá Giới Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "legendary",
+      "desc": "Tăng 20% tỉ lệ đột phá cảnh giới (1 lần)",
+      "effect": {
+        "breakthroughBonus": 0.2
+      }
+    },
+    "thien_pha_dan": {
+      "name": "Thiên Phá Đan",
+      "type": "consumable",
+      "icon": "💊",
+      "rarity": "mythic",
+      "desc": "Tăng 40% tỉ lệ đột phá + giảm 30% sát thương thiên kiếp",
+      "effect": {
+        "breakthroughBonus": 0.4,
+        "tribulationReduction": 0.3
+      }
+    },
     "─── VŨ KHÍ (Equipment - Weapon) ───": "_",
-
-    "kiem_sat":            { "name": "Kiếm Sắt",            "type": "equipment",  "icon": "🗡️", "rarity": "common",    "desc": "ATK +8",                                                                       "slot": "weapon", "stats": { "attackBonus": 8 } },
-    "phap_bao_so_cap":     { "name": "Pháp Bảo Sơ Cấp",     "type": "equipment",  "icon": "⚒️", "rarity": "rare",      "desc": "ATK +20, đột phá +5%",                                                          "slot": "weapon", "stats": { "attackBonus": 20, "breakthroughBonus": 0.05 } },
-    "thanh_phong_kiem":    { "name": "Thanh Phong Kiếm",    "type": "equipment",  "icon": "⚔️", "rarity": "epic",      "desc": "ATK +35, Luck +5 trong combat",                                                "slot": "weapon", "stats": { "attackBonus": 35, "luckBonus": 5 } },
-    "phap_bao_trung_cap":  { "name": "Pháp Bảo Trung Cấp",  "type": "equipment",  "icon": "⚒️", "rarity": "legendary", "desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",                                   "slot": "weapon", "stats": { "attackBonus": 50, "breakthroughBonus": 0.1, "tribulationReduction": 0.2 } },
-    "hac_am_chuy":         { "name": "Hắc Ám Chùy",         "type": "equipment",  "icon": "🔨", "rarity": "legendary", "desc": "ATK +60, 15% cơ hội gây gấp đôi sát thương",                                  "slot": "weapon", "stats": { "attackBonus": 60, "critChance": 0.15 } },
-    "tien_thien_kiem":     { "name": "Tiên Thiên Kiếm",     "type": "equipment",  "icon": "⚔️", "rarity": "mythic",    "desc": "ATK +80, đột phá +15%, giảm 30% thiên kiếp, Luck +10",                        "slot": "weapon", "stats": { "attackBonus": 80, "breakthroughBonus": 0.15, "tribulationReduction": 0.3, "luckBonus": 10 } },
-
+    "kiem_sat": {
+      "name": "Kiếm Sắt",
+      "type": "equipment",
+      "icon": "🗡️",
+      "rarity": "common",
+      "desc": "ATK +8",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 8
+      }
+    },
+    "phap_bao_so_cap": {
+      "name": "Pháp Bảo Sơ Cấp",
+      "type": "equipment",
+      "icon": "⚒️",
+      "rarity": "rare",
+      "desc": "ATK +20, đột phá +5%",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 20,
+        "breakthroughBonus": 0.05
+      }
+    },
+    "thanh_phong_kiem": {
+      "name": "Thanh Phong Kiếm",
+      "type": "equipment",
+      "icon": "⚔️",
+      "rarity": "epic",
+      "desc": "ATK +35, Luck +5 trong combat",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 35,
+        "luckBonus": 5
+      }
+    },
+    "phap_bao_trung_cap": {
+      "name": "Pháp Bảo Trung Cấp",
+      "type": "equipment",
+      "icon": "⚒️",
+      "rarity": "legendary",
+      "desc": "ATK +50, đột phá +10%, giảm 20% thiên kiếp",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 50,
+        "breakthroughBonus": 0.1,
+        "tribulationReduction": 0.2
+      }
+    },
+    "hac_am_chuy": {
+      "name": "Hắc Ám Chùy",
+      "type": "equipment",
+      "icon": "🔨",
+      "rarity": "legendary",
+      "desc": "ATK +60, 15% cơ hội gây gấp đôi sát thương",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 60,
+        "critChance": 0.15
+      }
+    },
+    "tien_thien_kiem": {
+      "name": "Tiên Thiên Kiếm",
+      "type": "equipment",
+      "icon": "⚔️",
+      "rarity": "mythic",
+      "desc": "ATK +80, đột phá +15%, giảm 30% thiên kiếp, Luck +10",
+      "slot": "weapon",
+      "stats": {
+        "attackBonus": 80,
+        "breakthroughBonus": 0.15,
+        "tribulationReduction": 0.3,
+        "luckBonus": 10
+      }
+    },
     "─── HỘ GIÁP (Equipment - Armor) ───": "_",
-
-    "ao_vai_tho":          { "name": "Áo Vải Thô",          "type": "equipment",  "icon": "👘", "rarity": "common",    "desc": "Giảm 5% sát thương",                                                           "slot": "armor",  "stats": { "damageReduction": 0.05 } },
-    "tran_phap_co_ban":    { "name": "Trận Pháp Cơ Bản",    "type": "equipment",  "icon": "🔮", "rarity": "rare",      "desc": "Giảm 15% sát thương",                                                          "slot": "armor",  "stats": { "damageReduction": 0.15 } },
-    "hoang_giap":          { "name": "Huyền Hoàng Giáp",    "type": "equipment",  "icon": "🛡️", "rarity": "epic",      "desc": "Giảm 22% sát thương + HP max +20",                                             "slot": "armor",  "stats": { "damageReduction": 0.22, "hpBonus": 20 } },
-    "bat_dai_giap":        { "name": "Bất Diệt Giáp",       "type": "equipment",  "icon": "🛡️", "rarity": "legendary", "desc": "Giảm 30% sát thương + chặn 1 đòn chí mạng mỗi combat",                         "slot": "armor",  "stats": { "damageReduction": 0.30, "deathSavePerCombat": true } },
-
+    "ao_vai_tho": {
+      "name": "Áo Vải Thô",
+      "type": "equipment",
+      "icon": "👘",
+      "rarity": "common",
+      "desc": "Giảm 5% sát thương",
+      "slot": "armor",
+      "stats": {
+        "damageReduction": 0.05
+      }
+    },
+    "tran_phap_co_ban": {
+      "name": "Trận Pháp Cơ Bản",
+      "type": "equipment",
+      "icon": "🔮",
+      "rarity": "rare",
+      "desc": "Giảm 15% sát thương",
+      "slot": "armor",
+      "stats": {
+        "damageReduction": 0.15
+      }
+    },
+    "hoang_giap": {
+      "name": "Huyền Hoàng Giáp",
+      "type": "equipment",
+      "icon": "🛡️",
+      "rarity": "epic",
+      "desc": "Giảm 22% sát thương + HP max +20",
+      "slot": "armor",
+      "stats": {
+        "damageReduction": 0.22,
+        "hpBonus": 20
+      }
+    },
+    "bat_dai_giap": {
+      "name": "Bất Diệt Giáp",
+      "type": "equipment",
+      "icon": "🛡️",
+      "rarity": "legendary",
+      "desc": "Giảm 30% sát thương + chặn 1 đòn chí mạng mỗi combat",
+      "slot": "armor",
+      "stats": {
+        "damageReduction": 0.3,
+        "deathSavePerCombat": true
+      }
+    },
     "─── PHÁP KHÍ (Equipment - Accessory) ───": "_",
-
-    "ngoc_boi_thach":      { "name": "Ngọc Bội Thạch",      "type": "equipment",  "icon": "💠", "rarity": "common",    "desc": "Chân Nguyên max +15",                                                         "slot": "accessory", "stats": { "linhKhiBonus": 15 } },
-    "han_ngoc":            { "name": "Hàn Ngọc Bội",        "type": "equipment",  "icon": "💠", "rarity": "rare",      "desc": "Giảm 10% thiên kiếp + Chân Nguyên max +25",                                    "slot": "accessory", "stats": { "tribulationReduction": 0.1, "linhKhiBonus": 25 } },
-    "ky_bao_ha_pham":      { "name": "Kỳ Bảo Hạ Phẩm",      "type": "equipment",  "icon": "⚜️", "rarity": "epic",      "desc": "ATK +15, giảm 15% sát thương thiên kiếp, Luck +5",                              "slot": "accessory", "stats": { "attackBonus": 15, "tribulationReduction": 0.15, "luckBonus": 5 } },
-    "tien_thien_linh_chau":{ "name": "Tiên Thiên Linh Châu", "type": "equipment", "icon": "💎", "rarity": "mythic",    "desc": "ATK +25, giảm 25% thiên kiếp, đột phá +10%, Luck +10",                          "slot": "accessory", "stats": { "attackBonus": 25, "tribulationReduction": 0.25, "breakthroughBonus": 0.1, "luckBonus": 10 } }
+    "ngoc_boi_thach": {
+      "name": "Ngọc Bội Thạch",
+      "type": "equipment",
+      "icon": "💠",
+      "rarity": "common",
+      "desc": "Chân Nguyên max +15",
+      "slot": "accessory",
+      "stats": {
+        "linhKhiBonus": 15
+      }
+    },
+    "han_ngoc": {
+      "name": "Hàn Ngọc Bội",
+      "type": "equipment",
+      "icon": "💠",
+      "rarity": "rare",
+      "desc": "Giảm 10% thiên kiếp + Chân Nguyên max +25",
+      "slot": "accessory",
+      "stats": {
+        "tribulationReduction": 0.1,
+        "linhKhiBonus": 25
+      }
+    },
+    "ky_bao_ha_pham": {
+      "name": "Kỳ Bảo Hạ Phẩm",
+      "type": "equipment",
+      "icon": "⚜️",
+      "rarity": "epic",
+      "desc": "ATK +15, giảm 15% sát thương thiên kiếp, Luck +5",
+      "slot": "accessory",
+      "stats": {
+        "attackBonus": 15,
+        "tribulationReduction": 0.15,
+        "luckBonus": 5
+      }
+    },
+    "tien_thien_linh_chau": {
+      "name": "Tiên Thiên Linh Châu",
+      "type": "equipment",
+      "icon": "💎",
+      "rarity": "mythic",
+      "desc": "ATK +25, giảm 25% thiên kiếp, đột phá +10%, Luck +10",
+      "slot": "accessory",
+      "stats": {
+        "attackBonus": 25,
+        "tribulationReduction": 0.25,
+        "breakthroughBonus": 0.1,
+        "luckBonus": 10
+      }
+    },
+    "─── CÔNG PHÁP (Manuals) ───": "_",
+    "cong_phap_common_1": {
+      "name": "Tinh Thần Huyết Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +24.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 24
+      }
+    },
+    "cong_phap_common_2": {
+      "name": "Vạn Kiếm Âm Dương Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +18.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 18
+      }
+    },
+    "cong_phap_common_3": {
+      "name": "Cửu Chuyển Độc Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_4": {
+      "name": "Thiên Ma Hậu Thổ Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +6.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 6
+      }
+    },
+    "cong_phap_common_5": {
+      "name": "Thái Hư Hỏa Diễm Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_6": {
+      "name": "Tạo Hóa Hỏa Diễm Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_7": {
+      "name": "Bát Hoang Thời Không Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_common_8": {
+      "name": "Phá Diệt Âm Dương Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_9": {
+      "name": "Ngũ Hành Độc Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +39.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 39
+      }
+    },
+    "cong_phap_common_10": {
+      "name": "Cửu Chuyển Lôi Điện Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +28.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 28
+      }
+    },
+    "cong_phap_common_11": {
+      "name": "Hỗn Độn Liệt Phong Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_12": {
+      "name": "Phong Lôi Hậu Thổ Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +11.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 11
+      }
+    },
+    "cong_phap_common_13": {
+      "name": "Ngũ Hành Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_14": {
+      "name": "Tạo Hóa Hàn Băng Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +8.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 8
+      }
+    },
+    "cong_phap_common_15": {
+      "name": "Đại Đạo Thời Không Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +13.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 13
+      }
+    },
+    "cong_phap_common_16": {
+      "name": "Hỗn Độn Hậu Thổ Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_17": {
+      "name": "Đại Đạo Thời Không Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +22.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 22
+      }
+    },
+    "cong_phap_common_18": {
+      "name": "Huyết Sắc Huyết Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +19.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 19
+      }
+    },
+    "cong_phap_common_19": {
+      "name": "Phá Diệt Hàn Băng Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +14.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 14
+      }
+    },
+    "cong_phap_common_20": {
+      "name": "Thái Cổ Hàn Băng Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +47.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 47
+      }
+    },
+    "cong_phap_common_21": {
+      "name": "Tinh Thần Huyết Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_22": {
+      "name": "Đại Đạo Âm Dương Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +5.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 5
+      }
+    },
+    "cong_phap_common_23": {
+      "name": "Vạn Kiếm Thời Không Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +6.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 6
+      }
+    },
+    "cong_phap_common_24": {
+      "name": "Hỗn Độn Hàn Băng Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_25": {
+      "name": "Vạn Kiếm Lôi Điện Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +42.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 42
+      }
+    },
+    "cong_phap_common_26": {
+      "name": "Phong Lôi Canh Kim Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +8.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 8
+      }
+    },
+    "cong_phap_common_27": {
+      "name": "Ngũ Hành Âm Dương Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +12.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 12
+      }
+    },
+    "cong_phap_common_28": {
+      "name": "Càn Khôn Hàn Băng Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +27.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 27
+      }
+    },
+    "cong_phap_common_29": {
+      "name": "Huyền Minh Huyết Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_common_30": {
+      "name": "Phong Lôi Âm Dương Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +13.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 13
+      }
+    },
+    "cong_phap_common_31": {
+      "name": "Hỗn Độn Hậu Thổ Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +14.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 14
+      }
+    },
+    "cong_phap_common_32": {
+      "name": "Thái Cổ Ất Mộc Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +26.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 26
+      }
+    },
+    "cong_phap_common_33": {
+      "name": "Tạo Hóa Hàn Băng Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +27.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 27
+      }
+    },
+    "cong_phap_common_34": {
+      "name": "Tinh Thần Hậu Thổ Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +14.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 14
+      }
+    },
+    "cong_phap_common_35": {
+      "name": "Tạo Hóa Âm Dương Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_36": {
+      "name": "Lục Đạo Lôi Điện Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_37": {
+      "name": "Huyết Sắc Huyết Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +5.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 5
+      }
+    },
+    "cong_phap_common_38": {
+      "name": "Thiên Ma Tinh Tú Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_39": {
+      "name": "Chân Ngã Độc Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +6.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 6
+      }
+    },
+    "cong_phap_common_40": {
+      "name": "Huyết Sắc Tinh Tú Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +25.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 25
+      }
+    },
+    "cong_phap_common_41": {
+      "name": "Phá Diệt Canh Kim Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +6.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 6
+      }
+    },
+    "cong_phap_common_42": {
+      "name": "Thái Cổ Độc Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +41.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 41
+      }
+    },
+    "cong_phap_common_43": {
+      "name": "Vạn Kiếm Hỏa Diễm Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +21.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 21
+      }
+    },
+    "cong_phap_common_44": {
+      "name": "Ngũ Hành Âm Dương Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +19.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 19
+      }
+    },
+    "cong_phap_common_45": {
+      "name": "Cửu Chuyển Hỏa Diễm Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +17.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 17
+      }
+    },
+    "cong_phap_common_46": {
+      "name": "Bát Hoang Độc Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_47": {
+      "name": "Vô Cực Hỏa Diễm Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_48": {
+      "name": "Vạn Kiếm Hậu Thổ Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +24.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 24
+      }
+    },
+    "cong_phap_common_49": {
+      "name": "Cửu Chuyển Hàn Băng Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_common_50": {
+      "name": "Tạo Hóa Liệt Phong Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +15.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 15
+      }
+    },
+    "cong_phap_common_51": {
+      "name": "Phong Lôi Huyết Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +29.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 29
+      }
+    },
+    "cong_phap_common_52": {
+      "name": "Cửu Chuyển Lôi Điện Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +11.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 11
+      }
+    },
+    "cong_phap_common_53": {
+      "name": "Lục Đạo Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +5.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 5
+      }
+    },
+    "cong_phap_common_54": {
+      "name": "Vạn Kiếm Ất Mộc Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_common_55": {
+      "name": "Huyền Minh Tinh Tú Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +28.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 28
+      }
+    },
+    "cong_phap_common_56": {
+      "name": "Hỗn Độn Huyết Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +6.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 6
+      }
+    },
+    "cong_phap_common_57": {
+      "name": "Phá Diệt Liệt Phong Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_58": {
+      "name": "Vạn Kiếm Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_59": {
+      "name": "Phá Diệt Độc Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_60": {
+      "name": "Vô Cực Ất Mộc Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_common_61": {
+      "name": "Đại Đạo Liệt Phong Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +16.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 16
+      }
+    },
+    "cong_phap_common_62": {
+      "name": "Vạn Kiếm Canh Kim Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +14.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 14
+      }
+    },
+    "cong_phap_common_63": {
+      "name": "Đại Đạo Thời Không Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_64": {
+      "name": "Phong Lôi Hàn Băng Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +16.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 16
+      }
+    },
+    "cong_phap_common_65": {
+      "name": "Bát Hoang Hậu Thổ Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 23
+      }
+    },
+    "cong_phap_common_66": {
+      "name": "Cửu Chuyển Độc Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +12.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 12
+      }
+    },
+    "cong_phap_common_67": {
+      "name": "Cửu Chuyển Tinh Tú Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +29.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 29
+      }
+    },
+    "cong_phap_common_68": {
+      "name": "Huyền Minh Ất Mộc Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +23.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 23
+      }
+    },
+    "cong_phap_common_69": {
+      "name": "Huyết Sắc Hậu Thổ Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_70": {
+      "name": "Vạn Kiếm Âm Dương Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +14.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 14
+      }
+    },
+    "cong_phap_common_71": {
+      "name": "Lục Đạo Hỏa Diễm Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +30.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 30
+      }
+    },
+    "cong_phap_common_72": {
+      "name": "Tạo Hóa Hậu Thổ Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +13.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 13
+      }
+    },
+    "cong_phap_common_73": {
+      "name": "Vô Cực Tinh Tú Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +14.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 14
+      }
+    },
+    "cong_phap_common_74": {
+      "name": "Tạo Hóa Thời Không Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +9.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 9
+      }
+    },
+    "cong_phap_common_75": {
+      "name": "Ngũ Hành Ất Mộc Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. Chân Nguyên +11.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 11
+      }
+    },
+    "cong_phap_common_76": {
+      "name": "Vạn Kiếm Độc Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +12.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 12
+      }
+    },
+    "cong_phap_common_77": {
+      "name": "Tinh Thần Liệt Phong Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. HP +26.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 26
+      }
+    },
+    "cong_phap_common_78": {
+      "name": "Phá Diệt Ất Mộc Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +8.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 8
+      }
+    },
+    "cong_phap_common_79": {
+      "name": "Tinh Thần Ất Mộc Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +10.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 10
+      }
+    },
+    "cong_phap_common_80": {
+      "name": "Ngũ Hành Huyết Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "common",
+      "desc": "Hoàng Phẩm Công Pháp. ATK +7.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 7
+      }
+    },
+    "cong_phap_rare_1": {
+      "name": "Cửu Chuyển Thời Không Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +30, HP +133.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 30,
+        "hpBonus": 133
+      }
+    },
+    "cong_phap_rare_2": {
+      "name": "Bát Hoang Độc Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +133, Giảm 3% DMG.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 133,
+        "damageReduction": 0.03
+      }
+    },
+    "cong_phap_rare_3": {
+      "name": "Ngũ Hành Huyết Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +40, HP +150.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 40,
+        "hpBonus": 150
+      }
+    },
+    "cong_phap_rare_4": {
+      "name": "Phong Lôi Liệt Phong Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +66, Giảm 3% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 66,
+        "damageReduction": 0.03
+      }
+    },
+    "cong_phap_rare_5": {
+      "name": "Cửu Chuyển Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +36, HP +140.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 36,
+        "hpBonus": 140
+      }
+    },
+    "cong_phap_rare_6": {
+      "name": "Cửu Chuyển Âm Dương Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +50, HP +130.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 50,
+        "hpBonus": 130
+      }
+    },
+    "cong_phap_rare_7": {
+      "name": "Cửu Chuyển Canh Kim Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +51, HP +74.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 51,
+        "hpBonus": 74
+      }
+    },
+    "cong_phap_rare_8": {
+      "name": "Ngũ Hành Hàn Băng Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 2% DMG, Chân Nguyên +62.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.02,
+        "linhKhiBonus": 62
+      }
+    },
+    "cong_phap_rare_9": {
+      "name": "Bát Hoang Âm Dương Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +70, ATK +23.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 70,
+        "attackBonus": 23
+      }
+    },
+    "cong_phap_rare_10": {
+      "name": "Càn Khôn Huyết Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 2% DMG, HP +99.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.02,
+        "hpBonus": 99
+      }
+    },
+    "cong_phap_rare_11": {
+      "name": "Đại Đạo Âm Dương Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 3% DMG, ATK +27.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.03,
+        "attackBonus": 27
+      }
+    },
+    "cong_phap_rare_12": {
+      "name": "Bát Hoang Huyết Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +114, Giảm 5% DMG.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 114,
+        "damageReduction": 0.05
+      }
+    },
+    "cong_phap_rare_13": {
+      "name": "Đại Đạo Độc Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 4% DMG, Chân Nguyên +61.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.04,
+        "linhKhiBonus": 61
+      }
+    },
+    "cong_phap_rare_14": {
+      "name": "Phong Lôi Huyết Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 3% DMG, Chân Nguyên +57.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.03,
+        "linhKhiBonus": 57
+      }
+    },
+    "cong_phap_rare_15": {
+      "name": "Thái Cổ Liệt Phong Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +43, HP +87.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 43,
+        "hpBonus": 87
+      }
+    },
+    "cong_phap_rare_16": {
+      "name": "Thái Hư Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +29, HP +89.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 29,
+        "hpBonus": 89
+      }
+    },
+    "cong_phap_rare_17": {
+      "name": "Tạo Hóa Lôi Điện Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +48, ATK +37.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 48,
+        "attackBonus": 37
+      }
+    },
+    "cong_phap_rare_18": {
+      "name": "Tinh Thần Tinh Tú Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 5% DMG, ATK +26.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.05,
+        "attackBonus": 26
+      }
+    },
+    "cong_phap_rare_19": {
+      "name": "Tạo Hóa Liệt Phong Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +32, HP +150.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 32,
+        "hpBonus": 150
+      }
+    },
+    "cong_phap_rare_20": {
+      "name": "Cửu Chuyển Thời Không Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +56, HP +120.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 56,
+        "hpBonus": 120
+      }
+    },
+    "cong_phap_rare_21": {
+      "name": "Thiên Ma Hàn Băng Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 3% DMG, Chân Nguyên +76.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.03,
+        "linhKhiBonus": 76
+      }
+    },
+    "cong_phap_rare_22": {
+      "name": "Phá Diệt Thời Không Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 2% DMG, Chân Nguyên +55.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.02,
+        "linhKhiBonus": 55
+      }
+    },
+    "cong_phap_rare_23": {
+      "name": "Bát Hoang Huyết Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +77, HP +90.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 77,
+        "hpBonus": 90
+      }
+    },
+    "cong_phap_rare_24": {
+      "name": "Huyết Sắc Canh Kim Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +30, HP +90.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 30,
+        "hpBonus": 90
+      }
+    },
+    "cong_phap_rare_25": {
+      "name": "Càn Khôn Thời Không Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +32, Chân Nguyên +75.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 32,
+        "linhKhiBonus": 75
+      }
+    },
+    "cong_phap_rare_26": {
+      "name": "Lục Đạo Hàn Băng Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +43, Giảm 5% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 43,
+        "damageReduction": 0.05
+      }
+    },
+    "cong_phap_rare_27": {
+      "name": "Chân Ngã Hậu Thổ Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +139, ATK +39.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 139,
+        "attackBonus": 39
+      }
+    },
+    "cong_phap_rare_28": {
+      "name": "Phá Diệt Tinh Tú Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +60, Giảm 4% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 60,
+        "damageReduction": 0.04
+      }
+    },
+    "cong_phap_rare_29": {
+      "name": "Bát Hoang Ất Mộc Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +46, HP +122.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 46,
+        "hpBonus": 122
+      }
+    },
+    "cong_phap_rare_30": {
+      "name": "Tinh Thần Canh Kim Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +112, ATK +38.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 112,
+        "attackBonus": 38
+      }
+    },
+    "cong_phap_rare_31": {
+      "name": "Tạo Hóa Ất Mộc Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +56, Giảm 5% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 56,
+        "damageReduction": 0.05
+      }
+    },
+    "cong_phap_rare_32": {
+      "name": "Tạo Hóa Hàn Băng Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +24, HP +86.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 24,
+        "hpBonus": 86
+      }
+    },
+    "cong_phap_rare_33": {
+      "name": "Huyết Sắc Độc Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +34, HP +139.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 34,
+        "hpBonus": 139
+      }
+    },
+    "cong_phap_rare_34": {
+      "name": "Cửu Chuyển Hỏa Diễm Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 5% DMG, Chân Nguyên +61.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.05,
+        "linhKhiBonus": 61
+      }
+    },
+    "cong_phap_rare_35": {
+      "name": "Huyền Minh Canh Kim Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +74, HP +146.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 74,
+        "hpBonus": 146
+      }
+    },
+    "cong_phap_rare_36": {
+      "name": "Bát Hoang Độc Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +112, Chân Nguyên +43.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 112,
+        "linhKhiBonus": 43
+      }
+    },
+    "cong_phap_rare_37": {
+      "name": "Càn Khôn Ất Mộc Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +79, ATK +20.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 79,
+        "attackBonus": 20
+      }
+    },
+    "cong_phap_rare_38": {
+      "name": "Ngũ Hành Hỏa Diễm Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +64, Giảm 4% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 64,
+        "damageReduction": 0.04
+      }
+    },
+    "cong_phap_rare_39": {
+      "name": "Huyền Minh Tinh Tú Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +55, Giảm 5% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 55,
+        "damageReduction": 0.05
+      }
+    },
+    "cong_phap_rare_40": {
+      "name": "Thái Cổ Canh Kim Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +133, Chân Nguyên +64.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 133,
+        "linhKhiBonus": 64
+      }
+    },
+    "cong_phap_rare_41": {
+      "name": "Tinh Thần Liệt Phong Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 3% DMG, Chân Nguyên +52.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.03,
+        "linhKhiBonus": 52
+      }
+    },
+    "cong_phap_rare_42": {
+      "name": "Huyết Sắc Huyết Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +30, HP +75.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 30,
+        "hpBonus": 75
+      }
+    },
+    "cong_phap_rare_43": {
+      "name": "Thái Hư Hỏa Diễm Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +59, HP +142.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 59,
+        "hpBonus": 142
+      }
+    },
+    "cong_phap_rare_44": {
+      "name": "Vạn Kiếm Hậu Thổ Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +68, Giảm 2% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 68,
+        "damageReduction": 0.02
+      }
+    },
+    "cong_phap_rare_45": {
+      "name": "Tinh Thần Ất Mộc Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +118, ATK +22.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 118,
+        "attackBonus": 22
+      }
+    },
+    "cong_phap_rare_46": {
+      "name": "Phá Diệt Ất Mộc Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +39, HP +102.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 39,
+        "hpBonus": 102
+      }
+    },
+    "cong_phap_rare_47": {
+      "name": "Chân Ngã Ất Mộc Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +21, Chân Nguyên +62.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 21,
+        "linhKhiBonus": 62
+      }
+    },
+    "cong_phap_rare_48": {
+      "name": "Hỗn Độn Liệt Phong Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +110, ATK +35.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 110,
+        "attackBonus": 35
+      }
+    },
+    "cong_phap_rare_49": {
+      "name": "Phá Diệt Tinh Tú Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +44, HP +89.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 44,
+        "hpBonus": 89
+      }
+    },
+    "cong_phap_rare_50": {
+      "name": "Huyền Minh Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +64, Giảm 3% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 64,
+        "damageReduction": 0.03
+      }
+    },
+    "cong_phap_rare_51": {
+      "name": "Thái Hư Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 5% DMG, ATK +24.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.05,
+        "attackBonus": 24
+      }
+    },
+    "cong_phap_rare_52": {
+      "name": "Huyết Sắc Hỏa Diễm Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 5% DMG, ATK +35.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.05,
+        "attackBonus": 35
+      }
+    },
+    "cong_phap_rare_53": {
+      "name": "Đại Đạo Hỏa Diễm Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +29, HP +94.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 29,
+        "hpBonus": 94
+      }
+    },
+    "cong_phap_rare_54": {
+      "name": "Thái Hư Tinh Tú Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 4% DMG, Chân Nguyên +62.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.04,
+        "linhKhiBonus": 62
+      }
+    },
+    "cong_phap_rare_55": {
+      "name": "Tinh Thần Âm Dương Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Chân Nguyên +74, Giảm 4% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 74,
+        "damageReduction": 0.04
+      }
+    },
+    "cong_phap_rare_56": {
+      "name": "Tinh Thần Ất Mộc Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +89, ATK +21.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 89,
+        "attackBonus": 21
+      }
+    },
+    "cong_phap_rare_57": {
+      "name": "Cửu Chuyển Huyết Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +27, HP +128.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 27,
+        "hpBonus": 128
+      }
+    },
+    "cong_phap_rare_58": {
+      "name": "Cửu Chuyển Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. ATK +38, HP +113.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 38,
+        "hpBonus": 113
+      }
+    },
+    "cong_phap_rare_59": {
+      "name": "Hỗn Độn Độc Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. HP +96, ATK +33.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 96,
+        "attackBonus": 33
+      }
+    },
+    "cong_phap_rare_60": {
+      "name": "Đại Đạo Hỏa Diễm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "rare",
+      "desc": "Huyền Phẩm Công Pháp. Giảm 4% DMG, ATK +27.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.04,
+        "attackBonus": 27
+      }
+    },
+    "cong_phap_epic_1": {
+      "name": "Càn Khôn Liệt Phong Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +89, Đột phá +3%, Chân Nguyên +179.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 89,
+        "breakthroughBonus": 0.03,
+        "linhKhiBonus": 179
+      }
+    },
+    "cong_phap_epic_2": {
+      "name": "Hỗn Độn Ất Mộc Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 9% DMG, Chân Nguyên +119, HP +309.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.09,
+        "linhKhiBonus": 119,
+        "hpBonus": 309
+      }
+    },
+    "cong_phap_epic_3": {
+      "name": "Lục Đạo Lôi Điện Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 7% DMG, Chân Nguyên +167, HP +356.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.07,
+        "linhKhiBonus": 167,
+        "hpBonus": 356
+      }
+    },
+    "cong_phap_epic_4": {
+      "name": "Phong Lôi Lôi Điện Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +163, Giảm 8% DMG, Đột phá +2%.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 163,
+        "damageReduction": 0.08,
+        "breakthroughBonus": 0.02
+      }
+    },
+    "cong_phap_epic_5": {
+      "name": "Huyết Sắc Huyết Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +54, Đột phá +3%, Giảm 10% DMG.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 54,
+        "breakthroughBonus": 0.03,
+        "damageReduction": 0.1
+      }
+    },
+    "cong_phap_epic_6": {
+      "name": "Càn Khôn Hàn Băng Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +135, Giảm 6% DMG, Đột phá +3%.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 135,
+        "damageReduction": 0.06,
+        "breakthroughBonus": 0.03
+      }
+    },
+    "cong_phap_epic_7": {
+      "name": "Càn Khôn Hỏa Diễm Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. HP +250, Giảm 7% DMG, Chân Nguyên +186.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 250,
+        "damageReduction": 0.07,
+        "linhKhiBonus": 186
+      }
+    },
+    "cong_phap_epic_8": {
+      "name": "Tạo Hóa Hỏa Diễm Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +2%, ATK +78, Chân Nguyên +191.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.02,
+        "attackBonus": 78,
+        "linhKhiBonus": 191
+      }
+    },
+    "cong_phap_epic_9": {
+      "name": "Tinh Thần Ất Mộc Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 5% DMG, Chân Nguyên +133, Đột phá +3%.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.05,
+        "linhKhiBonus": 133,
+        "breakthroughBonus": 0.03
+      }
+    },
+    "cong_phap_epic_10": {
+      "name": "Tạo Hóa Hỏa Diễm Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +192, Giảm 9% DMG, Đột phá +2%.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 192,
+        "damageReduction": 0.09,
+        "breakthroughBonus": 0.02
+      }
+    },
+    "cong_phap_epic_11": {
+      "name": "Thái Hư Huyết Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 8% DMG, ATK +93, HP +251.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.08,
+        "attackBonus": 93,
+        "hpBonus": 251
+      }
+    },
+    "cong_phap_epic_12": {
+      "name": "Lục Đạo Độc Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +2%, Chân Nguyên +172, HP +202.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.02,
+        "linhKhiBonus": 172,
+        "hpBonus": 202
+      }
+    },
+    "cong_phap_epic_13": {
+      "name": "Thái Cổ Hàn Băng Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +70, HP +239, Chân Nguyên +159.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 70,
+        "hpBonus": 239,
+        "linhKhiBonus": 159
+      }
+    },
+    "cong_phap_epic_14": {
+      "name": "Bát Hoang Canh Kim Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 9% DMG, ATK +96, Đột phá +2%.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.09,
+        "attackBonus": 96,
+        "breakthroughBonus": 0.02
+      }
+    },
+    "cong_phap_epic_15": {
+      "name": "Chân Ngã Thời Không Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +3%, Giảm 6% DMG, Chân Nguyên +150.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.03,
+        "damageReduction": 0.06,
+        "linhKhiBonus": 150
+      }
+    },
+    "cong_phap_epic_16": {
+      "name": "Thái Cổ Độc Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 10% DMG, ATK +95, Chân Nguyên +116.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.1,
+        "attackBonus": 95,
+        "linhKhiBonus": 116
+      }
+    },
+    "cong_phap_epic_17": {
+      "name": "Huyền Minh Canh Kim Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +61, HP +261, Chân Nguyên +191.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 61,
+        "hpBonus": 261,
+        "linhKhiBonus": 191
+      }
+    },
+    "cong_phap_epic_18": {
+      "name": "Tinh Thần Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +131, Giảm 9% DMG, ATK +68.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 131,
+        "damageReduction": 0.09,
+        "attackBonus": 68
+      }
+    },
+    "cong_phap_epic_19": {
+      "name": "Thái Cổ Độc Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. HP +354, ATK +77, Giảm 9% DMG.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 354,
+        "attackBonus": 77,
+        "damageReduction": 0.09
+      }
+    },
+    "cong_phap_epic_20": {
+      "name": "Đại Đạo Âm Dương Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 9% DMG, Chân Nguyên +119, ATK +67.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.09,
+        "linhKhiBonus": 119,
+        "attackBonus": 67
+      }
+    },
+    "cong_phap_epic_21": {
+      "name": "Phong Lôi Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +3%, HP +233, Giảm 9% DMG.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.03,
+        "hpBonus": 233,
+        "damageReduction": 0.09
+      }
+    },
+    "cong_phap_epic_22": {
+      "name": "Huyền Minh Độc Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 10% DMG, HP +225, ATK +70.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.1,
+        "hpBonus": 225,
+        "attackBonus": 70
+      }
+    },
+    "cong_phap_epic_23": {
+      "name": "Vạn Kiếm Lôi Điện Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 8% DMG, Chân Nguyên +137, Đột phá +2%.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.08,
+        "linhKhiBonus": 137,
+        "breakthroughBonus": 0.02
+      }
+    },
+    "cong_phap_epic_24": {
+      "name": "Vô Cực Canh Kim Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +155, ATK +76, Giảm 6% DMG.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 155,
+        "attackBonus": 76,
+        "damageReduction": 0.06
+      }
+    },
+    "cong_phap_epic_25": {
+      "name": "Lục Đạo Hậu Thổ Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 10% DMG, ATK +96, HP +261.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.1,
+        "attackBonus": 96,
+        "hpBonus": 261
+      }
+    },
+    "cong_phap_epic_26": {
+      "name": "Tạo Hóa Thời Không Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 7% DMG, Chân Nguyên +112, HP +301.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.07,
+        "linhKhiBonus": 112,
+        "hpBonus": 301
+      }
+    },
+    "cong_phap_epic_27": {
+      "name": "Thiên Ma Hỏa Diễm Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +164, HP +333, Đột phá +2%.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 164,
+        "hpBonus": 333,
+        "breakthroughBonus": 0.02
+      }
+    },
+    "cong_phap_epic_28": {
+      "name": "Đại Đạo Âm Dương Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 7% DMG, ATK +85, Đột phá +3%.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.07,
+        "attackBonus": 85,
+        "breakthroughBonus": 0.03
+      }
+    },
+    "cong_phap_epic_29": {
+      "name": "Hỗn Độn Độc Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Chân Nguyên +135, Giảm 5% DMG, HP +318.",
+      "slot": "manual",
+      "stats": {
+        "linhKhiBonus": 135,
+        "damageReduction": 0.05,
+        "hpBonus": 318
+      }
+    },
+    "cong_phap_epic_30": {
+      "name": "Hỗn Độn Lôi Điện Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. HP +235, Đột phá +3%, Giảm 10% DMG.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 235,
+        "breakthroughBonus": 0.03,
+        "damageReduction": 0.1
+      }
+    },
+    "cong_phap_epic_31": {
+      "name": "Ngũ Hành Lôi Điện Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +3%, Giảm 7% DMG, Chân Nguyên +116.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.03,
+        "damageReduction": 0.07,
+        "linhKhiBonus": 116
+      }
+    },
+    "cong_phap_epic_32": {
+      "name": "Tinh Thần Hậu Thổ Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +2%, ATK +88, Giảm 7% DMG.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.02,
+        "attackBonus": 88,
+        "damageReduction": 0.07
+      }
+    },
+    "cong_phap_epic_33": {
+      "name": "Thái Hư Canh Kim Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 7% DMG, Chân Nguyên +199, HP +379.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.07,
+        "linhKhiBonus": 199,
+        "hpBonus": 379
+      }
+    },
+    "cong_phap_epic_34": {
+      "name": "Càn Khôn Âm Dương Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +83, Đột phá +3%, HP +268.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 83,
+        "breakthroughBonus": 0.03,
+        "hpBonus": 268
+      }
+    },
+    "cong_phap_epic_35": {
+      "name": "Ngũ Hành Canh Kim Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +2%, Giảm 5% DMG, Chân Nguyên +124.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.02,
+        "damageReduction": 0.05,
+        "linhKhiBonus": 124
+      }
+    },
+    "cong_phap_epic_36": {
+      "name": "Tạo Hóa Thời Không Bí Lục",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. HP +351, ATK +76, Chân Nguyên +162.",
+      "slot": "manual",
+      "stats": {
+        "hpBonus": 351,
+        "attackBonus": 76,
+        "linhKhiBonus": 162
+      }
+    },
+    "cong_phap_epic_37": {
+      "name": "Chân Ngã Hỏa Diễm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +1%, Giảm 10% DMG, HP +294.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.01,
+        "damageReduction": 0.1,
+        "hpBonus": 294
+      }
+    },
+    "cong_phap_epic_38": {
+      "name": "Chân Ngã Hỏa Diễm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Giảm 8% DMG, HP +251, ATK +95.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.08,
+        "hpBonus": 251,
+        "attackBonus": 95
+      }
+    },
+    "cong_phap_epic_39": {
+      "name": "Đại Đạo Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. Đột phá +3%, Giảm 10% DMG, Chân Nguyên +110.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.03,
+        "damageReduction": 0.1,
+        "linhKhiBonus": 110
+      }
+    },
+    "cong_phap_epic_40": {
+      "name": "Đại Đạo Canh Kim Công",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "epic",
+      "desc": "Địa Phẩm Công Pháp. ATK +54, HP +374, Chân Nguyên +196.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 54,
+        "hpBonus": 374,
+        "linhKhiBonus": 196
+      }
+    },
+    "cong_phap_legendary_1": {
+      "name": "Lục Đạo Thời Không Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Đột phá +7%, Giảm 14% DMG, Chân Nguyên +341, HP +638.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.07,
+        "damageReduction": 0.14,
+        "linhKhiBonus": 341,
+        "hpBonus": 638
+      }
+    },
+    "cong_phap_legendary_2": {
+      "name": "Hỗn Độn Tinh Tú Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. ATK +217, Đột phá +5%, HP +517, Chân Nguyên +365.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 217,
+        "breakthroughBonus": 0.05,
+        "hpBonus": 517,
+        "linhKhiBonus": 365
+      }
+    },
+    "cong_phap_legendary_3": {
+      "name": "Tạo Hóa Độc Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Đột phá +7%, Giảm 12% DMG, Chân Nguyên +440, HP +996.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.07,
+        "damageReduction": 0.12,
+        "linhKhiBonus": 440,
+        "hpBonus": 996
+      }
+    },
+    "cong_phap_legendary_4": {
+      "name": "Cửu Chuyển Hậu Thổ Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 13% DMG, Đột phá +5%, HP +816, Chân Nguyên +385.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.13,
+        "breakthroughBonus": 0.05,
+        "hpBonus": 816,
+        "linhKhiBonus": 385
+      }
+    },
+    "cong_phap_legendary_5": {
+      "name": "Cửu Chuyển Lôi Điện Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. ATK +159, Chân Nguyên +588, Đột phá +6%, HP +965.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 159,
+        "linhKhiBonus": 588,
+        "breakthroughBonus": 0.06,
+        "hpBonus": 965
+      }
+    },
+    "cong_phap_legendary_6": {
+      "name": "Đại Đạo Độc Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 12% DMG, Chân Nguyên +557, Đột phá +7%, HP +995.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.12,
+        "linhKhiBonus": 557,
+        "breakthroughBonus": 0.07,
+        "hpBonus": 995
+      }
+    },
+    "cong_phap_legendary_7": {
+      "name": "Chân Ngã Huyết Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. ATK +151, Giảm 11% DMG, Đột phá +5%, HP +511.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 151,
+        "damageReduction": 0.11,
+        "breakthroughBonus": 0.05,
+        "hpBonus": 511
+      }
+    },
+    "cong_phap_legendary_8": {
+      "name": "Hỗn Độn Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. ATK +197, HP +584, Giảm 11% DMG, Đột phá +8%.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 197,
+        "hpBonus": 584,
+        "damageReduction": 0.11,
+        "breakthroughBonus": 0.08
+      }
+    },
+    "cong_phap_legendary_9": {
+      "name": "Càn Khôn Hậu Thổ Tâm Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 13% DMG, Chân Nguyên +531, HP +846, Đột phá +7%.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.13,
+        "linhKhiBonus": 531,
+        "hpBonus": 846,
+        "breakthroughBonus": 0.07
+      }
+    },
+    "cong_phap_legendary_10": {
+      "name": "Tinh Thần Canh Kim Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. ATK +286, HP +533, Chân Nguyên +371, Giảm 13% DMG.",
+      "slot": "manual",
+      "stats": {
+        "attackBonus": 286,
+        "hpBonus": 533,
+        "linhKhiBonus": 371,
+        "damageReduction": 0.13
+      }
+    },
+    "cong_phap_legendary_11": {
+      "name": "Ngũ Hành Canh Kim Quyết",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 13% DMG, ATK +214, HP +959, Chân Nguyên +455.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.13,
+        "attackBonus": 214,
+        "hpBonus": 959,
+        "linhKhiBonus": 455
+      }
+    },
+    "cong_phap_legendary_12": {
+      "name": "Phong Lôi Âm Dương Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Đột phá +5%, ATK +241, HP +608, Chân Nguyên +327.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.05,
+        "attackBonus": 241,
+        "hpBonus": 608,
+        "linhKhiBonus": 327
+      }
+    },
+    "cong_phap_legendary_13": {
+      "name": "Thái Cổ Độc Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 13% DMG, ATK +266, Đột phá +6%, HP +834.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.13,
+        "attackBonus": 266,
+        "breakthroughBonus": 0.06,
+        "hpBonus": 834
+      }
+    },
+    "cong_phap_legendary_14": {
+      "name": "Bát Hoang Tinh Tú Điển",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Giảm 13% DMG, ATK +250, Đột phá +7%, HP +666.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.13,
+        "attackBonus": 250,
+        "breakthroughBonus": 0.07,
+        "hpBonus": 666
+      }
+    },
+    "cong_phap_legendary_15": {
+      "name": "Thái Hư Thời Không Đồ",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "legendary",
+      "desc": "Thiên Phẩm Công Pháp. Đột phá +5%, Giảm 11% DMG, Chân Nguyên +492, HP +615.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.05,
+        "damageReduction": 0.11,
+        "linhKhiBonus": 492,
+        "hpBonus": 615
+      }
+    },
+    "cong_phap_mythic_1": {
+      "name": "Đại Đạo Hỏa Diễm Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "mythic",
+      "desc": "Tiên Giai Công Pháp. Đột phá +20%, ATK +590, Cơ Duyên +15, Giảm 20% DMG, HP +3048.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.2,
+        "attackBonus": 590,
+        "luckBonus": 15,
+        "damageReduction": 0.2,
+        "hpBonus": 3048
+      }
+    },
+    "cong_phap_mythic_2": {
+      "name": "Phong Lôi Hậu Thổ Chân Kinh",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "mythic",
+      "desc": "Tiên Giai Công Pháp. Cơ Duyên +16, Đột phá +13%, Giảm 23% DMG, Chân Nguyên +1274, HP +3056.",
+      "slot": "manual",
+      "stats": {
+        "luckBonus": 16,
+        "breakthroughBonus": 0.13,
+        "damageReduction": 0.23,
+        "linhKhiBonus": 1274,
+        "hpBonus": 3056
+      }
+    },
+    "cong_phap_mythic_3": {
+      "name": "Càn Khôn Lôi Điện Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "mythic",
+      "desc": "Tiên Giai Công Pháp. Đột phá +20%, Chân Nguyên +1330, HP +3785, Giảm 22% DMG, Cơ Duyên +18.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.2,
+        "linhKhiBonus": 1330,
+        "hpBonus": 3785,
+        "damageReduction": 0.22,
+        "luckBonus": 18
+      }
+    },
+    "cong_phap_mythic_4": {
+      "name": "Vạn Kiếm Lôi Điện Pháp",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "mythic",
+      "desc": "Tiên Giai Công Pháp. Giảm 26% DMG, Đột phá +18%, Cơ Duyên +12, HP +4539, ATK +569.",
+      "slot": "manual",
+      "stats": {
+        "damageReduction": 0.26,
+        "breakthroughBonus": 0.18,
+        "luckBonus": 12,
+        "hpBonus": 4539,
+        "attackBonus": 569
+      }
+    },
+    "cong_phap_mythic_5": {
+      "name": "Vô Cực Độc Kiếm Cốt",
+      "type": "equipment",
+      "icon": "📚",
+      "rarity": "mythic",
+      "desc": "Tiên Giai Công Pháp. Đột phá +12%, Cơ Duyên +14, HP +3918, Giảm 21% DMG, Chân Nguyên +1026.",
+      "slot": "manual",
+      "stats": {
+        "breakthroughBonus": 0.12,
+        "luckBonus": 14,
+        "hpBonus": 3918,
+        "damageReduction": 0.21,
+        "linhKhiBonus": 1026
+      }
+    },
+    "mythic_flame_mantra": {
+      "id": "mythic_flame_mantra",
+      "name": "Phần Quyết",
+      "type": "consumable",
+      "desc": "Hấp thu năng lượng hỏa diễm thiên địa chuyển hóa thành Đấu Khí tinh thuần. Ưu: Khả năng tiến hóa vô hạn, dung hợp hỏa diễm sinh ra uy lực hệ số nhân. Khuyết: Nguy hiểm cực cao, tỷ lệ tử vong khi cắn nuốt Dị Hỏa là 99%, khởi điểm quá thấp. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "hpPct": -0.5,
+        "linhKhiMaxUp": 1000
+      }
+    },
+    "mythic_azure_essence_sword_art": {
+      "id": "mythic_azure_essence_sword_art",
+      "name": "Thanh Nguyên Kiếm Quyết",
+      "type": "consumable",
+      "desc": "Phóng xuất Thanh Nguyên Kiếm Khí, Hộ Thể Kiếm Thuẫn. Ưu: Căn cơ vô cùng thâm hậu, linh lực nhiều hơn cùng cấp 30%, có thể thi triển Đại Canh Kiếm Trận. Khuyết: Tu luyện cực kỳ chậm chạp, tốn kém tài nguyên gấp nhiều lần bình thường, sát khí phản phệ. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "hpMaxUp": 500,
+        "tuViUp": 1000
+      }
+    },
+    "mythic_stellar_transformations": {
+      "id": "mythic_stellar_transformations",
+      "name": "Tinh Thần Biến",
+      "type": "consumable",
+      "desc": "Mở ra đan điền thành không gian vũ trụ, tự tạo ra năng lượng. Ưu: Không gặp bình cảnh như tu chân giả thông thường, năng lượng hùng hậu, tự mở ra một vũ trụ trong cơ thể. Khuyết: Công pháp không hoàn thiện, phải tự sáng tạo đường đi sau giai đoạn Hằng Tinh, sai một ly nổ tung cơ thể. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "linhKhiMaxUp": 5000,
+        "hpPct": -0.2
+      }
+    },
+    "mythic_dao_scripture": {
+      "id": "mythic_dao_scripture",
+      "name": "Đạo Kinh",
+      "type": "consumable",
+      "desc": "Mở rộng Khổ Hải vô lượng, sinh mệnh lực dồi dào, tu ra Dị Tượng. Ưu: Là cuốn kinh văn nền tảng mạnh nhất thiên hạ về Luân Hải Bí Cảnh, tạo căn cơ kiên cố nhất, vạn pháp bất xâm. Khuyết: Đã bị xé lẻ, cực khó tìm được phần Luân Hải hoàn chỉnh, tu luyện tốn tư nguyên gấp vạn lần. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "hpMaxUp": 2000,
+        "tuViUp": 5000
+      }
+    },
+    "mythic_great_desolation_scripture": {
+      "id": "mythic_great_desolation_scripture",
+      "name": "Đại Hoàng Vu Quyết",
+      "type": "consumable",
+      "desc": "Bộc phát năng lượng hủy diệt, ngưng tụ Đại Hoang Vu Chỉ hoặc Đại Hoang Vu Ấn. Ưu: Rút cạn sức sống của thiên địa, thực vật trong phạm vi vạn dặm để hóa thành sức mạnh bản thân, uy lực có thể vượt cấp giết địch. Khuyết: Thi triển quá nhiều sẽ ảnh hưởng đến thọ nguyên, gây tổn hại nghiêm trọng sinh thái xung quanh. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "tuViUp": 3000,
+        "tuoiThoUp": -50
+      }
+    },
+    "mythic_gu_art_spring_autumn_cicada": {
+      "id": "mythic_gu_art_spring_autumn_cicada",
+      "name": "Cổ Thuật: Xuân Thu Thiền",
+      "type": "consumable",
+      "desc": "Đi ngược Quang Âm Trường Hà. Ưu: Trọng sinh về quá khứ, bảo lưu toàn bộ trí nhớ và kinh nghiệm kiếp trước để thay đổi lịch sử. Khuyết: Tỷ lệ thất bại cực cao (chết thật), bị ý trời (Thiên Ý) tính kế nhét ma niệm vào, thời gian cooldown vô cùng dài. [Thần Thoại]",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "fullHpHeal": true,
+        "linhKhiRestore": 99999,
+        "tuViPct": -0.5
+      }
+    },
+    "mythic_eq_chaos_silk_sash": {
+      "id": "mythic_eq_chaos_silk_sash",
+      "name": "Hỗn Thiên Lăng",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tiên thiên linh vật] Pháp bảo tấn công / trói buộc. Hiệu ứng: Trói buộc, Khống chế.",
+      "price": 999999,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 2000,
+        "defense_bonus": 500,
+        "control": 300
+      }
+    },
+    "mythic_eq_qiankun_ring": {
+      "id": "mythic_eq_qiankun_ring",
+      "name": "Càn Khôn Quyển",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Tiên thiên linh vật] Vòng / ném / cận chiến. Hiệu ứng: Không gian khống chế.",
+      "price": 999999,
+      "tier": "mythic",
+      "stats": {
+        "attack": 1500,
+        "speed": 200,
+        "space_dmg": 500
+      }
+    },
+    "mythic_eq_chaos_bow": {
+      "id": "mythic_eq_chaos_bow",
+      "name": "Hỗn Thiên Cung",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Thần khí] Cung. Hiệu ứng: Tăng cường công kích tầm xa.",
+      "price": 999999,
+      "tier": "mythic",
+      "stats": {
+        "attack": 2000,
+        "crit_rate": 0.25,
+        "range_bonus": 1000
+      }
+    },
+    "mythic_eq_taiji_diagram": {
+      "id": "mythic_eq_taiji_diagram",
+      "name": "Thái Cực Đồ",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tiên thiên chí bảo] Đồ trận / trấn áp / phòng ngự. Hiệu ứng: Trấn áp, Phong ấn, Bảo hộ.",
+      "price": 999999,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 5000,
+        "linh_khi_max": 5000,
+        "all_res": 1000,
+        "attack": 1000
+      }
+    },
+    "mythic_azure_bamboo_cloudbee_sword": {
+      "id": "mythic_azure_bamboo_cloudbee_sword",
+      "name": "Thanh Trúc Phong Vân Kiếm",
+      "type": "equipment",
+      "desc": "[Cổ bảo tiến hóa] Bộ phi kiếm chủ lực. Có khả năng tạo Kiếm quang phân hóa và Kiếm trận áp chế.",
+      "price": 999999,
+      "tier": "mythic",
+      "slot": "weapon",
+      "stats": {
+        "attack": 2500,
+        "crit_rate": 0.3,
+        "speed": 500
+      }
+    },
+    "mythic_minor_profound_heaven": {
+      "id": "mythic_minor_profound_heaven",
+      "name": "Tiểu Huyền Thiên",
+      "type": "equipment",
+      "desc": "[Dị bảo không gian] Không gian động thiên thu nhỏ. Có khả năng hộ thân cực mạnh.",
+      "price": 999999,
+      "tier": "mythic",
+      "slot": "artifact",
+      "stats": {
+        "hp_max": 3000,
+        "defense_bonus": 1000,
+        "all_res": 500
+      }
+    },
+    "mythic_profound_heaven_immortal_vine": {
+      "id": "mythic_profound_heaven_immortal_vine",
+      "name": "Huyền Thiên Tiên Đằng",
+      "type": "consumable",
+      "desc": "[Thiên địa linh vật] Chứa đựng sinh cơ vô hạn. Hồi phục thần tốc và cải tạo thể chất.",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "fullHpHeal": true,
+        "hpMaxUp": 2000,
+        "linhKhiMaxUp": 1000
+      }
+    },
+    "mythic_shadow_transform_talisman": {
+      "id": "mythic_shadow_transform_talisman",
+      "name": "Hóa Ảnh Phù",
+      "type": "consumable",
+      "desc": "[Phù bảo] Cho phép người dùng ẩn thân và ngụy trang tuyệt đối trong thời gian ngắn.",
+      "price": 999999,
+      "tier": "mythic",
+      "effects": {
+        "luckBoost": 50
+      }
+    },
+    "gen_art_0_1782578161408": {
+      "id": "gen_art_0_1782578161408",
+      "name": "Hỗn Độn Hồ Lô",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Thông Thiên Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 58606,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 1140,
+        "defense_bonus": 1345
+      }
+    },
+    "gen_weap_1_1782578161408": {
+      "id": "gen_weap_1_1782578161408",
+      "name": "Dương Cung",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Hậu Thiên Chí Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 31083,
+      "tier": "mythic",
+      "stats": {
+        "attack": 1067
+      }
+    },
+    "gen_weap_2_1782578161408": {
+      "id": "gen_weap_2_1782578161408",
+      "name": "Hoàng Tiên",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Tiên Thiên Chí Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 35889,
+      "tier": "mythic",
+      "stats": {
+        "attack": 2090,
+        "speed": 255
+      }
+    },
+    "gen_art_3_1782578161408": {
+      "id": "gen_art_3_1782578161408",
+      "name": "Tinh Thần Phù",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Hậu Thiên Chí Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 57012,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 4725,
+        "defense_bonus": 1182,
+        "linh_khi_max": 2614,
+        "all_res": 746
+      }
+    },
+    "gen_art_4_1782578161408": {
+      "id": "gen_art_4_1782578161408",
+      "name": "Phong Tháp",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Thông Thiên Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 34518,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 4160,
+        "defense_bonus": 1134
+      }
+    },
+    "gen_art_5_1782578161408": {
+      "id": "gen_art_5_1782578161408",
+      "name": "Ma Kiều",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Thông Thiên Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 18551,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 1571,
+        "defense_bonus": 1012,
+        "linh_khi_max": 1574,
+        "all_res": 846
+      }
+    },
+    "gen_art_6_1782578161408": {
+      "id": "gen_art_6_1782578161408",
+      "name": "Thổ Kính",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tiên Thiên Chí Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 93343,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 1533,
+        "defense_bonus": 1854,
+        "linh_khi_max": 2985
+      }
+    },
+    "gen_art_7_1782578161408": {
+      "id": "gen_art_7_1782578161408",
+      "name": "Thiên Kiều",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Thông Thiên Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 48691,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 2920,
+        "defense_bonus": 1593,
+        "all_res": 175
+      }
+    },
+    "gen_weap_8_1782578161408": {
+      "id": "gen_weap_8_1782578161408",
+      "name": "Lôi Tiễn",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Linh Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 75919,
+      "tier": "rare",
+      "stats": {
+        "attack": 696
+      }
+    },
+    "gen_art_9_1782578161408": {
+      "id": "gen_art_9_1782578161408",
+      "name": "Địa Ngọc",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Hậu Thiên Chí Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 79931,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 1172,
+        "defense_bonus": 1004
+      }
+    },
+    "gen_weap_10_1782578161408": {
+      "id": "gen_weap_10_1782578161408",
+      "name": "Ngũ Cung",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Hậu Thiên Chí Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 62451,
+      "tier": "mythic",
+      "stats": {
+        "attack": 1939,
+        "speed": 119
+      }
+    },
+    "gen_art_11_1782578161408": {
+      "id": "gen_art_11_1782578161408",
+      "name": "Nhất Kỳ",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 17858,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 2761,
+        "defense_bonus": 634
+      }
+    },
+    "gen_art_12_1782578161408": {
+      "id": "gen_art_12_1782578161408",
+      "name": "Mộc Kính",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tiên Thiên Chí Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 30717,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 1723,
+        "defense_bonus": 559,
+        "all_res": 988
+      }
+    },
+    "gen_weap_13_1782578161408": {
+      "id": "gen_weap_13_1782578161408",
+      "name": "Ma Trượng",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Huyền Thiên Chi Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 44137,
+      "tier": "epic",
+      "stats": {
+        "attack": 1621,
+        "speed": 297
+      }
+    },
+    "gen_art_14_1782578161408": {
+      "id": "gen_art_14_1782578161408",
+      "name": "Lưỡng Nghi Cờ",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Huyền Thiên Chi Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 10658,
+      "tier": "epic",
+      "stats": {
+        "hp_max": 1379,
+        "defense_bonus": 507,
+        "linh_khi_max": 1771,
+        "all_res": 971
+      }
+    },
+    "gen_art_15_1782578161408": {
+      "id": "gen_art_15_1782578161408",
+      "name": "Nhị Võng",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Linh Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 97869,
+      "tier": "rare",
+      "stats": {
+        "hp_max": 4326,
+        "defense_bonus": 649
+      }
+    },
+    "gen_weap_16_1782578161408": {
+      "id": "gen_weap_16_1782578161408",
+      "name": "Nhất Phủ",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Tiên Thiên Chí Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 19952,
+      "tier": "mythic",
+      "stats": {
+        "attack": 2469,
+        "crit_rate": 0.26,
+        "speed": 100
+      }
+    },
+    "gen_weap_17_1782578161408": {
+      "id": "gen_weap_17_1782578161408",
+      "name": "Tứ Tiễn",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Huyền Thiên Chi Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 11275,
+      "tier": "epic",
+      "stats": {
+        "attack": 810,
+        "speed": 133
+      }
+    },
+    "gen_weap_18_1782578161408": {
+      "id": "gen_weap_18_1782578161408",
+      "name": "Kim Đao",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Tiên Thiên Chí Bảo] Một kiện vũ khí cường đại được thai nghén từ thiên địa.",
+      "price": 86520,
+      "tier": "mythic",
+      "stats": {
+        "attack": 1292,
+        "crit_rate": 0.28
+      }
+    },
+    "gen_art_19_1782578161408": {
+      "id": "gen_art_19_1782578161408",
+      "name": "Tam Liên",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Hậu Thiên Chí Bảo] Một kiện pháp bảo cường đại được thai nghén từ thiên địa.",
+      "price": 48314,
+      "tier": "mythic",
+      "stats": {
+        "hp_max": 3141,
+        "defense_bonus": 775,
+        "linh_khi_max": 2137
+      }
+    },
+    "expo_pb001": {
+      "id": "expo_pb001",
+      "name": "Thanh Phong Kiếm",
+      "type": "equipment",
+      "slot": "weapon",
+      "desc": "[Tier 1 - Trung phẩm] Công kích: Phong Nhẫn. Áp dụng chảy máu.",
+      "price": 50000,
+      "tier": "common",
+      "stats": {
+        "attack": 120,
+        "speed": 15
+      }
+    },
+    "expo_pb024": {
+      "id": "expo_pb024",
+      "name": "Huyền Quy Thuẫn",
+      "type": "equipment",
+      "slot": "armor",
+      "desc": "[Tier 3 - Thượng phẩm] Phòng ngự: Quy Giáp Chân Thể. Miễn nhiễm choáng.",
+      "price": 50000,
+      "tier": "rare",
+      "stats": {
+        "defense_bonus": 3500,
+        "hp_max": 15000,
+        "speed": -20
+      }
+    },
+    "expo_pb075": {
+      "id": "expo_pb075",
+      "name": "Tỏa Hồn Cốt Chung",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tier 5 - Cực phẩm] Khống chế: Trấn Hồn Âm (Câm lặng 50m). Bị động: Phệ Hồn (hút mana khi hạ gục).",
+      "price": 50000,
+      "tier": "epic",
+      "stats": {
+        "attack": 45000,
+        "defense_bonus": 20000,
+        "speed": 500
+      }
+    },
+    "expo_pb150": {
+      "id": "expo_pb150",
+      "name": "Hỗn Độn Tạo Hóa Liên",
+      "type": "equipment",
+      "slot": "artifact",
+      "desc": "[Tier 8 - Cực phẩm] Phụ trợ tối thượng: Tạo Hóa Sinh Sinh (Hồi phục & Thanh tẩy), Hỗn Độn Tái Khởi (Hồi sinh & Bất tử 3s).",
+      "price": 999999999,
+      "tier": "mythic",
+      "stats": {
+        "attack": 2500000,
+        "defense_bonus": 5000000,
+        "hp_max": 25000000,
+        "speed": 100000
+      }
+    }
   }
 }

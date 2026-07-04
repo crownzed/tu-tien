@@ -48,6 +48,39 @@
         { "id": "yeu_thu_dinh_3",  "name": "Thần Phạt Lôi Điểu",   "hp": 2500, "attack": 250, "defense": 80,  "element": "kim", "dropStones": [700, 1400], "expReward": 2200, "dropTable": [ { "itemId": "pha_gioi_dan", "chance": 0.15 }, { "itemId": "thien_pha_dan", "chance": 0.04 } ] }
       ],
       "boss": { "id": "boss_zone4", "name": "Hỗn Độn Thủy Tổ", "hp": 12000, "attack": 350, "defense": 250, "element": null, "dropStones": [3000, 6000], "expReward": 10000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.80, "qtyMax": 3 }, { "itemId": "pha_gioi_dan", "chance": 0.50, "qtyMax": 2 }, { "itemId": "thien_pha_dan", "chance": 0.30 }, { "itemId": "ngoc_gian_co", "chance": 0.10 } ] }
+    },
+    {
+      "id": "zone_5",
+      "realmMin": 9,
+      "realmMax": 10,
+      "enemies": [
+        { "id": "yeu_thu_tien_1",  "name": "Độ Kiếp Cổ Ma",        "hp": 5000, "attack": 350, "defense": 200, "element": null, "dropStones": [1500, 3000], "expReward": 4000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 2 }, { "itemId": "pha_gioi_dan", "chance": 0.15 }, { "itemId": "thien_pha_dan", "chance": 0.04 } ] },
+        { "id": "yeu_thu_tien_2",  "name": "Chân Tiên Phệ Hồn",    "hp": 7000, "attack": 300, "defense": 300, "element": "thuy", "dropStones": [1800, 3500], "expReward": 4500, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 2 }, { "itemId": "pha_gioi_dan", "chance": 0.15 }, { "itemId": "ngoc_gian_co", "chance": 0.025 } ] },
+        { "id": "yeu_thu_tien_3",  "name": "Tiên Lôi Thiên Cương",  "hp": 4500, "attack": 450, "defense": 150, "element": "kim", "dropStones": [2000, 4000], "expReward": 4200, "dropTable": [ { "itemId": "pha_gioi_dan", "chance": 0.18 }, { "itemId": "thien_pha_dan", "chance": 0.05 } ] }
+      ],
+      "boss": { "id": "boss_zone5", "name": "Cửu Thiên Huyền Tiên", "hp": 22000, "attack": 600, "defense": 400, "element": null, "dropStones": [8000, 15000], "expReward": 25000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.80, "qtyMax": 3 }, { "itemId": "pha_gioi_dan", "chance": 0.50, "qtyMax": 2 }, { "itemId": "thien_pha_dan", "chance": 0.30 }, { "itemId": "ngoc_gian_co", "chance": 0.12 } ] }
+    },
+    {
+      "id": "zone_6",
+      "realmMin": 11,
+      "realmMax": 12,
+      "enemies": [
+        { "id": "yeu_thu_kim_1",   "name": "Kim Tiên Sát Thần",     "hp": 9000,  "attack": 550, "defense": 350, "element": null, "dropStones": [3500, 7000], "expReward": 8000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 2 }, { "itemId": "pha_gioi_dan", "chance": 0.15 }, { "itemId": "thien_pha_dan", "chance": 0.05 } ] },
+        { "id": "yeu_thu_kim_2",   "name": "Thái Ất Hỗn Thế Ma",    "hp": 13000, "attack": 500, "defense": 500, "element": "tho", "dropStones": [4000, 8000], "expReward": 9000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 2 }, { "itemId": "thien_pha_dan", "chance": 0.06 }, { "itemId": "ngoc_gian_co", "chance": 0.03 } ] },
+        { "id": "yeu_thu_kim_3",   "name": "Phần Thiên Diệm Tổ",    "hp": 8000,  "attack": 700, "defense": 250, "element": "hoa", "dropStones": [4500, 9000], "expReward": 8500, "dropTable": [ { "itemId": "pha_gioi_dan", "chance": 0.18 }, { "itemId": "thien_pha_dan", "chance": 0.07 } ] }
+      ],
+      "boss": { "id": "boss_zone6", "name": "Hồng Hoang Đại La Tổ Ma", "hp": 40000, "attack": 950, "defense": 650, "element": null, "dropStones": [18000, 35000], "expReward": 60000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.80, "qtyMax": 3 }, { "itemId": "pha_gioi_dan", "chance": 0.50, "qtyMax": 2 }, { "itemId": "thien_pha_dan", "chance": 0.35 }, { "itemId": "ngoc_gian_co", "chance": 0.15 } ] }
+    },
+    {
+      "id": "zone_7",
+      "realmMin": 13,
+      "realmMax": 15,
+      "enemies": [
+        { "id": "yeu_thu_la_1",    "name": "Đại La Thôn Vũ Trụ",    "hp": 16000, "attack": 850,  "defense": 550, "element": null, "dropStones": [8000, 16000],  "expReward": 16000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 3 }, { "itemId": "thien_pha_dan", "chance": 0.07 }, { "itemId": "ngoc_gian_co", "chance": 0.03 } ] },
+        { "id": "yeu_thu_la_2",    "name": "Hỗn Nguyên Vô Cực Thú", "hp": 23000, "attack": 750,  "defense": 800, "element": null, "dropStones": [10000, 20000], "expReward": 18000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.25, "qtyMax": 3 }, { "itemId": "thien_pha_dan", "chance": 0.08 }, { "itemId": "ngoc_gian_co", "chance": 0.04 } ] },
+        { "id": "yeu_thu_la_3",    "name": "Hồng Mông Thí Đạo Giả", "hp": 13000, "attack": 1100, "defense": 450, "element": "kim", "dropStones": [11000, 22000], "expReward": 17000, "dropTable": [ { "itemId": "thien_pha_dan", "chance": 0.10 }, { "itemId": "ngoc_gian_co", "chance": 0.05 } ] }
+      ],
+      "boss": { "id": "boss_zone7", "name": "Hồng Mông Chí Tôn Cổ Thần", "hp": 75000, "attack": 1600, "defense": 1100, "element": null, "dropStones": [40000, 80000], "expReward": 150000, "dropTable": [ { "itemId": "dai_tu_vi_dan", "chance": 0.90, "qtyMax": 4 }, { "itemId": "thien_pha_dan", "chance": 0.40, "qtyMax": 2 }, { "itemId": "ngoc_gian_co", "chance": 0.20 } ] }
     }
   ]
 }
